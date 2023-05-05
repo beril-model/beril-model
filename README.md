@@ -1,6 +1,7 @@
 # beril-model
 
-A proposed LinkML schema for proposed for sample interoperability in the Department of Energy's Biological and Environmental Research program
+A proposed LinkML schema in support of sample interoperability at the [Department of Energy's Biological and Environmental Research
+ program](https://www.energy.gov/science/ber/biological-and-environmental-research)
 
 ## Website
 
