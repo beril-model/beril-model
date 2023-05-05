@@ -39,33 +39,33 @@ beril_model:Person a sh:NodeShape ;
     sh:closed true ;
     sh:description "Represents a Person" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:name ],
-        [ sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path schema1:description ],
-        [ sh:description "living or dead status" ;
-            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path beril_model:vital_status ],
-        [ sh:description "A unique identifier for a thing" ;
+    sh:property [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 3 ;
             sh:path schema1:identifier ;
             sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
-        [ sh:description "Number of years since birth" ;
+        [ sh:description "living or dead status" ;
+            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
             sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path beril_model:age_in_years ],
+            sh:order 2 ;
+            sh:path beril_model:vital_status ],
+        [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path schema1:description ],
         [ sh:description "The main email address of a person" ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path schema1:email ;
-            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ] ;
+            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
+        [ sh:description "Number of years since birth" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path beril_model:age_in_years ],
+        [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema1:name ] ;
     sh:targetClass beril_model:Person .
 

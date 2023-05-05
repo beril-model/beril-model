@@ -496,7 +496,7 @@
   "source_file": "beril_model.yaml",
   "source_file_date": "2023-05-05T18:37:19",
   "source_file_size": 2607,
-  "generation_date": "2023-05-05T19:08:49",
+  "generation_date": "2023-05-05T19:18:47",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/beril_model.context.jsonld",
