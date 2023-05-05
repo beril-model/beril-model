@@ -110,13 +110,13 @@ beril_model:NamedThing a owl:Class,
             owl:onClass linkml:String ;
             owl:onProperty schema1:description ],
         [ a owl:Restriction ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty schema1:identifier ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:name ] ;
+            owl:onProperty schema1:name ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty schema1:identifier ;
+            owl:qualifiedCardinality 1 ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing ;
     linkml:attributes "{}" .
@@ -126,12 +126,12 @@ beril_model:Person a owl:Class,
     rdfs:label "Person" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass beril_model:PersonStatus ;
-            owl:onProperty beril_model:vital_status ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Integer ;
             owl:onProperty beril_model:age_in_years ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass beril_model:PersonStatus ;
+            owl:onProperty beril_model:vital_status ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
