@@ -1,0 +1,5 @@
+@prefix beril_model: <https://w3id.org/beril-model/beril-model/> .
+@prefix example: <https://example.org/> .
+
+example:Person001 a beril_model:Person .
+
