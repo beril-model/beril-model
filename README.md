@@ -3,6 +3,8 @@
 A proposed LinkML schema in support of sample interoperability at the [Department of Energy's Biological and Environmental Research
  program](https://www.energy.gov/science/ber/biological-and-environmental-research)
 
+Bootstrapped with [https://github.com/turbomam/examples-first-cookiecutter]
+
 ## Website
 
 [https://beril-model.github.io/beril-model](https://beril-model.github.io/beril-model)
