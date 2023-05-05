@@ -1,0 +1,6 @@
+entries:
+  - id: example:Person001
+    name: foo bar
+  - id: example:Person001
+    name: foo bar
+    undefined: undefined

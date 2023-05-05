@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/turbomam/examples-first-cookiecutter",
+  "commit": "61b781ca676f9f0cc09b55102ecd07f801854714",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "beril-model",
+      "__project_slug": "beril_model",
+      "github_org": "beril-model",
+      "__source_path": "src/beril_model/schema/beril_model.yaml",
+      "project_description": "A proposed LinkML schema for proposed for sample interoperability in the Department of Energy's Biological and Environmental Research program",
+      "full_name": "My Name",
+      "email": "my-name@my-org.org",
+      "__author": "My Name <my-name@my-org.org>",
+      "license": "BSD-3",
+      "main_schema_class": "Person",
+      "create_python_classes": "Yes",
+      "use_schemasheets": "No",
+      "google_sheet_id": "1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ",
+      "google_sheet_tabs": "personinfo enums",
+      "__google_sheet_module": "personinfo_enums",
+      "github_token_for_pypi_deployment": "PYPI_PASSWORD",
+      "_template": "https://github.com/turbomam/examples-first-cookiecutter"
+    }
+  },
+  "directory": null
+}

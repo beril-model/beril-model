@@ -1,0 +1,26 @@
+[
+  {
+    "primary_email": "xxx@xxx.xxx",
+    "age_in_years": 12,
+    "vital_status": "ALIVE",
+    "id": "example:01",
+    "name": "Sam",
+    "description": "friend"
+  },
+  {
+    "primary_email": "xxx@xxx.xxx",
+    "age_in_years": 12,
+    "vital_status": "DEAD",
+    "id": "example:02",
+    "name": "Sam",
+    "description": "friend"
+  },
+  {
+    "primary_email": "xxx@xxx.xxx",
+    "age_in_years": 12,
+    "vital_status": "UNKNOWN",
+    "id": "example:03",
+    "name": "Sam",
+    "description": "friend"
+  }
+]

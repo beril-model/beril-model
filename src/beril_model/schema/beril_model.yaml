@@ -1,0 +1,104 @@
+---
+id: https://w3id.org/beril-model/beril-model
+name: beril-model
+title: beril-model
+description: |-
+  A proposed LinkML schema for proposed for sample interoperability in the Department of Energy's Biological and Environmental Research program
+license: BSD-3
+see_also:
+  - https://beril-model.github.io/beril-model
+
+prefixes:
+  beril_model: https://w3id.org/beril-model/beril-model/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: https://example.org/
+default_prefix: beril_model
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  NamedThing:
+    description: >-
+      A generic grouping for any identifiable entity
+    slots:
+      - id
+      - name
+      - description
+    class_uri: schema:Thing
+
+  Person:
+    is_a: NamedThing
+    description: >-
+      Represents a Person
+    slots:
+      - primary_email
+#      - birth_date # DataHarmoizer is saving date-ranged data as datetimes
+      - age_in_years
+      - vital_status
+    slot_usage:
+      primary_email:
+        pattern: "^\\S+@[\\S+\\.]+\\S+"
+
+  PersonCollection:
+    tree_root: true
+    description: >-
+      A holder for Person objects
+    attributes:
+      entries:
+        range: Person
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+
+slots:
+  id:
+    description: A unique identifier for a thing
+    identifier: true
+    pattern: "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+"
+    range: uriorcurie
+    required: true
+    slot_uri: schema:identifier
+  name:
+    slot_uri: schema:name
+    description: A human-readable name for a thing
+  description:
+    slot_uri: schema:description
+    description: A human-readable description for a thing
+  primary_email:
+    slot_uri: schema:email
+    description: The main email address of a person
+  birth_date:
+    slot_uri: schema:birthDate
+    range: date
+    description: Date on which a person is born
+  age_in_years:
+    range: integer
+    description: Number of years since birth
+  vital_status:
+    range: PersonStatus
+    description: living or dead status
+
+enums:
+  PersonStatus:
+    notes:
+      - redundant text properties are currently required for building a DataHarmonizer menu
+    permissible_values:
+      ALIVE:
+        text: ALIVE
+        description: the person is living
+        meaning: PATO:0001421
+      DEAD:
+        text: DEAD
+        description: the person is deceased
+        meaning: PATO:0001422
+      UNKNOWN:
+        text: UNKNOWN
+        description: the vital status is not known
+        todos:
+          - map this to an ontology

@@ -1,0 +1,7 @@
+---
+name: beril_model
+author: My Name <my-name@my-org.org>
+description: A proposed LinkML schema for proposed for sample interoperability in the Department of Energy's Biological and Environmental Research program
+source_schema_path: src/beril_model/schema/beril_model.yaml
+google_sheet_id: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
+google_sheet_tabs: personinfo enums
