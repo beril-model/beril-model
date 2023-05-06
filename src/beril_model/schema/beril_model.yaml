@@ -3,7 +3,7 @@ id: https://w3id.org/beril-model/beril-model
 name: beril-model
 title: beril-model
 description: |-
-  A proposed LinkML schema for proposed for sample interoperability in the Department of Energy's Biological and Environmental Research program
+  A proposed LinkML schema for sample interoperability in the Department of Energy's Biological and Environmental Research program
 license: BSD-3
 see_also:
   - https://beril-model.github.io/beril-model
@@ -31,6 +31,57 @@ classes:
       - name
       - description
     class_uri: schema:Thing
+    notes:
+      - "What kinds of things wouldn't be named? Observations that only have relations with types, not instances?"
+
+  Observation:
+    disjoint_with:
+      - NamedThing
+    slots:
+      - raw_value
+
+  NonProcess:
+    is_a: NamedThing
+    description: >-
+      A grouping for any named thing that is not a process
+    notes:
+      - At the very least we want the ability to say that Processes can have either a MaterialEntity or a DataArtifact as its input and output. The LinkML AnyOf range construct needs maintenance
+
+
+  MaterialEntity:
+    description: >-
+      something that is made of matter
+    disjoint_with:
+      - InformationArtifact
+      - Process
+      - Observation
+    is_a: NonProcess
+    slots:
+      - observations
+
+  InformationArtifact:
+    disjoint_with:
+      - MaterialEntity
+      - Process
+      - Observation
+    is_a: NonProcess
+    slots:
+      - size_in_bytes
+      - md5
+      - url
+
+  Process:
+    description: >-
+      Something that unfolds over time
+    disjoint_with:
+      - MaterialEntity
+      - InformationArtifact
+      - Observation
+    is_a: NamedThing
+    slots:
+      - inputs
+      - outputs
+
 
   Person:
     is_a: NamedThing
@@ -38,7 +89,7 @@ classes:
       Represents a Person
     slots:
       - primary_email
-#      - birth_date # DataHarmoizer is saving date-ranged data as datetimes
+      - birth_date # DataHarmonizer is saving date-ranged data as datetimes
       - age_in_years
       - vital_status
     slot_usage:
@@ -83,6 +134,34 @@ slots:
   vital_status:
     range: PersonStatus
     description: living or dead status
+  raw_value:
+    description: The raw value of an observation
+    notes:
+      - could possibly be decomposed into a value and a unit
+  observations:
+    range: Observation
+    multivalued: true
+  #    inlined: true
+  #    inlined_as_list: true
+
+  size_in_bytes:
+    range: integer
+    description: >-
+      The size of a file in bytes
+  md5:
+    range: string
+    description: >-
+      The MD5 checksum of a file
+  url:
+    range: uriorcurie
+    description: >-
+      A URL for a file
+  inputs:
+    range: MaterialEntity
+    multivalued: true
+  outputs:
+    range: MaterialEntity
+    multivalued: true
 
 enums:
   PersonStatus:

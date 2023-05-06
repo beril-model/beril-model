@@ -9,11 +9,7 @@ schema1:Thing a sh:NodeShape ;
     sh:closed true ;
     sh:description "A generic grouping for any identifiable entity" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path schema1:name ],
-        [ sh:description "A human-readable description for a thing" ;
+    sh:property [ sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 2 ;
             sh:path schema1:description ],
@@ -22,8 +18,63 @@ schema1:Thing a sh:NodeShape ;
             sh:minCount 1 ;
             sh:order 0 ;
             sh:path schema1:identifier ;
-            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ] ;
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
+        [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
     sh:targetClass schema1:Thing .
+
+beril_model:InformationArtifact a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema1:name ],
+        [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path schema1:description ],
+        [ sh:description "The MD5 checksum of a file" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path beril_model:md5 ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path schema1:identifier ;
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
+        [ sh:description "A URL for a file" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path beril_model:url ],
+        [ sh:description "The size of a file in bytes" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path beril_model:size_in_bytes ] ;
+    sh:targetClass beril_model:InformationArtifact .
+
+beril_model:NonProcess a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A grouping for any named thing that is not a process" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:identifier ;
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
+        [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
+    sh:targetClass beril_model:NonProcess .
 
 beril_model:PersonCollection a sh:NodeShape ;
     sh:closed true ;
@@ -35,37 +86,102 @@ beril_model:PersonCollection a sh:NodeShape ;
             sh:path beril_model:entries ] ;
     sh:targetClass beril_model:PersonCollection .
 
+beril_model:Process a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Something that unfolds over time" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class beril_model:MaterialEntity ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path beril_model:outputs ],
+        [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path schema1:identifier ;
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
+        [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:class beril_model:MaterialEntity ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path beril_model:inputs ] ;
+    sh:targetClass beril_model:Process .
+
+beril_model:Observation a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "The raw value of an observation" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path beril_model:raw_value ] ;
+    sh:targetClass beril_model:Observation .
+
 beril_model:Person a sh:NodeShape ;
     sh:closed true ;
     sh:description "Represents a Person" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A unique identifier for a thing" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 3 ;
-            sh:path schema1:identifier ;
-            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
-        [ sh:description "living or dead status" ;
-            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
+    sh:property [ sh:description "Number of years since birth" ;
             sh:maxCount 1 ;
             sh:order 2 ;
-            sh:path beril_model:vital_status ],
-        [ sh:description "A human-readable description for a thing" ;
+            sh:path beril_model:age_in_years ],
+        [ sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
             sh:order 5 ;
-            sh:path schema1:description ],
+            sh:path schema1:name ],
         [ sh:description "The main email address of a person" ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path schema1:email ;
             sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
-        [ sh:description "Number of years since birth" ;
+        [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path schema1:description ],
+        [ sh:description "Date on which a person is born" ;
             sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path beril_model:age_in_years ],
+            sh:path schema1:birthDate ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path schema1:identifier ;
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
+        [ sh:description "living or dead status" ;
+            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path beril_model:vital_status ] ;
+    sh:targetClass beril_model:Person .
+
+beril_model:MaterialEntity a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "something that is made of matter" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path schema1:description ],
         [ sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:name ] ;
-    sh:targetClass beril_model:Person .
+            sh:order 2 ;
+            sh:path schema1:name ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path schema1:identifier ;
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
+        [ sh:class beril_model:Observation ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 0 ;
+            sh:path beril_model:observations ] ;
+    sh:targetClass beril_model:MaterialEntity .
 

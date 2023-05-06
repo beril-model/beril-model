@@ -1,8 +1,38 @@
+type InformationArtifact
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    sizeInBytes: Integer
+    md5: String
+    url: Uriorcurie
+  }
+
+type MaterialEntity
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    observations: [Observation]
+  }
+
 type NamedThing
   {
     id: Uriorcurie!
     name: String
     description: String
+  }
+
+type NonProcess
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+  }
+
+type Observation
+  {
+    rawValue: String
   }
 
 type Person
@@ -11,6 +41,7 @@ type Person
     name: String
     description: String
     primaryEmail: String
+    birthDate: Date
     ageInYears: Integer
     vitalStatus: PersonStatus
   }
@@ -18,5 +49,14 @@ type Person
 type PersonCollection
   {
     entries: [Person]
+  }
+
+type Process
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    inputs: [MaterialEntity]
+    outputs: [MaterialEntity]
   }
 

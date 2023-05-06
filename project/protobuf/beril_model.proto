@@ -1,9 +1,37 @@
+message InformationArtifact
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  integer sizeInBytes = 0
+  string md5 = 0
+  uriorcurie url = 0
+ }
+// something that is made of matter
+message MaterialEntity
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+ repeated  observation observations = 0
+ }
 // A generic grouping for any identifiable entity
 message NamedThing
  {
   uriorcurie id = 0
   string name = 0
   string description = 0
+ }
+// A grouping for any named thing that is not a process
+message NonProcess
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+ }
+message Observation
+ {
+  string rawValue = 0
  }
 // Represents a Person
 message Person
@@ -12,6 +40,7 @@ message Person
   string name = 0
   string description = 0
   string primaryEmail = 0
+  date birthDate = 0
   integer ageInYears = 0
   personStatus vitalStatus = 0
  }
@@ -19,4 +48,13 @@ message Person
 message PersonCollection
  {
  repeated  person entries = 0
+ }
+// Something that unfolds over time
+message Process
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+ repeated  materialEntity inputs = 0
+ repeated  materialEntity outputs = 0
  }

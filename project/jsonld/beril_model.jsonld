@@ -1,6 +1,6 @@
 {
   "name": "beril-model",
-  "description": "A proposed LinkML schema for proposed for sample interoperability in the Department of Energy's Biological and Environmental Research program",
+  "description": "A proposed LinkML schema for sample interoperability in the Department of Energy's Biological and Environmental Research program",
   "title": "beril-model",
   "see_also": [
     "https://beril-model.github.io/beril-model"
@@ -365,6 +365,10 @@
         "http://schema.org/birthDate"
       ],
       "slot_uri": "http://schema.org/birthDate",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
       "range": "date",
       "@type": "SlotDefinition"
     },
@@ -392,6 +396,101 @@
         "Person"
       ],
       "range": "PersonStatus",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "raw_value",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/raw_value",
+      "description": "The raw value of an observation",
+      "notes": [
+        "could possibly be decomposed into a value and a unit"
+      ],
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/beril-model/beril-model/raw_value",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observations",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/observations",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/beril-model/beril-model/observations",
+      "multivalued": true,
+      "owner": "MaterialEntity",
+      "domain_of": [
+        "MaterialEntity"
+      ],
+      "range": "Observation",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "size_in_bytes",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/size_in_bytes",
+      "description": "The size of a file in bytes",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/beril-model/beril-model/size_in_bytes",
+      "owner": "InformationArtifact",
+      "domain_of": [
+        "InformationArtifact"
+      ],
+      "range": "integer",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "md5",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/md5",
+      "description": "The MD5 checksum of a file",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/beril-model/beril-model/md5",
+      "owner": "InformationArtifact",
+      "domain_of": [
+        "InformationArtifact"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "url",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/url",
+      "description": "A URL for a file",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/beril-model/beril-model/url",
+      "owner": "InformationArtifact",
+      "domain_of": [
+        "InformationArtifact"
+      ],
+      "range": "uriorcurie",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "inputs",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/inputs",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/beril-model/beril-model/inputs",
+      "multivalued": true,
+      "owner": "Process",
+      "domain_of": [
+        "Process"
+      ],
+      "range": "MaterialEntity",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "outputs",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/outputs",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/beril-model/beril-model/outputs",
+      "multivalued": true,
+      "owner": "Process",
+      "domain_of": [
+        "Process"
+      ],
+      "range": "MaterialEntity",
       "@type": "SlotDefinition"
     },
     {
@@ -437,6 +536,9 @@
       "name": "NamedThing",
       "definition_uri": "https://w3id.org/beril-model/beril-model/NamedThing",
       "description": "A generic grouping for any identifiable entity",
+      "notes": [
+        "What kinds of things wouldn't be named? Observations that only have relations with types, not instances?"
+      ],
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "mappings": [
         "schema:Thing"
@@ -451,6 +553,103 @@
       "@type": "ClassDefinition"
     },
     {
+      "name": "Observation",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/Observation",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slots": [
+        "raw_value"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/beril-model/beril-model/Observation",
+      "disjoint_with": [
+        "NamedThing"
+      ],
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "NonProcess",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/NonProcess",
+      "description": "A grouping for any named thing that is not a process",
+      "notes": [
+        "At the very least we want the ability to say that Processes can have either a MaterialEntity or a DataArtifact as its input and output. The LinkML AnyOf range construct needs maintenance"
+      ],
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "description"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/beril-model/beril-model/NonProcess",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "MaterialEntity",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/MaterialEntity",
+      "description": "something that is made of matter",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "NonProcess",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "observations"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/beril-model/beril-model/MaterialEntity",
+      "disjoint_with": [
+        "InformationArtifact",
+        "Process",
+        "Observation"
+      ],
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "InformationArtifact",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/InformationArtifact",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "NonProcess",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "size_in_bytes",
+        "md5",
+        "url"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/beril-model/beril-model/InformationArtifact",
+      "disjoint_with": [
+        "MaterialEntity",
+        "Process",
+        "Observation"
+      ],
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Process",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/Process",
+      "description": "Something that unfolds over time",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "NamedThing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "inputs",
+        "outputs"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/beril-model/beril-model/Process",
+      "disjoint_with": [
+        "MaterialEntity",
+        "InformationArtifact",
+        "Observation"
+      ],
+      "@type": "ClassDefinition"
+    },
+    {
       "name": "Person",
       "definition_uri": "https://w3id.org/beril-model/beril-model/Person",
       "description": "Represents a Person",
@@ -461,6 +660,7 @@
         "name",
         "description",
         "Person_primary_email",
+        "birth_date",
         "age_in_years",
         "vital_status"
       ],
@@ -494,9 +694,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "beril_model.yaml",
-  "source_file_date": "2023-05-05T18:37:19",
-  "source_file_size": 2607,
-  "generation_date": "2023-05-05T19:18:47",
+  "source_file_date": "2023-05-05T21:38:32",
+  "source_file_size": 4347,
+  "generation_date": "2023-05-05T21:39:16",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/beril_model.context.jsonld",
