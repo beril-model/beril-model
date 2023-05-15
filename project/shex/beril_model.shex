@@ -100,21 +100,39 @@ linkml:Nodeidentifier NONLITERAL
     )
 }
 
-<Process> CLOSED {
-    (  $<Process_tes> (  &<NamedThing_tes> ;
-          rdf:type [ schema1:Thing ] ? ;
-          <inputs> @<MaterialEntity> * ;
-          <outputs> @<MaterialEntity> *
+<Pooling> CLOSED {
+    (  $<Pooling_tes> (  &<Process_tes> ;
+          rdf:type [ <Process> ] ?
        ) ;
-       rdf:type [ <Process> ]
+       rdf:type [ <Pooling> ]
     )
 }
+
+<Process>  (
+    CLOSED {
+       (  $<Process_tes> (  &<NamedThing_tes> ;
+             rdf:type [ schema1:Thing ] ? ;
+             <inputs> @<MaterialEntity> * ;
+             <outputs> @<MaterialEntity> *
+          ) ;
+          rdf:type [ <Process> ]
+       )
+    } OR @<Pooling> OR @<Splitting>
+)
 
 <SoilSample> CLOSED {
     (  $<SoilSample_tes> (  &<MaterialEntity_tes> ;
           rdf:type [ <MaterialEntity> ] ?
        ) ;
        rdf:type [ <SoilSample> ]
+    )
+}
+
+<Splitting> CLOSED {
+    (  $<Splitting_tes> (  &<Process_tes> ;
+          rdf:type [ <Process> ] ?
+       ) ;
+       rdf:type [ <Splitting> ]
     )
 }
 

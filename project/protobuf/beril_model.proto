@@ -48,6 +48,14 @@ message PersonCollection
  {
  repeated  person people = 0
  }
+message Pooling
+ {
+  uriorcurie id = 1
+  string name = 2
+  string description = 3
+ repeated  materialEntity inputs = 0
+ repeated  materialEntity outputs = 0
+ }
 // An entity that unfolds over time. Not composed of matter.
 message Process
  {
@@ -64,4 +72,12 @@ message SoilSample
   string description = 3
   float massG = 101
   colorEnum color = 102
+ }
+message Splitting
+ {
+  uriorcurie id = 1
+  string name = 2
+  string description = 3
+ repeated  materialEntity inputs = 0
+ repeated  materialEntity outputs = 0
  }
