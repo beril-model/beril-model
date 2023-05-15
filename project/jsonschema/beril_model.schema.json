@@ -42,7 +42,7 @@
         },
         "InformationArtifact": {
             "additionalProperties": false,
-            "description": "",
+            "description": "Anything that informs, or reduces uncertainty. Can be about a material entity or a process.",
             "properties": {
                 "description": {
                     "description": "A human-readable description for a thing",
@@ -78,7 +78,7 @@
         },
         "MaterialEntity": {
             "additionalProperties": false,
-            "description": "something that is made of matter",
+            "description": "An entity that consists of matter. Has an identity that persists over time.",
             "properties": {
                 "color": {
                     "$ref": "#/$defs/ColorEnum"
@@ -188,7 +188,7 @@
         },
         "Process": {
             "additionalProperties": false,
-            "description": "Something that unfolds over time",
+            "description": "An entity that unfolds over time. Not composed of matter.",
             "properties": {
                 "description": {
                     "description": "A human-readable description for a thing",

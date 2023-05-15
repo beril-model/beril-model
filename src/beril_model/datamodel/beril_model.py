@@ -1,5 +1,5 @@
 # Auto generated from beril_model.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-05-15T18:46:12
+# Generation date: 2023-05-15T19:08:26
 # Schema: beril-model
 #
 # id: https://w3id.org/beril-model/beril-model
@@ -31,6 +31,8 @@ version = None
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
+BFO = CurieNamespace('BFO', 'http://purl.obolibrary.org/obo/BFO_')
+IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
 BERIL_MODEL = CurieNamespace('beril_model', 'https://w3id.org/turbomam/beril-model/')
 EXAMPLE = CurieNamespace('example', 'https://example.org/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
@@ -173,7 +175,7 @@ class PersonCollection(YAMLRoot):
 @dataclass
 class MaterialEntity(NamedThing):
     """
-    something that is made of matter
+    An entity that consists of matter. Has an identity that persists over time.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -243,6 +245,9 @@ class DnaExtract(MaterialEntity):
 
 @dataclass
 class InformationArtifact(NamedThing):
+    """
+    Anything that informs, or reduces uncertainty. Can be about a material entity or a process.
+    """
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = BERIL_MODEL.InformationArtifact
@@ -276,7 +281,7 @@ class InformationArtifact(NamedThing):
 @dataclass
 class Process(NamedThing):
     """
-    Something that unfolds over time
+    An entity that unfolds over time. Not composed of matter.
     """
     _inherited_slots: ClassVar[List[str]] = []
 

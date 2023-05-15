@@ -83,6 +83,16 @@ material_entities:
   undefined_slot: this slot is not defined in the schema
 
 ```
+## NamedThingCollection-material_entities-missing-prefix
+### Input
+```yaml
+material_entities:
+- color: RED
+  id: undefined1
+  mass_g: 100
+  name: sample 1
+
+```
 ## NamedThingCollection-material_entities-missing-id
 ### Input
 ```yaml

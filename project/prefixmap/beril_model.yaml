@@ -1,4 +1,6 @@
 {
+   "BFO": "http://purl.obolibrary.org/obo/BFO_",
+   "IAO": "http://purl.obolibrary.org/obo/IAO_",
    "beril_model": "https://w3id.org/turbomam/beril-model/",
    "example": "https://example.org/",
    "linkml": "https://w3id.org/linkml/",

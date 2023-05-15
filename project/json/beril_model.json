@@ -31,6 +31,14 @@
     "shex": {
       "prefix_prefix": "shex",
       "prefix_reference": "http://www.w3.org/ns/shex#"
+    },
+    "BFO": {
+      "prefix_prefix": "BFO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/BFO_"
+    },
+    "IAO": {
+      "prefix_prefix": "IAO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/IAO_"
     }
   },
   "default_prefix": "beril_model",
@@ -508,8 +516,18 @@
     },
     "MaterialEntity": {
       "name": "MaterialEntity",
-      "description": "something that is made of matter",
+      "description": "An entity that consists of matter. Has an identity that persists over time.",
+      "comments": [
+        "bootstrapped from https://github.com/microbiomedata/nmdc-schema/pull/710"
+      ],
       "from_schema": "https://w3id.org/beril-model/beril-model",
+      "aliases": [
+        "Material",
+        "Physical entity"
+      ],
+      "exact_mappings": [
+        "BFO:0000040"
+      ],
       "is_a": "NamedThing",
       "slots": [
         "mass_g",
@@ -760,7 +778,14 @@
     },
     "InformationArtifact": {
       "name": "InformationArtifact",
+      "description": "Anything that informs, or reduces uncertainty. Can be about a material entity or a process.",
+      "comments": [
+        "Information is (almost?) always conveyed by something, like a book printed on paper, electrical charges stored on a computer disk, or human speech. Those information bearers are not the information itself."
+      ],
       "from_schema": "https://w3id.org/beril-model/beril-model",
+      "exact_mappings": [
+        "IAO:0000030"
+      ],
       "is_a": "NamedThing",
       "slots": [
         "size_in_bytes",
@@ -865,8 +890,11 @@
     },
     "Process": {
       "name": "Process",
-      "description": "Something that unfolds over time",
+      "description": "An entity that unfolds over time. Not composed of matter.",
       "from_schema": "https://w3id.org/beril-model/beril-model",
+      "exact_mappings": [
+        "BFO:0000015"
+      ],
       "is_a": "NamedThing",
       "slots": [
         "inputs",
