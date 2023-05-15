@@ -14,6 +14,7 @@ nav:
   # - Home: home.md
   - Index: index.md
   - About: about.md
+  - 'beril-model DH Playground': https://https://beril-model.github.io/beril-model/_playground/
 site_url: https://beril-model.github.io/beril-model
 repo_url: https://github.com/beril-model/beril-model
 
