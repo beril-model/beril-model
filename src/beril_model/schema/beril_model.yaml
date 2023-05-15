@@ -178,3 +178,7 @@ classes:
       - MaterialEntity
       - InformationArtifact
       - Observation
+  Splitting:
+    is_a: Process
+  Pooling:
+    is_a: Process

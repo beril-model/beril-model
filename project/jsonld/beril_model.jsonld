@@ -686,13 +686,45 @@
         "Observation"
       ],
       "@type": "ClassDefinition"
+    },
+    {
+      "name": "Splitting",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/Splitting",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "Process",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "inputs",
+        "outputs"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/turbomam/beril-model/Splitting",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Pooling",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/Pooling",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "Process",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "inputs",
+        "outputs"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/turbomam/beril-model/Pooling",
+      "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.7.0",
   "source_file": "beril_model.yaml",
-  "source_file_date": "2023-05-15T19:08:09",
-  "source_file_size": 4588,
-  "generation_date": "2023-05-15T19:08:16",
+  "source_file_date": "2023-05-15T19:29:56",
+  "source_file_size": 4648,
+  "generation_date": "2023-05-15T19:32:26",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/beril_model.context.jsonld",

@@ -53,6 +53,15 @@ CREATE TABLE "PersonCollection" (
 	PRIMARY KEY (people)
 );
 
+CREATE TABLE "Pooling" (
+	id TEXT NOT NULL, 
+	name TEXT, 
+	description TEXT, 
+	inputs TEXT, 
+	outputs TEXT, 
+	PRIMARY KEY (id)
+);
+
 CREATE TABLE "Process" (
 	id TEXT NOT NULL, 
 	name TEXT, 
@@ -68,5 +77,14 @@ CREATE TABLE "SoilSample" (
 	description TEXT, 
 	mass_g FLOAT, 
 	color VARCHAR(5), 
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE "Splitting" (
+	id TEXT NOT NULL, 
+	name TEXT, 
+	description TEXT, 
+	inputs TEXT, 
+	outputs TEXT, 
 	PRIMARY KEY (id)
 );

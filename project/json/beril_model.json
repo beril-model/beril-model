@@ -987,6 +987,191 @@
         "InformationArtifact",
         "Observation"
       ]
+    },
+    "Splitting": {
+      "name": "Splitting",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "Process",
+      "attributes": {
+        "inputs": {
+          "name": "inputs",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "multivalued": true,
+          "alias": "inputs",
+          "owner": "Splitting",
+          "domain_of": [
+            "Process"
+          ],
+          "range": "MaterialEntity"
+        },
+        "outputs": {
+          "name": "outputs",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "multivalued": true,
+          "alias": "outputs",
+          "owner": "Splitting",
+          "domain_of": [
+            "Process"
+          ],
+          "range": "MaterialEntity"
+        },
+        "id": {
+          "name": "id",
+          "description": "A unique identifier for a thing",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "rank": 1,
+          "slot_uri": "schema:identifier",
+          "identifier": true,
+          "alias": "id",
+          "owner": "Splitting",
+          "domain_of": [
+            "NamedThing",
+            "Person",
+            "MaterialEntity",
+            "SoilSample",
+            "DnaExtract",
+            "InformationArtifact",
+            "Process"
+          ],
+          "slot_group": "identifiers",
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+"
+        },
+        "name": {
+          "name": "name",
+          "description": "A human-readable name for a thing",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "rank": 2,
+          "slot_uri": "schema:name",
+          "alias": "name",
+          "owner": "Splitting",
+          "domain_of": [
+            "NamedThing",
+            "MaterialEntity",
+            "SoilSample",
+            "DnaExtract",
+            "InformationArtifact",
+            "Process"
+          ],
+          "slot_group": "identifiers",
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A human-readable description for a thing",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "rank": 3,
+          "slot_uri": "schema:description",
+          "alias": "description",
+          "owner": "Splitting",
+          "domain_of": [
+            "NamedThing",
+            "MaterialEntity",
+            "SoilSample",
+            "DnaExtract",
+            "InformationArtifact",
+            "Process"
+          ],
+          "slot_group": "identifiers",
+          "range": "string"
+        }
+      }
+    },
+    "Pooling": {
+      "name": "Pooling",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "Process",
+      "attributes": {
+        "inputs": {
+          "name": "inputs",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "multivalued": true,
+          "alias": "inputs",
+          "owner": "Pooling",
+          "domain_of": [
+            "Process",
+            "Splitting"
+          ],
+          "range": "MaterialEntity"
+        },
+        "outputs": {
+          "name": "outputs",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "multivalued": true,
+          "alias": "outputs",
+          "owner": "Pooling",
+          "domain_of": [
+            "Process",
+            "Splitting"
+          ],
+          "range": "MaterialEntity"
+        },
+        "id": {
+          "name": "id",
+          "description": "A unique identifier for a thing",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "rank": 1,
+          "slot_uri": "schema:identifier",
+          "identifier": true,
+          "alias": "id",
+          "owner": "Pooling",
+          "domain_of": [
+            "NamedThing",
+            "Person",
+            "MaterialEntity",
+            "SoilSample",
+            "DnaExtract",
+            "InformationArtifact",
+            "Process",
+            "Splitting"
+          ],
+          "slot_group": "identifiers",
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+"
+        },
+        "name": {
+          "name": "name",
+          "description": "A human-readable name for a thing",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "rank": 2,
+          "slot_uri": "schema:name",
+          "alias": "name",
+          "owner": "Pooling",
+          "domain_of": [
+            "NamedThing",
+            "MaterialEntity",
+            "SoilSample",
+            "DnaExtract",
+            "InformationArtifact",
+            "Process",
+            "Splitting"
+          ],
+          "slot_group": "identifiers",
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "A human-readable description for a thing",
+          "from_schema": "https://w3id.org/beril-model/beril-model",
+          "rank": 3,
+          "slot_uri": "schema:description",
+          "alias": "description",
+          "owner": "Pooling",
+          "domain_of": [
+            "NamedThing",
+            "MaterialEntity",
+            "SoilSample",
+            "DnaExtract",
+            "InformationArtifact",
+            "Process",
+            "Splitting"
+          ],
+          "slot_group": "identifiers",
+          "range": "string"
+        }
+      }
     }
   },
   "source_file": "src/beril_model/schema/beril_model.yaml",

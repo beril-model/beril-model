@@ -1,5 +1,5 @@
 # Auto generated from beril_model.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-05-15T19:08:26
+# Generation date: 2023-05-15T19:32:38
 # Schema: beril-model
 #
 # id: https://w3id.org/beril-model/beril-model
@@ -70,6 +70,14 @@ class InformationArtifactId(NamedThingId):
 
 
 class ProcessId(NamedThingId):
+    pass
+
+
+class SplittingId(ProcessId):
+    pass
+
+
+class PoolingId(ProcessId):
     pass
 
 
@@ -307,6 +315,46 @@ class Process(NamedThing):
         if not isinstance(self.outputs, list):
             self.outputs = [self.outputs] if self.outputs is not None else []
         self.outputs = [v if isinstance(v, MaterialEntityId) else MaterialEntityId(v) for v in self.outputs]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class Splitting(Process):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.Splitting
+    class_class_curie: ClassVar[str] = "beril_model:Splitting"
+    class_name: ClassVar[str] = "Splitting"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.Splitting
+
+    id: Union[str, SplittingId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, SplittingId):
+            self.id = SplittingId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class Pooling(Process):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.Pooling
+    class_class_curie: ClassVar[str] = "beril_model:Pooling"
+    class_name: ClassVar[str] = "Pooling"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.Pooling
+
+    id: Union[str, PoolingId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, PoolingId):
+            self.id = PoolingId(self.id)
 
         super().__post_init__(**kwargs)
 

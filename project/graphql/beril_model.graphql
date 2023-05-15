@@ -51,6 +51,15 @@ type PersonCollection
     people: [Person]
   }
 
+type Pooling
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    inputs: [MaterialEntity]
+    outputs: [MaterialEntity]
+  }
+
 type Process
   {
     id: Uriorcurie!
@@ -67,5 +76,14 @@ type SoilSample
     description: String
     massG: Float
     color: ColorEnum
+  }
+
+type Splitting
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    inputs: [MaterialEntity]
+    outputs: [MaterialEntity]
   }
 
