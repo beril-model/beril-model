@@ -1,9 +1,9 @@
 # Auto generated from beril_model.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-05-05T19:18:54
+# Generation date: 2023-05-05T21:39:24
 # Schema: beril-model
 #
 # id: https://w3id.org/beril-model/beril-model
-# description: A proposed LinkML schema for proposed for sample interoperability in the Department of Energy's Biological and Environmental Research program
+# description: A proposed LinkML schema for sample interoperability in the Department of Energy's Biological and Environmental Research program
 # license: BSD-3
 
 import dataclasses
@@ -47,6 +47,22 @@ class NamedThingId(URIorCURIE):
     pass
 
 
+class NonProcessId(NamedThingId):
+    pass
+
+
+class MaterialEntityId(NonProcessId):
+    pass
+
+
+class InformationArtifactId(NonProcessId):
+    pass
+
+
+class ProcessId(NamedThingId):
+    pass
+
+
 class PersonId(NamedThingId):
     pass
 
@@ -83,6 +99,140 @@ class NamedThing(YAMLRoot):
 
 
 @dataclass
+class Observation(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.Observation
+    class_class_curie: ClassVar[str] = "beril_model:Observation"
+    class_name: ClassVar[str] = "Observation"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.Observation
+
+    raw_value: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.raw_value is not None and not isinstance(self.raw_value, str):
+            self.raw_value = str(self.raw_value)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class NonProcess(NamedThing):
+    """
+    A grouping for any named thing that is not a process
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.NonProcess
+    class_class_curie: ClassVar[str] = "beril_model:NonProcess"
+    class_name: ClassVar[str] = "NonProcess"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.NonProcess
+
+    id: Union[str, NonProcessId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, NonProcessId):
+            self.id = NonProcessId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class MaterialEntity(NonProcess):
+    """
+    something that is made of matter
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.MaterialEntity
+    class_class_curie: ClassVar[str] = "beril_model:MaterialEntity"
+    class_name: ClassVar[str] = "MaterialEntity"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.MaterialEntity
+
+    id: Union[str, MaterialEntityId] = None
+    observations: Optional[Union[Union[dict, Observation], List[Union[dict, Observation]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, MaterialEntityId):
+            self.id = MaterialEntityId(self.id)
+
+        if not isinstance(self.observations, list):
+            self.observations = [self.observations] if self.observations is not None else []
+        self.observations = [v if isinstance(v, Observation) else Observation(**as_dict(v)) for v in self.observations]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class InformationArtifact(NonProcess):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.InformationArtifact
+    class_class_curie: ClassVar[str] = "beril_model:InformationArtifact"
+    class_name: ClassVar[str] = "InformationArtifact"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.InformationArtifact
+
+    id: Union[str, InformationArtifactId] = None
+    size_in_bytes: Optional[int] = None
+    md5: Optional[str] = None
+    url: Optional[Union[str, URIorCURIE]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, InformationArtifactId):
+            self.id = InformationArtifactId(self.id)
+
+        if self.size_in_bytes is not None and not isinstance(self.size_in_bytes, int):
+            self.size_in_bytes = int(self.size_in_bytes)
+
+        if self.md5 is not None and not isinstance(self.md5, str):
+            self.md5 = str(self.md5)
+
+        if self.url is not None and not isinstance(self.url, URIorCURIE):
+            self.url = URIorCURIE(self.url)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class Process(NamedThing):
+    """
+    Something that unfolds over time
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.Process
+    class_class_curie: ClassVar[str] = "beril_model:Process"
+    class_name: ClassVar[str] = "Process"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.Process
+
+    id: Union[str, ProcessId] = None
+    inputs: Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]] = empty_list()
+    outputs: Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ProcessId):
+            self.id = ProcessId(self.id)
+
+        if not isinstance(self.inputs, list):
+            self.inputs = [self.inputs] if self.inputs is not None else []
+        self.inputs = [v if isinstance(v, MaterialEntityId) else MaterialEntityId(v) for v in self.inputs]
+
+        if not isinstance(self.outputs, list):
+            self.outputs = [self.outputs] if self.outputs is not None else []
+        self.outputs = [v if isinstance(v, MaterialEntityId) else MaterialEntityId(v) for v in self.outputs]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
 class Person(NamedThing):
     """
     Represents a Person
@@ -96,6 +246,7 @@ class Person(NamedThing):
 
     id: Union[str, PersonId] = None
     primary_email: Optional[str] = None
+    birth_date: Optional[Union[str, XSDDate]] = None
     age_in_years: Optional[int] = None
     vital_status: Optional[Union[str, "PersonStatus"]] = None
 
@@ -107,6 +258,9 @@ class Person(NamedThing):
 
         if self.primary_email is not None and not isinstance(self.primary_email, str):
             self.primary_email = str(self.primary_email)
+
+        if self.birth_date is not None and not isinstance(self.birth_date, XSDDate):
+            self.birth_date = XSDDate(self.birth_date)
 
         if self.age_in_years is not None and not isinstance(self.age_in_years, int):
             self.age_in_years = int(self.age_in_years)
@@ -181,6 +335,27 @@ slots.age_in_years = Slot(uri=BERIL_MODEL.age_in_years, name="age_in_years", cur
 
 slots.vital_status = Slot(uri=BERIL_MODEL.vital_status, name="vital_status", curie=BERIL_MODEL.curie('vital_status'),
                    model_uri=BERIL_MODEL.vital_status, domain=None, range=Optional[Union[str, "PersonStatus"]])
+
+slots.raw_value = Slot(uri=BERIL_MODEL.raw_value, name="raw_value", curie=BERIL_MODEL.curie('raw_value'),
+                   model_uri=BERIL_MODEL.raw_value, domain=None, range=Optional[str])
+
+slots.observations = Slot(uri=BERIL_MODEL.observations, name="observations", curie=BERIL_MODEL.curie('observations'),
+                   model_uri=BERIL_MODEL.observations, domain=None, range=Optional[Union[Union[dict, Observation], List[Union[dict, Observation]]]])
+
+slots.size_in_bytes = Slot(uri=BERIL_MODEL.size_in_bytes, name="size_in_bytes", curie=BERIL_MODEL.curie('size_in_bytes'),
+                   model_uri=BERIL_MODEL.size_in_bytes, domain=None, range=Optional[int])
+
+slots.md5 = Slot(uri=BERIL_MODEL.md5, name="md5", curie=BERIL_MODEL.curie('md5'),
+                   model_uri=BERIL_MODEL.md5, domain=None, range=Optional[str])
+
+slots.url = Slot(uri=BERIL_MODEL.url, name="url", curie=BERIL_MODEL.curie('url'),
+                   model_uri=BERIL_MODEL.url, domain=None, range=Optional[Union[str, URIorCURIE]])
+
+slots.inputs = Slot(uri=BERIL_MODEL.inputs, name="inputs", curie=BERIL_MODEL.curie('inputs'),
+                   model_uri=BERIL_MODEL.inputs, domain=None, range=Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]])
+
+slots.outputs = Slot(uri=BERIL_MODEL.outputs, name="outputs", curie=BERIL_MODEL.curie('outputs'),
+                   model_uri=BERIL_MODEL.outputs, domain=None, range=Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]])
 
 slots.personCollection__entries = Slot(uri=BERIL_MODEL.entries, name="personCollection__entries", curie=BERIL_MODEL.curie('entries'),
                    model_uri=BERIL_MODEL.personCollection__entries, domain=None, range=Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]])

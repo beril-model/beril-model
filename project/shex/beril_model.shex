@@ -37,6 +37,26 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
+<InformationArtifact> CLOSED {
+    (  $<InformationArtifact_tes> (  &<NonProcess_tes> ;
+          rdf:type [ <NonProcess> ] ? ;
+          <size_in_bytes> @linkml:Integer ? ;
+          <md5> @linkml:String ? ;
+          <url> @linkml:Uriorcurie ?
+       ) ;
+       rdf:type [ <InformationArtifact> ]
+    )
+}
+
+<MaterialEntity> CLOSED {
+    (  $<MaterialEntity_tes> (  &<NonProcess_tes> ;
+          rdf:type [ <NonProcess> ] ? ;
+          <observations> @<Observation> *
+       ) ;
+       rdf:type [ <MaterialEntity> ]
+    )
+}
+
 <NamedThing>  (
     CLOSED {
        (  $<NamedThing_tes> (  schema1:name @linkml:String ? ;
@@ -44,13 +64,30 @@ linkml:Nodeidentifier NONLITERAL
           ) ;
           rdf:type [ schema1:Thing ]
        )
-    } OR @<Person>
+    } OR @<NonProcess> OR @<Person> OR @<Process>
 )
+
+<NonProcess>  (
+    CLOSED {
+       (  $<NonProcess_tes> (  &<NamedThing_tes> ;
+             rdf:type [ schema1:Thing ] ?
+          ) ;
+          rdf:type [ <NonProcess> ]
+       )
+    } OR @<InformationArtifact> OR @<MaterialEntity>
+)
+
+<Observation> CLOSED {
+    (  $<Observation_tes> <raw_value> @linkml:String ? ;
+       rdf:type [ <Observation> ] ?
+    )
+}
 
 <Person> CLOSED {
     (  $<Person_tes> (  &<NamedThing_tes> ;
           rdf:type [ schema1:Thing ] ? ;
           schema1:email @linkml:String ? ;
+          schema1:birthDate @linkml:Date ? ;
           <age_in_years> @linkml:Integer ? ;
           <vital_status> @<PersonStatus> ?
        ) ;
@@ -61,6 +98,16 @@ linkml:Nodeidentifier NONLITERAL
 <PersonCollection> CLOSED {
     (  $<PersonCollection_tes> <entries> @<Person> * ;
        rdf:type [ <PersonCollection> ] ?
+    )
+}
+
+<Process> CLOSED {
+    (  $<Process_tes> (  &<NamedThing_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
+          <inputs> @<MaterialEntity> * ;
+          <outputs> @<MaterialEntity> *
+       ) ;
+       rdf:type [ <Process> ]
     )
 }
 

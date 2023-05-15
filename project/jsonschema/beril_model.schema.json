@@ -1,5 +1,71 @@
 {
     "$defs": {
+        "InformationArtifact": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
+                    "type": "string"
+                },
+                "md5": {
+                    "description": "The MD5 checksum of a file",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "size_in_bytes": {
+                    "description": "The size of a file in bytes",
+                    "type": "integer"
+                },
+                "url": {
+                    "description": "A URL for a file",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "InformationArtifact",
+            "type": "object"
+        },
+        "MaterialEntity": {
+            "additionalProperties": false,
+            "description": "something that is made of matter",
+            "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "observations": {
+                    "items": {
+                        "$ref": "#/$defs/Observation"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "MaterialEntity",
+            "type": "object"
+        },
         "NamedThing": {
             "additionalProperties": false,
             "description": "A generic grouping for any identifiable entity",
@@ -24,6 +90,42 @@
             "title": "NamedThing",
             "type": "object"
         },
+        "NonProcess": {
+            "additionalProperties": false,
+            "description": "A grouping for any named thing that is not a process",
+            "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "NonProcess",
+            "type": "object"
+        },
+        "Observation": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "raw_value": {
+                    "description": "The raw value of an observation",
+                    "type": "string"
+                }
+            },
+            "title": "Observation",
+            "type": "object"
+        },
         "Person": {
             "additionalProperties": false,
             "description": "Represents a Person",
@@ -31,6 +133,11 @@
                 "age_in_years": {
                     "description": "Number of years since birth",
                     "type": "integer"
+                },
+                "birth_date": {
+                    "description": "Date on which a person is born",
+                    "format": "date",
+                    "type": "string"
                 },
                 "description": {
                     "description": "A human-readable description for a thing",
@@ -84,6 +191,42 @@
             ],
             "title": "PersonStatus",
             "type": "string"
+        },
+        "Process": {
+            "additionalProperties": false,
+            "description": "Something that unfolds over time",
+            "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
+                    "type": "string"
+                },
+                "inputs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "outputs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Process",
+            "type": "object"
         }
     },
     "$id": "https://w3id.org/beril-model/beril-model",
