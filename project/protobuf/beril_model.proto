@@ -6,6 +6,7 @@ message DnaExtract
   float massG = 101
   colorEnum color = 102
  }
+// Anything that informs, or reduces uncertainty. Can be about a material entity or a process.
 message InformationArtifact
  {
   uriorcurie id = 1
@@ -15,7 +16,7 @@ message InformationArtifact
   string md5 = 0
   uriorcurie url = 0
  }
-// something that is made of matter
+// An entity that consists of matter. Has an identity that persists over time.
 message MaterialEntity
  {
   uriorcurie id = 1
@@ -47,7 +48,7 @@ message PersonCollection
  {
  repeated  person people = 0
  }
-// Something that unfolds over time
+// An entity that unfolds over time. Not composed of matter.
 message Process
  {
   uriorcurie id = 1

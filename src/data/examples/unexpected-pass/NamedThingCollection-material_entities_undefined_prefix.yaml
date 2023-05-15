@@ -1,0 +1,6 @@
+# passes jsonschema validation but not LinkML validation
+material_entities:
+  - id: "undefined:1"
+    name: sample 1
+    mass_g: 100
+    color: RED

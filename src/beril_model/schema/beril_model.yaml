@@ -13,6 +13,8 @@ prefixes:
   example: https://example.org/
   xsd: http://www.w3.org/2001/XMLSchema#
   shex: http://www.w3.org/ns/shex#
+  BFO: http://purl.obolibrary.org/obo/BFO_
+  IAO: http://purl.obolibrary.org/obo/IAO_
 default_prefix: beril_model
 default_range: string
 
@@ -127,8 +129,15 @@ classes:
     slots:
       - people
   MaterialEntity:
-    description: something that is made of matter
+    description: An entity that consists of matter. Has an identity that persists over time.
     is_a: NamedThing
+    exact_mappings:
+      - BFO:0000040
+    aliases:
+      - Material
+      - Physical entity
+    comments:
+      - bootstrapped from https://github.com/microbiomedata/nmdc-schema/pull/710
     slots:
       - mass_g
       - color
@@ -143,6 +152,12 @@ classes:
     is_a: MaterialEntity
   InformationArtifact:
     is_a: NamedThing
+    exact_mappings:
+      - IAO:0000030
+    comments:
+      - Information is (almost?) always conveyed by something, like a book printed on paper, electrical charges stored on a computer disk, or human speech. Those information bearers are not the information itself.
+    description: >-
+      Anything that informs, or reduces uncertainty. Can be about a material entity or a process.
     slots:
       - size_in_bytes
       - md5
@@ -152,8 +167,10 @@ classes:
       - Process
       - Observation
   Process:
-    description: Something that unfolds over time
+    description: An entity that unfolds over time. Not composed of matter.
     is_a: NamedThing
+    exact_mappings:
+      - BFO:0000015
     slots:
       - inputs
       - outputs
