@@ -48,12 +48,7 @@ jobs:
 
       - name: Regenerate schema
         run: |
-          #        make \
-          #          clean \
-          #          schema_cleanup \
-          #          src/nmdc_submission_schema/schema/nmdc_submission_schema.yaml \
-          #          project/json/nmdc_submission_schema.json
-               make all project/json/beril_model.json test-python test-examples jsonschema-check-all-examples
+          make all project/json/beril_model.json test-python test-examples jsonschema-check-all-examples
 
       - name: Build documentation.
         run: |
