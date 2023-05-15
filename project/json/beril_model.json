@@ -291,13 +291,13 @@
       "name": "inputs",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "multivalued": true,
-      "range": "NamedThing"
+      "range": "MaterialEntity"
     },
     "outputs": {
       "name": "outputs",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "multivalued": true,
-      "range": "NamedThing"
+      "range": "MaterialEntity"
     },
     "material_entities": {
       "name": "material_entities",
@@ -882,7 +882,7 @@
           "domain_of": [
             "Process"
           ],
-          "range": "NamedThing"
+          "range": "MaterialEntity"
         },
         "outputs": {
           "name": "outputs",
@@ -893,7 +893,7 @@
           "domain_of": [
             "Process"
           ],
-          "range": "NamedThing"
+          "range": "MaterialEntity"
         },
         "id": {
           "name": "id",

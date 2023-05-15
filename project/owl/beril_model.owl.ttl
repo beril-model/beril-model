@@ -46,16 +46,16 @@ beril_model:InformationArtifact a owl:Class,
     rdfs:label "InformationArtifact" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty beril_model:md5 ],
+            owl:onClass linkml:Integer ;
+            owl:onProperty beril_model:size_in_bytes ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Uriorcurie ;
             owl:onProperty beril_model:url ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Integer ;
-            owl:onProperty beril_model:size_in_bytes ],
+            owl:onClass linkml:String ;
+            owl:onProperty beril_model:md5 ],
         beril_model:NamedThing ;
     linkml:attributes "{}" ;
     linkml:is_a "NamedThing" .
@@ -100,7 +100,7 @@ beril_model:first_name a owl:ObjectProperty,
 beril_model:inputs a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "inputs" ;
-    rdfs:range beril_model:NamedThing .
+    rdfs:range beril_model:MaterialEntity .
 
 beril_model:last_name a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -126,7 +126,7 @@ beril_model:md5 a owl:ObjectProperty,
 beril_model:outputs a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "outputs" ;
-    rdfs:range beril_model:NamedThing .
+    rdfs:range beril_model:MaterialEntity .
 
 beril_model:people a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -180,11 +180,11 @@ beril_model:Process a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Process" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom beril_model:NamedThing ;
-            owl:onProperty beril_model:outputs ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom beril_model:NamedThing ;
+            owl:allValuesFrom beril_model:MaterialEntity ;
             owl:onProperty beril_model:inputs ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom beril_model:MaterialEntity ;
+            owl:onProperty beril_model:outputs ],
         beril_model:NamedThing ;
     skos:definition "Something that unfolds over time" ;
     linkml:attributes "{}" ;
@@ -201,34 +201,37 @@ beril_model:Person a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Person" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty schema1:identifier ;
-            owl:qualifiedCardinality 1 ],
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty beril_model:last_name ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
             owl:onProperty beril_model:first_name ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty beril_model:last_name ] ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty schema1:identifier ;
+            owl:qualifiedCardinality 1 ] ;
     linkml:attributes "{}" .
 
-beril_model:MaterialEntity a owl:Class,
+beril_model:NamedThing a owl:Class,
         linkml:ClassDefinition ;
-    rdfs:label "MaterialEntity" ;
+    rdfs:label "NamedThing" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Float ;
-            owl:onProperty beril_model:mass_g ],
+            owl:onClass linkml:String ;
+            owl:onProperty schema1:description ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass beril_model:ColorEnum ;
-            owl:onProperty beril_model:color ],
-        beril_model:NamedThing ;
-    skos:definition "something that is made of matter" ;
-    linkml:attributes "{}" ;
-    linkml:is_a "NamedThing" .
+            owl:onClass linkml:String ;
+            owl:onProperty schema1:name ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty schema1:identifier ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A generic grouping for any identifiable entity" ;
+    skos:exactMatch schema1:Thing ;
+    linkml:attributes "{}" .
 
 beril_model:ColorEnum a owl:Class,
         linkml:EnumDefinition ;
@@ -238,24 +241,21 @@ beril_model:ColorEnum a owl:Class,
         <https://w3id.org/turbomam/beril-model/ColorEnum#GREEN>,
         <https://w3id.org/turbomam/beril-model/ColorEnum#RED> .
 
-beril_model:NamedThing a owl:Class,
+beril_model:MaterialEntity a owl:Class,
         linkml:ClassDefinition ;
-    rdfs:label "NamedThing" ;
+    rdfs:label "MaterialEntity" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty schema1:name ],
+            owl:onClass beril_model:ColorEnum ;
+            owl:onProperty beril_model:color ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty schema1:description ],
-        [ a owl:Restriction ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty schema1:identifier ;
-            owl:qualifiedCardinality 1 ] ;
-    skos:definition "A generic grouping for any identifiable entity" ;
-    skos:exactMatch schema1:Thing ;
-    linkml:attributes "{}" .
+            owl:onClass linkml:Float ;
+            owl:onProperty beril_model:mass_g ],
+        beril_model:NamedThing ;
+    skos:definition "something that is made of matter" ;
+    linkml:attributes "{}" ;
+    linkml:is_a "NamedThing" .
 
 linkml:ClassDefinition a owl:Class ;
     rdfs:label "class_definition" ;

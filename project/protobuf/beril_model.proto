@@ -53,8 +53,8 @@ message Process
   uriorcurie id = 1
   string name = 2
   string description = 3
- repeated  namedThing inputs = 0
- repeated  namedThing outputs = 0
+ repeated  materialEntity inputs = 0
+ repeated  materialEntity outputs = 0
  }
 message SoilSample
  {

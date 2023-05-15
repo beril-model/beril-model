@@ -1,5 +1,9 @@
 ## Add your own custom Makefile targets here
 
+# make gen-project gendoc project/json/beril_model.json test-python test-examples jsonschema-check-all-examples \
+# examples/output/NamedThingCollection-min-mixed-coll.db examples/output/NamedThingCollection-min-mixed-coll_normalized.yaml \
+# target/usage_template.tsv
+
 RUN = poetry run
 
 .PHONY: check-jsonschema-example run-linkml-validation check-all-invalid-examples check-all-valid-examples
@@ -45,16 +49,6 @@ src/data/dh_vs_linkml_json/material_entities_linkml_raw.yaml: src/data/dh_vs_lin
 		--key material_entities
 
 
-#src/data/dh_vs_linkml_json/material_entities_linkml_normalized.yaml: src/data/dh_vs_linkml_json/material_entities_linkml_raw.yaml
-#	# what does or doesn't get normalized?
-#	# NotImplementedError
-#	$(RUN) linkml-normalize \
-#		--schema src/beril_model/schema/beril_model.yaml \
-#		--output $@ \
-#		--no-expand-all $<
-
-# src/data/examples/valid/NamedThingCollection-material_entities-multiple-materials.yaml
-# data/examples/valid/NamedThingCollection-processes-with-io.yaml
 src/data/dh_vs_linkml_json/material_entities.json: src/data/examples/valid/NamedThingCollection-processes-with-io.yaml
 	# the name of the output is discovered from the outer slot
 	$(RUN) linkml-json2dh \
@@ -91,19 +85,18 @@ target/usage_template.tsv: src/beril_model/schema/beril_model.yaml
 		 --destination-template $@ \
 		 --source-schema-path $<
 
-#examples/output/PersonCollection-minimal-plus.db: src/linkml_sqldb_testing/schema/linkml_sqldb_testing.yaml \
-#src/data/examples/valid/PersonCollection-minimal-plus.yaml
-#	mkdir -p $(dir $@)
-#	$(RUN) linkml-sqldb dump \
-#		--db $@ \
-#		--target-class PersonCollection \
-#		--schema $^
-#	sqlite3 $@ 'select * from Person'
-
-
-examples/output/NamedThingCollection-material_entities-multiple-materials.db:
+examples/output/NamedThingCollection-min-mixed-coll.db: src/beril_model/schema/beril_model.yaml \
+src/data/examples/valid/NamedThingCollection-min-mixed-coll.yaml
 	mkdir -p $(dir $@)
 	$(RUN) linkml-sqldb dump \
 		--db $@ \
-		--schema src/beril_model/schema/beril_model.yaml src/data/examples/valid/NamedThingCollection-material_entities-multiple-materials.yaml
+		--schema $^
 	sqlite3 $@ 'select * from MaterialEntity'
+
+examples/output/NamedThingCollection-min-mixed-coll_normalized.yaml: src/beril_model/schema/beril_model.yaml \
+src/data/examples/valid/NamedThingCollection-min-mixed-coll.yaml
+	$(RUN) linkml-normalize \
+		--output $@ \
+		--no-expand-all \
+		--report-file examples/output/NamedThingCollection-min-mixed-coll_normalized.report.yaml \
+		--schema $^

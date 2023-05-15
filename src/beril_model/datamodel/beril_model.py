@@ -1,5 +1,5 @@
 # Auto generated from beril_model.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-05-15T17:58:36
+# Generation date: 2023-05-15T18:46:12
 # Schema: beril-model
 #
 # id: https://w3id.org/beril-model/beril-model
@@ -286,8 +286,8 @@ class Process(NamedThing):
     class_model_uri: ClassVar[URIRef] = BERIL_MODEL.Process
 
     id: Union[str, ProcessId] = None
-    inputs: Optional[Union[Union[str, NamedThingId], List[Union[str, NamedThingId]]]] = empty_list()
-    outputs: Optional[Union[Union[str, NamedThingId], List[Union[str, NamedThingId]]]] = empty_list()
+    inputs: Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]] = empty_list()
+    outputs: Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -297,11 +297,11 @@ class Process(NamedThing):
 
         if not isinstance(self.inputs, list):
             self.inputs = [self.inputs] if self.inputs is not None else []
-        self.inputs = [v if isinstance(v, NamedThingId) else NamedThingId(v) for v in self.inputs]
+        self.inputs = [v if isinstance(v, MaterialEntityId) else MaterialEntityId(v) for v in self.inputs]
 
         if not isinstance(self.outputs, list):
             self.outputs = [self.outputs] if self.outputs is not None else []
-        self.outputs = [v if isinstance(v, NamedThingId) else NamedThingId(v) for v in self.outputs]
+        self.outputs = [v if isinstance(v, MaterialEntityId) else MaterialEntityId(v) for v in self.outputs]
 
         super().__post_init__(**kwargs)
 
@@ -353,10 +353,10 @@ slots.color = Slot(uri=BERIL_MODEL.color, name="color", curie=BERIL_MODEL.curie(
                    model_uri=BERIL_MODEL.color, domain=None, range=Optional[Union[str, "ColorEnum"]])
 
 slots.inputs = Slot(uri=BERIL_MODEL.inputs, name="inputs", curie=BERIL_MODEL.curie('inputs'),
-                   model_uri=BERIL_MODEL.inputs, domain=None, range=Optional[Union[Union[str, NamedThingId], List[Union[str, NamedThingId]]]])
+                   model_uri=BERIL_MODEL.inputs, domain=None, range=Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]])
 
 slots.outputs = Slot(uri=BERIL_MODEL.outputs, name="outputs", curie=BERIL_MODEL.curie('outputs'),
-                   model_uri=BERIL_MODEL.outputs, domain=None, range=Optional[Union[Union[str, NamedThingId], List[Union[str, NamedThingId]]]])
+                   model_uri=BERIL_MODEL.outputs, domain=None, range=Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]])
 
 slots.material_entities = Slot(uri=BERIL_MODEL.material_entities, name="material_entities", curie=BERIL_MODEL.curie('material_entities'),
                    model_uri=BERIL_MODEL.material_entities, domain=None, range=Optional[Union[Dict[Union[str, MaterialEntityId], Union[dict, MaterialEntity]], List[Union[dict, MaterialEntity]]]])

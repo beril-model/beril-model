@@ -65,10 +65,10 @@ slots:
     range: ColorEnum
   inputs:
     multivalued: true
-    range: NamedThing
+    range: MaterialEntity
   outputs:
     multivalued: true
-    range: NamedThing
+    range: MaterialEntity
   material_entities:
     multivalued: true
     range: MaterialEntity

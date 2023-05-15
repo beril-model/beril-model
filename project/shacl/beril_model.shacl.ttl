@@ -4,6 +4,26 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+schema1:Thing a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A generic grouping for any identifiable entity" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:identifier ;
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ] ;
+    sh:targetClass schema1:Thing .
+
 beril_model:DnaExtract a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -11,29 +31,41 @@ beril_model:DnaExtract a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 3 ;
             sh:path schema1:name ],
-        [ sh:in ( "RED" "GREEN" "BLUE" ) ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path beril_model:color ],
-        [ sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path beril_model:mass_g ],
         [ sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 4 ;
             sh:path schema1:description ],
+        [ sh:in ( "RED" "GREEN" "BLUE" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path beril_model:color ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 2 ;
             sh:path schema1:identifier ;
-            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ] ;
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path beril_model:mass_g ] ;
     sh:targetClass beril_model:DnaExtract .
 
 beril_model:InformationArtifact a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A URL for a file" ;
+    sh:property [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path schema1:description ],
+        [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema1:name ],
+        [ sh:description "The size of a file in bytes" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path beril_model:size_in_bytes ],
+        [ sh:description "A URL for a file" ;
             sh:maxCount 1 ;
             sh:order 2 ;
             sh:path beril_model:url ],
@@ -41,18 +73,6 @@ beril_model:InformationArtifact a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 1 ;
             sh:path beril_model:md5 ],
-        [ sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path schema1:description ],
-        [ sh:description "The size of a file in bytes" ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path beril_model:size_in_bytes ],
-        [ sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:name ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -87,36 +107,19 @@ beril_model:PersonCollection a sh:NodeShape ;
 beril_model:SoilSample a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path schema1:name ],
+    sh:property [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path beril_model:mass_g ],
         [ sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 4 ;
             sh:path schema1:description ],
-        [ sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path beril_model:mass_g ],
-        [ sh:in ( "RED" "GREEN" "BLUE" ) ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path beril_model:color ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 2 ;
             sh:path schema1:identifier ;
-            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ] ;
-    sh:targetClass beril_model:SoilSample .
-
-beril_model:MaterialEntity a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "something that is made of matter" ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path beril_model:mass_g ],
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
         [ sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
             sh:order 3 ;
@@ -124,18 +127,8 @@ beril_model:MaterialEntity a sh:NodeShape ;
         [ sh:in ( "RED" "GREEN" "BLUE" ) ;
             sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path beril_model:color ],
-        [ sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:description ],
-        [ sh:description "A unique identifier for a thing" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 2 ;
-            sh:path schema1:identifier ;
-            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ] ;
-    sh:targetClass beril_model:MaterialEntity .
+            sh:path beril_model:color ] ;
+    sh:targetClass beril_model:SoilSample .
 
 beril_model:Person a sh:NodeShape ;
     sh:closed true ;
@@ -158,47 +151,54 @@ beril_model:Process a sh:NodeShape ;
     sh:closed true ;
     sh:description "Something that unfolds over time" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class schema1:Thing ;
-            sh:nodeKind sh:IRI ;
-            sh:order 1 ;
-            sh:path beril_model:outputs ],
-        [ sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:description ],
-        [ sh:class schema1:Thing ;
+    sh:property [ sh:class beril_model:MaterialEntity ;
             sh:nodeKind sh:IRI ;
             sh:order 0 ;
             sh:path beril_model:inputs ],
-        [ sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path schema1:name ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 2 ;
             sh:path schema1:identifier ;
-            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ] ;
-    sh:targetClass beril_model:Process .
-
-schema1:Thing a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "A generic grouping for any identifiable entity" ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A unique identifier for a thing" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 0 ;
-            sh:path schema1:identifier ;
             sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
-        [ sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path schema1:description ],
         [ sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:class beril_model:MaterialEntity ;
+            sh:nodeKind sh:IRI ;
             sh:order 1 ;
-            sh:path schema1:name ] ;
-    sh:targetClass schema1:Thing .
+            sh:path beril_model:outputs ] ;
+    sh:targetClass beril_model:Process .
+
+beril_model:MaterialEntity a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "something that is made of matter" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:in ( "RED" "GREEN" "BLUE" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path beril_model:color ],
+        [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path schema1:identifier ;
+            sh:pattern "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+" ],
+        [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path beril_model:mass_g ] ;
+    sh:targetClass beril_model:MaterialEntity .
 

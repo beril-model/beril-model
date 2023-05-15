@@ -20,6 +20,31 @@ material_entities:
   name: sample 4
 
 ```
+## NamedThingCollection-min-mixed-coll
+### Input
+```yaml
+material_entities:
+- color: RED
+  id: beril_model:1
+  mass_g: 100
+  name: sample 1
+- color: RED
+  id: beril_model:2
+  mass_g: 100
+  name: sample 2
+- color: GREEN
+  id: beril_model:3
+  mass_g: 100
+  name: sample 3
+- color: GREEN
+  id: beril_model:4
+  mass_g: 100
+  name: sample 4
+processes:
+- id: beril_model:proc1
+  name: changing sample color
+
+```
 ## NamedThingCollection-material_entities-minimal
 ### Input
 ```yaml

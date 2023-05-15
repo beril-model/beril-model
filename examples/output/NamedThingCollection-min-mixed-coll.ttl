@@ -1,0 +1,34 @@
+@prefix beril_model: <https://w3id.org/turbomam/beril-model/> .
+@prefix schema1: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+beril_model:1 a beril_model:MaterialEntity ;
+    schema1:name "sample 1" ;
+    beril_model:color "RED" ;
+    beril_model:mass_g "100.0"^^xsd:float .
+
+beril_model:2 a beril_model:MaterialEntity ;
+    schema1:name "sample 2" ;
+    beril_model:color "RED" ;
+    beril_model:mass_g "100.0"^^xsd:float .
+
+beril_model:3 a beril_model:MaterialEntity ;
+    schema1:name "sample 3" ;
+    beril_model:color "GREEN" ;
+    beril_model:mass_g "100.0"^^xsd:float .
+
+beril_model:4 a beril_model:MaterialEntity ;
+    schema1:name "sample 4" ;
+    beril_model:color "GREEN" ;
+    beril_model:mass_g "100.0"^^xsd:float .
+
+beril_model:proc1 a beril_model:Process ;
+    schema1:name "changing sample color" .
+
+[] a beril_model:NamedThingCollection ;
+    beril_model:material_entities beril_model:1,
+        beril_model:2,
+        beril_model:3,
+        beril_model:4 ;
+    beril_model:processes beril_model:proc1 .
+

@@ -56,8 +56,8 @@ type Process
     id: Uriorcurie!
     name: String
     description: String
-    inputs: [NamedThing]
-    outputs: [NamedThing]
+    inputs: [MaterialEntity]
+    outputs: [MaterialEntity]
   }
 
 type SoilSample
