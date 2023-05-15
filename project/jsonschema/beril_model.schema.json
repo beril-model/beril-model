@@ -1,5 +1,50 @@
 {
     "$defs": {
+        "ColorEnum": {
+            "description": "",
+            "enum": [
+                "RED",
+                "GREEN",
+                "BLUE"
+            ],
+            "title": "ColorEnum",
+            "type": "string"
+        },
+        "DnaExtract": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "color": {
+                    "$ref": "#/$defs/ColorEnum"
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
+                    "type": "string"
+                },
+                "mass_g": {
+                    "type": "number"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "type_value": {
+                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "type_value"
+            ],
+            "title": "DnaExtract",
+            "type": "object"
+        },
         "InformationArtifact": {
             "additionalProperties": false,
             "description": "",
@@ -25,13 +70,18 @@
                     "description": "The size of a file in bytes",
                     "type": "integer"
                 },
+                "type_value": {
+                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
+                    "type": "string"
+                },
                 "url": {
                     "description": "A URL for a file",
                     "type": "string"
                 }
             },
             "required": [
-                "id"
+                "id",
+                "type_value"
             ],
             "title": "InformationArtifact",
             "type": "object"
@@ -40,6 +90,9 @@
             "additionalProperties": false,
             "description": "something that is made of matter",
             "properties": {
+                "color": {
+                    "$ref": "#/$defs/ColorEnum"
+                },
                 "description": {
                     "description": "A human-readable description for a thing",
                     "type": "string"
@@ -49,19 +102,21 @@
                     "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
                     "type": "string"
                 },
+                "mass_g": {
+                    "type": "number"
+                },
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
                 },
-                "observations": {
-                    "items": {
-                        "$ref": "#/$defs/Observation"
-                    },
-                    "type": "array"
+                "type_value": {
+                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "id",
+                "type_value"
             ],
             "title": "MaterialEntity",
             "type": "object"
@@ -82,12 +137,37 @@
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
+                },
+                "type_value": {
+                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "id",
+                "type_value"
             ],
             "title": "NamedThing",
+            "type": "object"
+        },
+        "NamedThingCollection": {
+            "additionalProperties": false,
+            "description": "A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided",
+            "properties": {
+                "material_entities": {
+                    "items": {
+                        "$ref": "#/$defs/MaterialEntity"
+                    },
+                    "type": "array"
+                },
+                "processes": {
+                    "items": {
+                        "$ref": "#/$defs/Process"
+                    },
+                    "type": "array"
+                }
+            },
+            "title": "NamedThingCollection",
             "type": "object"
         },
         "NonProcess": {
@@ -106,10 +186,15 @@
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
+                },
+                "type_value": {
+                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "id",
+                "type_value"
             ],
             "title": "NonProcess",
             "type": "object"
@@ -125,72 +210,6 @@
             },
             "title": "Observation",
             "type": "object"
-        },
-        "Person": {
-            "additionalProperties": false,
-            "description": "Represents a Person",
-            "properties": {
-                "age_in_years": {
-                    "description": "Number of years since birth",
-                    "type": "integer"
-                },
-                "birth_date": {
-                    "description": "Date on which a person is born",
-                    "format": "date",
-                    "type": "string"
-                },
-                "description": {
-                    "description": "A human-readable description for a thing",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "A unique identifier for a thing",
-                    "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A human-readable name for a thing",
-                    "type": "string"
-                },
-                "primary_email": {
-                    "description": "The main email address of a person",
-                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
-                    "type": "string"
-                },
-                "vital_status": {
-                    "$ref": "#/$defs/PersonStatus",
-                    "description": "living or dead status"
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "Person",
-            "type": "object"
-        },
-        "PersonCollection": {
-            "additionalProperties": false,
-            "description": "A holder for Person objects",
-            "properties": {
-                "entries": {
-                    "items": {
-                        "$ref": "#/$defs/Person"
-                    },
-                    "type": "array"
-                }
-            },
-            "title": "PersonCollection",
-            "type": "object"
-        },
-        "PersonStatus": {
-            "description": "",
-            "enum": [
-                "ALIVE",
-                "DEAD",
-                "UNKNOWN"
-            ],
-            "title": "PersonStatus",
-            "type": "string"
         },
         "Process": {
             "additionalProperties": false,
@@ -220,24 +239,70 @@
                         "type": "string"
                     },
                     "type": "array"
+                },
+                "type_value": {
+                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "id",
+                "type_value"
             ],
             "title": "Process",
+            "type": "object"
+        },
+        "SoilSample": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "color": {
+                    "$ref": "#/$defs/ColorEnum"
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
+                    "type": "string"
+                },
+                "mass_g": {
+                    "type": "number"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "type_value": {
+                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "type_value"
+            ],
+            "title": "SoilSample",
             "type": "object"
         }
     },
     "$id": "https://w3id.org/beril-model/beril-model",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": true,
-    "description": "A holder for Person objects",
+    "description": "A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided",
     "metamodel_version": "1.7.0",
     "properties": {
-        "entries": {
+        "material_entities": {
             "items": {
-                "$ref": "#/$defs/Person"
+                "$ref": "#/$defs/MaterialEntity"
+            },
+            "type": "array"
+        },
+        "processes": {
+            "items": {
+                "$ref": "#/$defs/Process"
             },
             "type": "array"
         }

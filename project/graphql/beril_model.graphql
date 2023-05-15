@@ -1,8 +1,19 @@
+type DnaExtract
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    typeValue: Uriorcurie!
+    massG: Float
+    color: ColorEnum
+  }
+
 type InformationArtifact
   {
     id: Uriorcurie!
     name: String
     description: String
+    typeValue: Uriorcurie!
     sizeInBytes: Integer
     md5: String
     url: Uriorcurie
@@ -13,7 +24,9 @@ type MaterialEntity
     id: Uriorcurie!
     name: String
     description: String
-    observations: [Observation]
+    typeValue: Uriorcurie!
+    massG: Float
+    color: ColorEnum
   }
 
 type NamedThing
@@ -21,6 +34,13 @@ type NamedThing
     id: Uriorcurie!
     name: String
     description: String
+    typeValue: Uriorcurie!
+  }
+
+type NamedThingCollection
+  {
+    materialEntities: [MaterialEntity]
+    processes: [Process]
   }
 
 type NonProcess
@@ -28,6 +48,7 @@ type NonProcess
     id: Uriorcurie!
     name: String
     description: String
+    typeValue: Uriorcurie!
   }
 
 type Observation
@@ -35,28 +56,23 @@ type Observation
     rawValue: String
   }
 
-type Person
-  {
-    id: Uriorcurie!
-    name: String
-    description: String
-    primaryEmail: String
-    birthDate: Date
-    ageInYears: Integer
-    vitalStatus: PersonStatus
-  }
-
-type PersonCollection
-  {
-    entries: [Person]
-  }
-
 type Process
   {
     id: Uriorcurie!
     name: String
     description: String
+    typeValue: Uriorcurie!
     inputs: [MaterialEntity]
     outputs: [MaterialEntity]
+  }
+
+type SoilSample
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    typeValue: Uriorcurie!
+    massG: Float
+    color: ColorEnum
   }
 

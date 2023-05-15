@@ -13,7 +13,7 @@
       "email": "MAM@lbl.gov",
       "__author": "Mark Andrew Miller <MAM@lbl.gov>",
       "license": "BSD-3",
-      "main_schema_class": "Person",
+      "main_schema_class": "NamedThing",
       "create_python_classes": "Yes",
       "use_schemasheets": "No",
       "google_sheet_id": "1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ",

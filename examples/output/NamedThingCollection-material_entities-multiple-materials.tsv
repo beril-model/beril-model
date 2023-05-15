@@ -1,0 +1,5 @@
+id	type_value	name	mass_g	color
+beril_model:1	beril_model:MaterialEntity	sample 1	100.0	RED
+beril_model:2	beril_model:MaterialEntity	sample 2	100.0	RED
+beril_model:3	beril_model:MaterialEntity	sample 3	100.0	GREEN
+beril_model:4	beril_model:MaterialEntity	sample 4	100.0	GREEN

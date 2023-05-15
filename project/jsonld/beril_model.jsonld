@@ -20,16 +20,8 @@
       "prefix_reference": "https://w3id.org/linkml/"
     },
     {
-      "prefix_prefix": "biolink",
-      "prefix_reference": "https://w3id.org/biolink/"
-    },
-    {
       "prefix_prefix": "schema",
       "prefix_reference": "http://schema.org/"
-    },
-    {
-      "prefix_prefix": "PATO",
-      "prefix_reference": "http://purl.obolibrary.org/obo/PATO_"
     },
     {
       "prefix_prefix": "example",
@@ -261,29 +253,21 @@
   ],
   "enums": [
     {
-      "name": "PersonStatus",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/PersonStatus",
-      "notes": [
-        "redundant text properties are currently required for building a DataHarmonizer menu"
-      ],
+      "name": "ColorEnum",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/ColorEnum",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "permissible_values": [
         {
-          "text": "ALIVE",
-          "description": "the person is living",
-          "meaning": "PATO:0001421"
+          "text": "RED",
+          "description": "red"
         },
         {
-          "text": "DEAD",
-          "description": "the person is deceased",
-          "meaning": "PATO:0001422"
+          "text": "GREEN",
+          "description": "gree"
         },
         {
-          "text": "UNKNOWN",
-          "description": "the vital status is not known",
-          "todos": [
-            "map this to an ontology"
-          ]
+          "text": "BLUE",
+          "description": "blue"
         }
       ]
     }
@@ -297,12 +281,14 @@
       "mappings": [
         "http://schema.org/identifier"
       ],
+      "rank": 1,
       "slot_uri": "http://schema.org/identifier",
       "identifier": true,
       "owner": "NamedThing",
       "domain_of": [
         "NamedThing"
       ],
+      "slot_group": "identifiers",
       "range": "uriorcurie",
       "required": true,
       "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
@@ -316,11 +302,13 @@
       "mappings": [
         "http://schema.org/name"
       ],
+      "rank": 2,
       "slot_uri": "http://schema.org/name",
       "owner": "NamedThing",
       "domain_of": [
         "NamedThing"
       ],
+      "slot_group": "identifiers",
       "range": "string",
       "@type": "SlotDefinition"
     },
@@ -332,70 +320,44 @@
       "mappings": [
         "http://schema.org/description"
       ],
+      "rank": 3,
       "slot_uri": "http://schema.org/description",
       "owner": "NamedThing",
       "domain_of": [
         "NamedThing"
       ],
+      "slot_group": "identifiers",
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "primary_email",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/primary_email",
-      "description": "The main email address of a person",
+      "name": "identifiers",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/identifiers",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "slot_uri": "http://schema.org/email",
-      "owner": "Person",
-      "domain_of": [
-        "Person"
-      ],
+      "rank": 1,
+      "slot_uri": "https://w3id.org/beril-model/beril-model/identifiers",
+      "is_grouping_slot": true,
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "birth_date",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/birth_date",
-      "description": "Date on which a person is born",
+      "name": "sample_attributes",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/sample_attributes",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "mappings": [
-        "http://schema.org/birthDate"
-      ],
-      "slot_uri": "http://schema.org/birthDate",
-      "owner": "Person",
-      "domain_of": [
-        "Person"
-      ],
-      "range": "date",
+      "rank": 2,
+      "slot_uri": "https://w3id.org/beril-model/beril-model/sample_attributes",
+      "is_grouping_slot": true,
+      "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "age_in_years",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/age_in_years",
-      "description": "Number of years since birth",
+      "name": "semantics",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/semantics",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/age_in_years",
-      "owner": "Person",
-      "domain_of": [
-        "Person"
-      ],
-      "range": "integer",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "vital_status",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/vital_status",
-      "description": "living or dead status",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/vital_status",
-      "owner": "Person",
-      "domain_of": [
-        "Person"
-      ],
-      "range": "PersonStatus",
+      "rank": 3,
+      "slot_uri": "https://w3id.org/beril-model/beril-model/semantics",
+      "is_grouping_slot": true,
+      "range": "string",
       "@type": "SlotDefinition"
     },
     {
@@ -420,10 +382,6 @@
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "slot_uri": "https://w3id.org/beril-model/beril-model/observations",
       "multivalued": true,
-      "owner": "MaterialEntity",
-      "domain_of": [
-        "MaterialEntity"
-      ],
       "range": "Observation",
       "inlined": true,
       "@type": "SlotDefinition"
@@ -494,44 +452,96 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "personCollection__entries",
+      "name": "material_entities",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/material_entities",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/entries",
+      "slot_uri": "https://w3id.org/beril-model/beril-model/material_entities",
       "multivalued": true,
-      "alias": "entries",
-      "owner": "PersonCollection",
+      "owner": "NamedThingCollection",
       "domain_of": [
-        "PersonCollection"
+        "NamedThingCollection"
       ],
-      "range": "Person",
+      "range": "MaterialEntity",
       "inlined": true,
       "inlined_as_list": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "Person_primary_email",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/primary_email",
-      "description": "The main email address of a person",
+      "name": "processes",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/processes",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "is_a": "primary_email",
-      "domain": "Person",
-      "slot_uri": "http://schema.org/email",
-      "alias": "primary_email",
-      "owner": "Person",
+      "slot_uri": "https://w3id.org/beril-model/beril-model/processes",
+      "multivalued": true,
+      "owner": "NamedThingCollection",
       "domain_of": [
-        "Person"
+        "NamedThingCollection"
       ],
-      "is_usage_slot": true,
-      "usage_slot_name": "primary_email",
-      "range": "string",
-      "pattern": "^\\S+@[\\S+\\.]+\\S+",
+      "range": "Process",
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "mass_g",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/mass_g",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "rank": 101,
+      "slot_uri": "https://w3id.org/beril-model/beril-model/mass_g",
+      "owner": "MaterialEntity",
+      "domain_of": [
+        "MaterialEntity"
+      ],
+      "slot_group": "sample_attributes",
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "color",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/color",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "rank": 102,
+      "slot_uri": "https://w3id.org/beril-model/beril-model/color",
+      "owner": "MaterialEntity",
+      "domain_of": [
+        "MaterialEntity"
+      ],
+      "slot_group": "sample_attributes",
+      "range": "ColorEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "type_value",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/type_value",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "rank": 103,
+      "slot_uri": "https://w3id.org/beril-model/beril-model/type_value",
+      "designates_type": true,
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "slot_group": "semantics",
+      "range": "uriorcurie",
+      "required": true,
+      "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
       "@type": "SlotDefinition"
     }
   ],
   "classes": [
+    {
+      "name": "NamedThingCollection",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/NamedThingCollection",
+      "description": "A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slots": [
+        "material_entities",
+        "processes"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/beril-model/beril-model/NamedThingCollection",
+      "tree_root": true,
+      "@type": "ClassDefinition"
+    },
     {
       "name": "NamedThing",
       "definition_uri": "https://w3id.org/beril-model/beril-model/NamedThing",
@@ -546,7 +556,8 @@
       "slots": [
         "id",
         "name",
-        "description"
+        "description",
+        "type_value"
       ],
       "slot_usage": {},
       "class_uri": "http://schema.org/Thing",
@@ -578,7 +589,8 @@
       "slots": [
         "id",
         "name",
-        "description"
+        "description",
+        "type_value"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/beril-model/beril-model/NonProcess",
@@ -594,7 +606,9 @@
         "id",
         "name",
         "description",
-        "observations"
+        "type_value",
+        "mass_g",
+        "color"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/beril-model/beril-model/MaterialEntity",
@@ -606,6 +620,40 @@
       "@type": "ClassDefinition"
     },
     {
+      "name": "SoilSample",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/SoilSample",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "MaterialEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type_value",
+        "mass_g",
+        "color"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/beril-model/beril-model/SoilSample",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "DnaExtract",
+      "definition_uri": "https://w3id.org/beril-model/beril-model/DnaExtract",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "MaterialEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type_value",
+        "mass_g",
+        "color"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/beril-model/beril-model/DnaExtract",
+      "@type": "ClassDefinition"
+    },
+    {
       "name": "InformationArtifact",
       "definition_uri": "https://w3id.org/beril-model/beril-model/InformationArtifact",
       "from_schema": "https://w3id.org/beril-model/beril-model",
@@ -614,6 +662,7 @@
         "id",
         "name",
         "description",
+        "type_value",
         "size_in_bytes",
         "md5",
         "url"
@@ -637,6 +686,7 @@
         "id",
         "name",
         "description",
+        "type_value",
         "inputs",
         "outputs"
       ],
@@ -648,55 +698,13 @@
         "Observation"
       ],
       "@type": "ClassDefinition"
-    },
-    {
-      "name": "Person",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/Person",
-      "description": "Represents a Person",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "is_a": "NamedThing",
-      "slots": [
-        "id",
-        "name",
-        "description",
-        "Person_primary_email",
-        "birth_date",
-        "age_in_years",
-        "vital_status"
-      ],
-      "slot_usage": {},
-      "class_uri": "https://w3id.org/beril-model/beril-model/Person",
-      "@type": "ClassDefinition"
-    },
-    {
-      "name": "PersonCollection",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/PersonCollection",
-      "description": "A holder for Person objects",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slots": [
-        "personCollection__entries"
-      ],
-      "slot_usage": {},
-      "attributes": [
-        {
-          "name": "entries",
-          "multivalued": true,
-          "range": "Person",
-          "inlined": true,
-          "inlined_as_list": true,
-          "@type": "SlotDefinition"
-        }
-      ],
-      "class_uri": "https://w3id.org/beril-model/beril-model/PersonCollection",
-      "tree_root": true,
-      "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.7.0",
   "source_file": "beril_model.yaml",
-  "source_file_date": "2023-05-05T21:38:32",
-  "source_file_size": 4347,
-  "generation_date": "2023-05-05T21:39:16",
+  "source_file_date": "2023-05-15T10:22:21",
+  "source_file_size": 4422,
+  "generation_date": "2023-05-15T10:33:56",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/beril_model.context.jsonld",

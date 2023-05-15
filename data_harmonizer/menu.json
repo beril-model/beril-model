@@ -1,0 +1,14 @@
+{
+  "beril_model": {
+    "MaterialEntity": {
+      "name": "MaterialEntity",
+      "status": "published",
+      "display": true
+    },
+    "Process": {
+      "name": "Process",
+      "status": "published",
+      "display": true
+    }
+  }
+}
