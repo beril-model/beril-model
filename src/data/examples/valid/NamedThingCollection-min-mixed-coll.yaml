@@ -3,19 +3,21 @@ material_entities:
     name: sample 1
     mass_g: 100
     color: RED
-#    type_value: "beril_model:MaterialEntity"
   - id: "beril_model:2"
     name: sample 2
     mass_g: 100
     color: RED
-#    type_value: "beril_model:MaterialEntity"
   - id: "beril_model:3"
     name: sample 3
     mass_g: 100
     color: GREEN
-#    type_value: "beril_model:MaterialEntity"
   - id: "beril_model:4"
     name: sample 4
     mass_g: 100
     color: GREEN
-#    type_value: "beril_model:MaterialEntity"
+processes:
+  - id: "beril_model:proc1"
+    name: changing sample color
+#    inputs:
+#      - "beril_model:1"
+#      - "beril_model:2"

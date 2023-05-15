@@ -1,208 +1,163 @@
----
-id: https://w3id.org/beril-model/beril-model
 name: beril-model
-title: beril-model
 description: |-
   A proposed LinkML schema for sample interoperability in the Department of Energy's Biological and Environmental Research program
-license: BSD-3
+title: beril-model
 see_also:
   - https://beril-model.github.io/beril-model
-
+id: https://w3id.org/beril-model/beril-model
+license: BSD-3
 prefixes:
-  beril_model: https://w3id.org/beril-model/beril-model/
+  beril_model: https://w3id.org/turbomam/beril-model/
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
   example: https://example.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  shex: http://www.w3.org/ns/shex#
 default_prefix: beril_model
 default_range: string
 
 imports:
   - linkml:types
 
-classes:
-
-  NamedThingCollection:
-    tree_root: true
-    #    abstract: true
-    description: >-
-      A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided
-    slots:
-      - material_entities
-      - processes
-
-  NamedThing:
-    description: >-
-      A generic grouping for any identifiable entity
-    slots:
-      - id
-      - name
-      - description
-      - type_value
-    class_uri: schema:Thing
-    notes:
-      - "What kinds of things wouldn't be named? Observations that only have relations with types, not instances?"
-
-  Observation:
-    disjoint_with:
-      - NamedThing
-    slots:
-      - raw_value
-
-  NonProcess:
-    is_a: NamedThing
-    description: >-
-      A grouping for any named thing that is not a process
-    notes:
-      - At the very least we want the ability to say that Processes can have either a MaterialEntity or a DataArtifact as its input and output. The LinkML AnyOf range construct needs maintenance
-
-
-  MaterialEntity:
-    description: >-
-      something that is made of matter
-    disjoint_with:
-      - InformationArtifact
-      - Process
-      - Observation
-    is_a: NonProcess
-    slots:
-      #      - observations
-      - mass_g
-      - color
-
-  SoilSample:
-    is_a: MaterialEntity
-
-  DnaExtract:
-    is_a: MaterialEntity
-
-  InformationArtifact:
-    disjoint_with:
-      - MaterialEntity
-      - Process
-      - Observation
-    is_a: NonProcess
-    slots:
-      - size_in_bytes
-      - md5
-      - url
-
-  Process:
-    description: >-
-      Something that unfolds over time
-    disjoint_with:
-      - MaterialEntity
-      - InformationArtifact
-      - Observation
-    is_a: NamedThing
-    slots:
-      - inputs
-      - outputs
-
-slots:
-  id:
-    description: A unique identifier for a thing
-    identifier: true
-    pattern: "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+"
-    range: uriorcurie
-    required: true
-    slot_uri: schema:identifier
-    rank: 1
-    slot_group: identifiers
-  name:
-    slot_uri: schema:name
-    description: A human-readable name for a thing
-    rank: 2
-    slot_group: identifiers
-  description:
-    slot_uri: schema:description
-    description: A human-readable description for a thing
-    slot_group: identifiers
-    rank: 3
-
-  identifiers:
-    is_grouping_slot: true
-    rank: 1
-  sample_attributes:
-    is_grouping_slot: true
-    rank: 2
-  semantics:
-    is_grouping_slot: true
-    rank: 3
-
-  raw_value:
-    description: The raw value of an observation
-    notes:
-      - could possibly be decomposed into a value and a unit
-  observations:
-    range: Observation
-    multivalued: true
-  #    inlined: true
-  #    inlined_as_list: true
-
-  size_in_bytes:
-    range: integer
-    description: >-
-      The size of a file in bytes
-  md5:
-    range: string
-    description: >-
-      The MD5 checksum of a file
-  url:
-    range: uriorcurie
-    description: >-
-      A URL for a file
-  inputs:
-    range: NonProcess
-    multivalued: true
-  outputs:
-    range: NonProcess
-    multivalued: true
-
-  material_entities:
-    range: MaterialEntity
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-
-  processes:
-    range: Process
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-
-  mass_g:
-    range: float
-    rank: 101
-    slot_group: sample_attributes
-
-  color:
-    range: ColorEnum
-    rank: 102
-    slot_group: sample_attributes
-
-  type_value:
-    #    designates_type: true
-    range: uriorcurie
-    pattern: ^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$
-    required: true
-    rank: 103
-    slot_group: semantics
-    # how to constrain this to classes in the schema?
-    # enum range
-    # uri or cure range
-    # pattern
-
-
-
 enums:
   ColorEnum:
     permissible_values:
       RED:
-        description: >-
-          red
+        description: red
       GREEN:
-        description: >-
-          gree
+        description: gree
       BLUE:
-        description: >-
-          blue
+        description: blue
+slots:
+  first_name:
+  last_name:
+  people:
+    multivalued: true
+    range: Person
+    inlined: true
+    inlined_as_list: true
+  id:
+    description: A unique identifier for a thing
+    rank: 1
+    slot_uri: schema:identifier
+    identifier: true
+    slot_group: identifiers
+    range: uriorcurie
+    required: true
+    pattern: '[a-zA-Z0-9_]+:[a-zA-Z0-9_]+'
+  name:
+    description: A human-readable name for a thing
+    rank: 2
+    slot_uri: schema:name
+    slot_group: identifiers
+  description:
+    description: A human-readable description for a thing
+    rank: 3
+    slot_uri: schema:description
+    slot_group: identifiers
+  mass_g:
+    rank: 101
+    slot_group: sample_attributes
+    range: float
+  color:
+    rank: 102
+    slot_group: sample_attributes
+    range: ColorEnum
+  inputs:
+    multivalued: true
+    range: MaterialEntity
+  outputs:
+    multivalued: true
+    range: MaterialEntity
+  material_entities:
+    multivalued: true
+    range: MaterialEntity
+    inlined: true
+    inlined_as_list: true
+  processes:
+    multivalued: true
+    range: Process
+    inlined: true
+    inlined_as_list: true
+  size_in_bytes:
+    description: The size of a file in bytes
+    range: integer
+  md5:
+    description: The MD5 checksum of a file
+    range: string
+  url:
+    description: A URL for a file
+    range: uriorcurie
+#  type_value:
+#    #    designates_type: true
+#    range: uriorcurie
+#    pattern: ^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$
+#    required: true
+#    rank: 103
+#    slot_group: semantics
+#    # how to constrain this to classes in the schema?
+#    # enum range
+#    # uri or cure range
+#    # pattern
+classes:
+  NamedThingCollection:
+    description: A multi-valued, inlined-as-list grouping of instances from any class,
+      provided a suitable linking slot is provided
+    slots:
+      - material_entities
+      - processes
+    tree_root: true
+  NamedThing:
+    #    abstract: true
+    description: A generic grouping for any identifiable entity
+    notes:
+      - What kinds of things wouldn't be named? Observations that only have relations
+        with types, not instances?
+    slots:
+      - id
+      - name
+      - description
+    class_uri: schema:Thing
+  Person:
+    slots:
+      - id
+      - first_name
+      - last_name
+  PersonCollection:
+    slots:
+      - people
+  MaterialEntity:
+    description: something that is made of matter
+    is_a: NamedThing
+    slots:
+      - mass_g
+      - color
+    #      - observations # like QuantityValues?
+    disjoint_with:
+      - InformationArtifact
+      - Process
+      - Observation
+  SoilSample:
+    is_a: MaterialEntity
+  DnaExtract:
+    is_a: MaterialEntity
+  InformationArtifact:
+    is_a: NamedThing
+    slots:
+      - size_in_bytes
+      - md5
+      - url
+    disjoint_with:
+      - MaterialEntity
+      - Process
+      - Observation
+  Process:
+    description: Something that unfolds over time
+    is_a: NamedThing
+    slots:
+      - inputs
+      - outputs
+    disjoint_with:
+      - MaterialEntity
+      - InformationArtifact
+      - Observation

@@ -1,5 +1,5 @@
 material_entities:
   - id: "beril_model:1"
     name: sample 1
-    type_value: "beril_model:MaterialEntity"
+#    type_value: "beril_model:MaterialEntity"
     undefined_slot: this slot is not defined in the schema

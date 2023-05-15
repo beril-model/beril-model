@@ -25,5 +25,11 @@
       "color": "GREEN"
     }
   ],
+  "processes": [
+    {
+      "id": "beril_model:proc1",
+      "name": "changing sample color"
+    }
+  ],
   "@type": "NamedThingCollection"
 }

@@ -1,5 +1,9 @@
 ## Add your own custom Makefile targets here
 
+# make gen-project gendoc project/json/beril_model.json test-python test-examples jsonschema-check-all-examples \
+# examples/output/NamedThingCollection-min-mixed-coll.db examples/output/NamedThingCollection-min-mixed-coll_normalized.yaml \
+# target/usage_template.tsv
+
 RUN = poetry run
 
 .PHONY: check-jsonschema-example run-linkml-validation check-all-invalid-examples check-all-valid-examples
@@ -45,16 +49,6 @@ src/data/dh_vs_linkml_json/material_entities_linkml_raw.yaml: src/data/dh_vs_lin
 		--key material_entities
 
 
-#src/data/dh_vs_linkml_json/material_entities_linkml_normalized.yaml: src/data/dh_vs_linkml_json/material_entities_linkml_raw.yaml
-#	# what does or doesn't get normalized?
-#	# NotImplementedError
-#	$(RUN) linkml-normalize \
-#		--schema src/beril_model/schema/beril_model.yaml \
-#		--output $@ \
-#		--no-expand-all $<
-
-# src/data/examples/valid/NamedThingCollection-material_entities-multiple-materials.yaml
-# data/examples/valid/NamedThingCollection-processes-with-io.yaml
 src/data/dh_vs_linkml_json/material_entities.json: src/data/examples/valid/NamedThingCollection-processes-with-io.yaml
 	# the name of the output is discovered from the outer slot
 	$(RUN) linkml-json2dh \
@@ -69,19 +63,6 @@ project/json/beril_model.json: src/beril_model/schema/beril_model.yaml
 		--format json  \
 		--materialize-attributes \
 		--materialize-patterns $< > $@
-
-#examples/output/NamedThingCollection-processes-with-io.db: src/beril_model/schema/beril_model.yaml \
-#src/data/examples/valid/NamedThingCollection-processes-with-io.yaml
-#	# 		--module src/beril_model/datamodel/beril_model.py \
-#	# --schema src/beril_model/schema/beril_model.yaml
-#	# AttributeError: 'MaterialEntityId' object has no attribute '_sa_instance_state'
-#	$(RUN) linkml-sqldb dump \
-#		--db $@ \
-#		--target-class NamedThingCollection \
-#		--index-slot material_entities \
-#		--no-validate \
-#		--force \
-#		--module src/beril_model/datamodel/beril_model.py src/data/examples/valid/NamedThingCollection-processes-with-io.yaml
 
 examples/output/NamedThingCollection-processes.tsv: src/beril_model/schema/beril_model.yaml \
 src/data/examples/valid/NamedThingCollection-processes-with-io.yaml
@@ -103,3 +84,19 @@ target/usage_template.tsv: src/beril_model/schema/beril_model.yaml
 	$(RUN) generate_and_populate_template \
 		 --destination-template $@ \
 		 --source-schema-path $<
+
+examples/output/NamedThingCollection-min-mixed-coll.db: src/beril_model/schema/beril_model.yaml \
+src/data/examples/valid/NamedThingCollection-min-mixed-coll.yaml
+	mkdir -p $(dir $@)
+	$(RUN) linkml-sqldb dump \
+		--db $@ \
+		--schema $^
+	sqlite3 $@ 'select * from MaterialEntity'
+
+examples/output/NamedThingCollection-min-mixed-coll_normalized.yaml: src/beril_model/schema/beril_model.yaml \
+src/data/examples/valid/NamedThingCollection-min-mixed-coll.yaml
+	$(RUN) linkml-normalize \
+		--output $@ \
+		--no-expand-all \
+		--report-file examples/output/NamedThingCollection-min-mixed-coll_normalized.report.yaml \
+		--schema $^

@@ -1,5 +1,5 @@
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
-@prefix beril_model: <https://w3id.org/beril-model/beril-model/> .
+@prefix beril_model: <https://w3id.org/turbomam/beril-model/> .
 @prefix linkml: <https://w3id.org/linkml/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -12,65 +12,13 @@
     rdfs:label "beril-model" ;
     IAO:0000700 beril_model:NamedThing,
         beril_model:NamedThingCollection,
-        beril_model:Observation ;
-    linkml:classes "{'NamedThingCollection': ClassDefinition(name='NamedThingCollection', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/NamedThingCollection', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a=None, abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['material_entities', 'processes'], slot_usage={}, attributes={}, class_uri='beril_model:NamedThingCollection', subclass_of=None, union_of=[], defining_slots=[], tree_root=True, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'NamedThing': ClassDefinition(name='NamedThing', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/NamedThing', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A generic grouping for any identifiable entity', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[\"What kinds of things wouldn't be named? Observations that only have relations with types, not instances?\"], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=['schema:Thing'], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a=None, abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'type_value'], slot_usage={}, attributes={}, class_uri='schema:Thing', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'Observation': ClassDefinition(name='Observation', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/Observation', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a=None, abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['raw_value'], slot_usage={}, attributes={}, class_uri='beril_model:Observation', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=['NamedThing'], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'NonProcess': ClassDefinition(name='NonProcess', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/NonProcess', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A grouping for any named thing that is not a process', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=['At the very least we want the ability to say that Processes can have either a MaterialEntity or a DataArtifact as its input and output. The LinkML AnyOf range construct needs maintenance'], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='NamedThing', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'type_value'], slot_usage={}, attributes={}, class_uri='beril_model:NonProcess', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'MaterialEntity': ClassDefinition(name='MaterialEntity', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/MaterialEntity', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='something that is made of matter', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='NonProcess', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'type_value', 'mass_g', 'color'], slot_usage={}, attributes={}, class_uri='beril_model:MaterialEntity', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=['InformationArtifact', 'Process', 'Observation'], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'SoilSample': ClassDefinition(name='SoilSample', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/SoilSample', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='MaterialEntity', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'type_value', 'mass_g', 'color'], slot_usage={}, attributes={}, class_uri='beril_model:SoilSample', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'DnaExtract': ClassDefinition(name='DnaExtract', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/DnaExtract', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='MaterialEntity', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'type_value', 'mass_g', 'color'], slot_usage={}, attributes={}, class_uri='beril_model:DnaExtract', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'InformationArtifact': ClassDefinition(name='InformationArtifact', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/InformationArtifact', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='NonProcess', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'type_value', 'size_in_bytes', 'md5', 'url'], slot_usage={}, attributes={}, class_uri='beril_model:InformationArtifact', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=['MaterialEntity', 'Process', 'Observation'], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'Process': ClassDefinition(name='Process', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/Process', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='Something that unfolds over time', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='NamedThing', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'type_value', 'inputs', 'outputs'], slot_usage={}, attributes={}, class_uri='beril_model:Process', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=['MaterialEntity', 'InformationArtifact', 'Observation'], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={})}" ;
-    linkml:enums "{'ColorEnum': EnumDefinition(name='ColorEnum', id_prefixes=[], definition_uri='https://w3id.org/beril-model/beril-model/ColorEnum', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a=None, abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, enum_uri=None, code_set=None, code_set_tag=None, code_set_version=None, pv_formula=None, permissible_values={'RED': PermissibleValue(text='RED', description='red', meaning=None, unit=None, is_a=None, mixins=[], extensions={}, annotations={}, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema=None, imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None), 'GREEN': PermissibleValue(text='GREEN', description='gree', meaning=None, unit=None, is_a=None, mixins=[], extensions={}, annotations={}, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema=None, imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None), 'BLUE': PermissibleValue(text='BLUE', description='blue', meaning=None, unit=None, is_a=None, mixins=[], extensions={}, annotations={}, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema=None, imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None)}, include=[], minus=[], inherits=[], reachable_from=None, matches=None, concepts=[])}" ;
+        beril_model:Person,
+        beril_model:PersonCollection ;
+    linkml:classes "{'NamedThingCollection': ClassDefinition(name='NamedThingCollection', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/NamedThingCollection', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a=None, abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['material_entities', 'processes'], slot_usage={}, attributes={}, class_uri='beril_model:NamedThingCollection', subclass_of=None, union_of=[], defining_slots=[], tree_root=True, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'NamedThing': ClassDefinition(name='NamedThing', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/NamedThing', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A generic grouping for any identifiable entity', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[\"What kinds of things wouldn't be named? Observations that only have relations with types, not instances?\"], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=['schema:Thing'], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a=None, abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description'], slot_usage={}, attributes={}, class_uri='schema:Thing', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'Person': ClassDefinition(name='Person', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/Person', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a=None, abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'first_name', 'last_name'], slot_usage={}, attributes={}, class_uri='beril_model:Person', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'PersonCollection': ClassDefinition(name='PersonCollection', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/PersonCollection', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a=None, abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['people'], slot_usage={}, attributes={}, class_uri='beril_model:PersonCollection', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'MaterialEntity': ClassDefinition(name='MaterialEntity', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/MaterialEntity', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='something that is made of matter', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='NamedThing', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'mass_g', 'color'], slot_usage={}, attributes={}, class_uri='beril_model:MaterialEntity', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=['InformationArtifact', 'Process', 'Observation'], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'SoilSample': ClassDefinition(name='SoilSample', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/SoilSample', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='MaterialEntity', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'mass_g', 'color'], slot_usage={}, attributes={}, class_uri='beril_model:SoilSample', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'DnaExtract': ClassDefinition(name='DnaExtract', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/DnaExtract', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='MaterialEntity', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'mass_g', 'color'], slot_usage={}, attributes={}, class_uri='beril_model:DnaExtract', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=[], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'InformationArtifact': ClassDefinition(name='InformationArtifact', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/InformationArtifact', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='NamedThing', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'size_in_bytes', 'md5', 'url'], slot_usage={}, attributes={}, class_uri='beril_model:InformationArtifact', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=['MaterialEntity', 'Process', 'Observation'], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={}), 'Process': ClassDefinition(name='Process', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/Process', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='Something that unfolds over time', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a='NamedThing', abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, slots=['id', 'name', 'description', 'inputs', 'outputs'], slot_usage={}, attributes={}, class_uri='beril_model:Process', subclass_of=None, union_of=[], defining_slots=[], tree_root=None, unique_keys={}, rules=[], classification_rules=[], slot_names_unique=None, represents_relationship=None, disjoint_with=['MaterialEntity', 'InformationArtifact', 'Observation'], children_are_mutually_disjoint=None, any_of=[], exactly_one_of=[], none_of=[], all_of=[], slot_conditions={})}" ;
+    linkml:enums "{'ColorEnum': EnumDefinition(name='ColorEnum', id_prefixes=[], definition_uri='https://w3id.org/turbomam/beril-model/ColorEnum', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description=None, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/beril-model/beril-model', imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, is_a=None, abstract=None, mixin=None, mixins=[], apply_to=[], values_from=[], string_serialization=None, enum_uri=None, code_set=None, code_set_tag=None, code_set_version=None, pv_formula=None, permissible_values={'RED': PermissibleValue(text='RED', description='red', meaning=None, unit=None, is_a=None, mixins=[], extensions={}, annotations={}, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema=None, imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None), 'GREEN': PermissibleValue(text='GREEN', description='gree', meaning=None, unit=None, is_a=None, mixins=[], extensions={}, annotations={}, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema=None, imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None), 'BLUE': PermissibleValue(text='BLUE', description='blue', meaning=None, unit=None, is_a=None, mixins=[], extensions={}, annotations={}, alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema=None, imported_from=None, source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None)}, include=[], minus=[], inherits=[], reachable_from=None, matches=None, concepts=[])}" ;
     linkml:id "https://w3id.org/beril-model/beril-model" ;
     linkml:imports "linkml:types" ;
     linkml:types "{'string': TypeDefinition(name='string', id_prefixes=[], definition_uri='https://w3id.org/linkml/String', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A character string', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=['schema:Text'], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='str', uri='xsd:string', repr=None, union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'integer': TypeDefinition(name='integer', id_prefixes=[], definition_uri='https://w3id.org/linkml/Integer', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='An integer', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=['schema:Integer'], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='int', uri='xsd:integer', repr=None, union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'boolean': TypeDefinition(name='boolean', id_prefixes=[], definition_uri='https://w3id.org/linkml/Boolean', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A binary (true or false) value', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=['schema:Boolean'], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='Bool', uri='xsd:boolean', repr='bool', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'float': TypeDefinition(name='float', id_prefixes=[], definition_uri='https://w3id.org/linkml/Float', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A real number that conforms to the xsd:float specification', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=['schema:Float'], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='float', uri='xsd:float', repr=None, union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'double': TypeDefinition(name='double', id_prefixes=[], definition_uri='https://w3id.org/linkml/Double', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A real number that conforms to the xsd:double specification', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=['schema:Float'], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='float', uri='xsd:double', repr=None, union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'decimal': TypeDefinition(name='decimal', id_prefixes=[], definition_uri='https://w3id.org/linkml/Decimal', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A real number with arbitrary precision that conforms to the xsd:decimal specification', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=['schema:Number'], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='Decimal', uri='xsd:decimal', repr=None, union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'time': TypeDefinition(name='time', id_prefixes=[], definition_uri='https://w3id.org/linkml/Time', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A time object represents a (local) time of day, independent of any particular day', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=['URI is dateTime because OWL reasoners do not work with straight date or time'], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=['schema:Time'], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='XSDTime', uri='xsd:time', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'date': TypeDefinition(name='date', id_prefixes=[], definition_uri='https://w3id.org/linkml/Date', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='a date (year, month and day) in an idealized calendar', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[\"URI is dateTime because OWL reasoners don't work with straight date or time\"], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=['schema:Date'], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='XSDDate', uri='xsd:date', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'datetime': TypeDefinition(name='datetime', id_prefixes=[], definition_uri='https://w3id.org/linkml/Datetime', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='The combination of a date and time', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=['schema:DateTime'], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='XSDDateTime', uri='xsd:dateTime', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'date_or_datetime': TypeDefinition(name='date_or_datetime', id_prefixes=[], definition_uri='https://w3id.org/linkml/DateOrDatetime', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='Either a date or a datetime', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='str', uri='linkml:DateOrDatetime', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'uriorcurie': TypeDefinition(name='uriorcurie', id_prefixes=[], definition_uri='https://w3id.org/linkml/Uriorcurie', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='a URI or a CURIE', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='URIorCURIE', uri='xsd:anyURI', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'curie': TypeDefinition(name='curie', id_prefixes=[], definition_uri='https://w3id.org/linkml/Curie', local_names={}, conforms_to='https://www.w3.org/TR/curie/', implements=[], extensions={}, annotations={}, description='a compact URI', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=['in RDF serializations this MUST be expanded to a URI', 'in non-RDF serializations MAY be serialized as the compact representation'], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='Curie', uri='xsd:string', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'uri': TypeDefinition(name='uri', id_prefixes=[], definition_uri='https://w3id.org/linkml/Uri', local_names={}, conforms_to='https://www.ietf.org/rfc/rfc3987.txt', implements=[], extensions={}, annotations={}, description='a complete URI', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=['in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node'], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=['schema:URL'], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='URI', uri='xsd:anyURI', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'ncname': TypeDefinition(name='ncname', id_prefixes=[], definition_uri='https://w3id.org/linkml/Ncname', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='Prefix part of CURIE', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='NCName', uri='xsd:string', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'objectidentifier': TypeDefinition(name='objectidentifier', id_prefixes=[], definition_uri='https://w3id.org/linkml/Objectidentifier', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A URI or CURIE that represents an object in the model.', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=['Used for inheritence and type checking'], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='ElementIdentifier', uri='shex:iri', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[]), 'nodeidentifier': TypeDefinition(name='nodeidentifier', id_prefixes=[], definition_uri='https://w3id.org/linkml/Nodeidentifier', local_names={}, conforms_to=None, implements=[], extensions={}, annotations={}, description='A URI, CURIE or BNODE that represents a node in a model.', alt_descriptions={}, title=None, deprecated=None, todos=[], notes=[], comments=[], examples=[], in_subset=[], from_schema='https://w3id.org/linkml/types', imported_from='linkml:types', source=None, in_language=None, see_also=[], deprecated_element_has_exact_replacement=None, deprecated_element_has_possible_replacement=None, aliases=[], structured_aliases={}, mappings=[], exact_mappings=[], close_mappings=[], related_mappings=[], narrow_mappings=[], broad_mappings=[], created_by=None, created_on=None, last_updated_on=None, modified_by=None, status=None, rank=None, typeof=None, base='NodeIdentifier', uri='shex:nonLiteral', repr='str', union_of=[], pattern=None, structured_pattern=None, unit=None, implicit_prefix=None, equals_string=None, equals_string_in=[], equals_number=None, minimum_value=None, maximum_value=None, none_of=[], exactly_one_of=[], any_of=[], all_of=[])}" .
-
-beril_model:DnaExtract a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "DnaExtract" ;
-    rdfs:subClassOf beril_model:MaterialEntity ;
-    linkml:attributes "{}" ;
-    linkml:is_a "MaterialEntity" .
-
-beril_model:InformationArtifact a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "InformationArtifact" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty beril_model:url ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Integer ;
-            owl:onProperty beril_model:size_in_bytes ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty beril_model:md5 ],
-        beril_model:NonProcess ;
-    linkml:attributes "{}" ;
-    linkml:is_a "NonProcess" .
-
-beril_model:SoilSample a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "SoilSample" ;
-    rdfs:subClassOf beril_model:MaterialEntity ;
-    linkml:attributes "{}" ;
-    linkml:is_a "MaterialEntity" .
-
-beril_model:identifiers a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "identifiers" ;
-    rdfs:range linkml:String .
-
-beril_model:observations a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "observations" ;
-    rdfs:range beril_model:Observation .
-
-beril_model:sample_attributes a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "sample_attributes" ;
-    rdfs:range linkml:String .
-
-beril_model:semantics a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "semantics" ;
-    rdfs:range linkml:String .
 
 linkml:SubsetDefinition a owl:Class ;
     rdfs:label "subset_definition" ;
@@ -86,6 +34,39 @@ linkml:TypeDefinition a owl:Class ;
 linkml:topValue a owl:DatatypeProperty ;
     rdfs:label "value" .
 
+beril_model:DnaExtract a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "DnaExtract" ;
+    rdfs:subClassOf beril_model:MaterialEntity ;
+    linkml:attributes "{}" ;
+    linkml:is_a "MaterialEntity" .
+
+beril_model:InformationArtifact a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "InformationArtifact" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Integer ;
+            owl:onProperty beril_model:size_in_bytes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty beril_model:url ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty beril_model:md5 ],
+        beril_model:NamedThing ;
+    linkml:attributes "{}" ;
+    linkml:is_a "NamedThing" .
+
+beril_model:SoilSample a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "SoilSample" ;
+    rdfs:subClassOf beril_model:MaterialEntity ;
+    linkml:attributes "{}" ;
+    linkml:is_a "MaterialEntity" .
+
 beril_model:NamedThingCollection a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "NamedThingCollection" ;
@@ -98,15 +79,33 @@ beril_model:NamedThingCollection a owl:Class,
     skos:definition "A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided" ;
     linkml:attributes "{}" .
 
+beril_model:PersonCollection a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "PersonCollection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom beril_model:Person ;
+            owl:onProperty beril_model:people ] ;
+    linkml:attributes "{}" .
+
 beril_model:color a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "color" ;
     rdfs:range beril_model:ColorEnum .
 
+beril_model:first_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "first_name" ;
+    rdfs:range linkml:String .
+
 beril_model:inputs a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "inputs" ;
-    rdfs:range beril_model:NonProcess .
+    rdfs:range beril_model:MaterialEntity .
+
+beril_model:last_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "last_name" ;
+    rdfs:range linkml:String .
 
 beril_model:mass_g a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -127,29 +126,23 @@ beril_model:md5 a owl:ObjectProperty,
 beril_model:outputs a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "outputs" ;
-    rdfs:range beril_model:NonProcess .
+    rdfs:range beril_model:MaterialEntity .
+
+beril_model:people a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "people" ;
+    rdfs:range beril_model:Person .
 
 beril_model:processes a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "processes" ;
     rdfs:range beril_model:Process .
 
-beril_model:raw_value a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "raw_value" ;
-    rdfs:range linkml:String ;
-    skos:definition "The raw value of an observation" .
-
 beril_model:size_in_bytes a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "size_in_bytes" ;
     rdfs:range linkml:Integer ;
     skos:definition "The size of a file in bytes" .
-
-beril_model:type_value a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "type_value" ;
-    rdfs:range linkml:Uriorcurie .
 
 beril_model:url a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -164,13 +157,6 @@ schema1:description a owl:ObjectProperty,
     skos:definition "A human-readable description for a thing" ;
     skos:exactMatch schema1:description .
 
-schema1:identifier a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "id" ;
-    rdfs:range linkml:Uriorcurie ;
-    skos:definition "A unique identifier for a thing" ;
-    skos:exactMatch schema1:identifier .
-
 schema1:name a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "name" ;
@@ -178,40 +164,55 @@ schema1:name a owl:ObjectProperty,
     skos:definition "A human-readable name for a thing" ;
     skos:exactMatch schema1:name .
 
-<https://w3id.org/beril-model/beril-model/ColorEnum#BLUE> a owl:Class,
+<https://w3id.org/turbomam/beril-model/ColorEnum#BLUE> a owl:Class,
         beril_model:ColorEnum ;
     rdfs:label "BLUE" .
 
-<https://w3id.org/beril-model/beril-model/ColorEnum#GREEN> a owl:Class,
+<https://w3id.org/turbomam/beril-model/ColorEnum#GREEN> a owl:Class,
         beril_model:ColorEnum ;
     rdfs:label "GREEN" .
 
-<https://w3id.org/beril-model/beril-model/ColorEnum#RED> a owl:Class,
+<https://w3id.org/turbomam/beril-model/ColorEnum#RED> a owl:Class,
         beril_model:ColorEnum ;
     rdfs:label "RED" .
-
-beril_model:Observation a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "Observation" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty beril_model:raw_value ] ;
-    linkml:attributes "{}" .
 
 beril_model:Process a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Process" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom beril_model:NonProcess ;
+            owl:allValuesFrom beril_model:MaterialEntity ;
             owl:onProperty beril_model:inputs ],
         [ a owl:Restriction ;
-            owl:allValuesFrom beril_model:NonProcess ;
+            owl:allValuesFrom beril_model:MaterialEntity ;
             owl:onProperty beril_model:outputs ],
         beril_model:NamedThing ;
     skos:definition "Something that unfolds over time" ;
     linkml:attributes "{}" ;
     linkml:is_a "NamedThing" .
+
+schema1:identifier a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "id" ;
+    rdfs:range linkml:Uriorcurie ;
+    skos:definition "A unique identifier for a thing" ;
+    skos:exactMatch schema1:identifier .
+
+beril_model:Person a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Person" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty beril_model:last_name ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty beril_model:first_name ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty schema1:identifier ;
+            owl:qualifiedCardinality 1 ] ;
+    linkml:attributes "{}" .
 
 beril_model:NamedThing a owl:Class,
         linkml:ClassDefinition ;
@@ -219,15 +220,11 @@ beril_model:NamedThing a owl:Class,
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:name ],
-        [ a owl:Restriction ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty beril_model:type_value ;
-            owl:qualifiedCardinality 1 ],
+            owl:onProperty schema1:description ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:description ],
+            owl:onProperty schema1:name ],
         [ a owl:Restriction ;
             owl:onClass linkml:Uriorcurie ;
             owl:onProperty schema1:identifier ;
@@ -235,6 +232,14 @@ beril_model:NamedThing a owl:Class,
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing ;
     linkml:attributes "{}" .
+
+beril_model:ColorEnum a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "ColorEnum" ;
+    owl:unionOf ( <https://w3id.org/turbomam/beril-model/ColorEnum#RED> <https://w3id.org/turbomam/beril-model/ColorEnum#GREEN> <https://w3id.org/turbomam/beril-model/ColorEnum#BLUE> ) ;
+    linkml:permissible_values <https://w3id.org/turbomam/beril-model/ColorEnum#BLUE>,
+        <https://w3id.org/turbomam/beril-model/ColorEnum#GREEN>,
+        <https://w3id.org/turbomam/beril-model/ColorEnum#RED> .
 
 beril_model:MaterialEntity a owl:Class,
         linkml:ClassDefinition ;
@@ -247,24 +252,8 @@ beril_model:MaterialEntity a owl:Class,
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Float ;
             owl:onProperty beril_model:mass_g ],
-        beril_model:NonProcess ;
+        beril_model:NamedThing ;
     skos:definition "something that is made of matter" ;
-    linkml:attributes "{}" ;
-    linkml:is_a "NonProcess" .
-
-beril_model:ColorEnum a owl:Class,
-        linkml:EnumDefinition ;
-    rdfs:label "ColorEnum" ;
-    owl:unionOf ( <https://w3id.org/beril-model/beril-model/ColorEnum#RED> <https://w3id.org/beril-model/beril-model/ColorEnum#GREEN> <https://w3id.org/beril-model/beril-model/ColorEnum#BLUE> ) ;
-    linkml:permissible_values <https://w3id.org/beril-model/beril-model/ColorEnum#BLUE>,
-        <https://w3id.org/beril-model/beril-model/ColorEnum#GREEN>,
-        <https://w3id.org/beril-model/beril-model/ColorEnum#RED> .
-
-beril_model:NonProcess a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "NonProcess" ;
-    rdfs:subClassOf beril_model:NamedThing ;
-    skos:definition "A grouping for any named thing that is not a process" ;
     linkml:attributes "{}" ;
     linkml:is_a "NamedThing" .
 

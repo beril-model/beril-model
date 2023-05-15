@@ -13,7 +13,7 @@
   "prefixes": [
     {
       "prefix_prefix": "beril_model",
-      "prefix_reference": "https://w3id.org/beril-model/beril-model/"
+      "prefix_reference": "https://w3id.org/turbomam/beril-model/"
     },
     {
       "prefix_prefix": "linkml",
@@ -26,6 +26,14 @@
     {
       "prefix_prefix": "example",
       "prefix_reference": "https://example.org/"
+    },
+    {
+      "prefix_prefix": "xsd",
+      "prefix_reference": "http://www.w3.org/2001/XMLSchema#"
+    },
+    {
+      "prefix_prefix": "shex",
+      "prefix_reference": "http://www.w3.org/ns/shex#"
     }
   ],
   "default_prefix": "beril_model",
@@ -254,7 +262,7 @@
   "enums": [
     {
       "name": "ColorEnum",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/ColorEnum",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/ColorEnum",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "permissible_values": [
         {
@@ -274,8 +282,47 @@
   ],
   "slots": [
     {
+      "name": "first_name",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/first_name",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/first_name",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "last_name",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/last_name",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/last_name",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "people",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/people",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/people",
+      "multivalued": true,
+      "owner": "PersonCollection",
+      "domain_of": [
+        "PersonCollection"
+      ],
+      "range": "Person",
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "id",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/id",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/id",
       "description": "A unique identifier for a thing",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "mappings": [
@@ -284,9 +331,10 @@
       "rank": 1,
       "slot_uri": "http://schema.org/identifier",
       "identifier": true,
-      "owner": "NamedThing",
+      "owner": "Person",
       "domain_of": [
-        "NamedThing"
+        "NamedThing",
+        "Person"
       ],
       "slot_group": "identifiers",
       "range": "uriorcurie",
@@ -296,7 +344,7 @@
     },
     {
       "name": "name",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/name",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/name",
       "description": "A human-readable name for a thing",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "mappings": [
@@ -314,7 +362,7 @@
     },
     {
       "name": "description",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/description",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/description",
       "description": "A human-readable description for a thing",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "mappings": [
@@ -331,131 +379,64 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "identifiers",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/identifiers",
+      "name": "mass_g",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/mass_g",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 1,
-      "slot_uri": "https://w3id.org/beril-model/beril-model/identifiers",
-      "is_grouping_slot": true,
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "sample_attributes",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/sample_attributes",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 2,
-      "slot_uri": "https://w3id.org/beril-model/beril-model/sample_attributes",
-      "is_grouping_slot": true,
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "semantics",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/semantics",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 3,
-      "slot_uri": "https://w3id.org/beril-model/beril-model/semantics",
-      "is_grouping_slot": true,
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "raw_value",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/raw_value",
-      "description": "The raw value of an observation",
-      "notes": [
-        "could possibly be decomposed into a value and a unit"
-      ],
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/raw_value",
-      "owner": "Observation",
+      "rank": 101,
+      "slot_uri": "https://w3id.org/turbomam/beril-model/mass_g",
+      "owner": "MaterialEntity",
       "domain_of": [
-        "Observation"
+        "MaterialEntity"
       ],
-      "range": "string",
+      "slot_group": "sample_attributes",
+      "range": "float",
       "@type": "SlotDefinition"
     },
     {
-      "name": "observations",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/observations",
+      "name": "color",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/color",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/observations",
-      "multivalued": true,
-      "range": "Observation",
-      "inlined": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "size_in_bytes",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/size_in_bytes",
-      "description": "The size of a file in bytes",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/size_in_bytes",
-      "owner": "InformationArtifact",
+      "rank": 102,
+      "slot_uri": "https://w3id.org/turbomam/beril-model/color",
+      "owner": "MaterialEntity",
       "domain_of": [
-        "InformationArtifact"
+        "MaterialEntity"
       ],
-      "range": "integer",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "md5",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/md5",
-      "description": "The MD5 checksum of a file",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/md5",
-      "owner": "InformationArtifact",
-      "domain_of": [
-        "InformationArtifact"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "url",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/url",
-      "description": "A URL for a file",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/url",
-      "owner": "InformationArtifact",
-      "domain_of": [
-        "InformationArtifact"
-      ],
-      "range": "uriorcurie",
+      "slot_group": "sample_attributes",
+      "range": "ColorEnum",
       "@type": "SlotDefinition"
     },
     {
       "name": "inputs",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/inputs",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/inputs",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/inputs",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/inputs",
       "multivalued": true,
       "owner": "Process",
       "domain_of": [
         "Process"
       ],
-      "range": "NonProcess",
+      "range": "MaterialEntity",
       "@type": "SlotDefinition"
     },
     {
       "name": "outputs",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/outputs",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/outputs",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/outputs",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/outputs",
       "multivalued": true,
       "owner": "Process",
       "domain_of": [
         "Process"
       ],
-      "range": "NonProcess",
+      "range": "MaterialEntity",
       "@type": "SlotDefinition"
     },
     {
       "name": "material_entities",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/material_entities",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/material_entities",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/material_entities",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/material_entities",
       "multivalued": true,
       "owner": "NamedThingCollection",
       "domain_of": [
@@ -468,9 +449,9 @@
     },
     {
       "name": "processes",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/processes",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/processes",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "slot_uri": "https://w3id.org/beril-model/beril-model/processes",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/processes",
       "multivalued": true,
       "owner": "NamedThingCollection",
       "domain_of": [
@@ -482,54 +463,49 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "mass_g",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/mass_g",
+      "name": "size_in_bytes",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/size_in_bytes",
+      "description": "The size of a file in bytes",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 101,
-      "slot_uri": "https://w3id.org/beril-model/beril-model/mass_g",
-      "owner": "MaterialEntity",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/size_in_bytes",
+      "owner": "InformationArtifact",
       "domain_of": [
-        "MaterialEntity"
+        "InformationArtifact"
       ],
-      "slot_group": "sample_attributes",
-      "range": "float",
+      "range": "integer",
       "@type": "SlotDefinition"
     },
     {
-      "name": "color",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/color",
+      "name": "md5",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/md5",
+      "description": "The MD5 checksum of a file",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 102,
-      "slot_uri": "https://w3id.org/beril-model/beril-model/color",
-      "owner": "MaterialEntity",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/md5",
+      "owner": "InformationArtifact",
       "domain_of": [
-        "MaterialEntity"
+        "InformationArtifact"
       ],
-      "slot_group": "sample_attributes",
-      "range": "ColorEnum",
+      "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "type_value",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/type_value",
+      "name": "url",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/url",
+      "description": "A URL for a file",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 103,
-      "slot_uri": "https://w3id.org/beril-model/beril-model/type_value",
-      "owner": "NamedThing",
+      "slot_uri": "https://w3id.org/turbomam/beril-model/url",
+      "owner": "InformationArtifact",
       "domain_of": [
-        "NamedThing"
+        "InformationArtifact"
       ],
-      "slot_group": "semantics",
       "range": "uriorcurie",
-      "required": true,
-      "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
       "@type": "SlotDefinition"
     }
   ],
   "classes": [
     {
       "name": "NamedThingCollection",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/NamedThingCollection",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/NamedThingCollection",
       "description": "A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "slots": [
@@ -537,13 +513,13 @@
         "processes"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/beril-model/beril-model/NamedThingCollection",
+      "class_uri": "https://w3id.org/turbomam/beril-model/NamedThingCollection",
       "tree_root": true,
       "@type": "ClassDefinition"
     },
     {
       "name": "NamedThing",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/NamedThing",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/NamedThing",
       "description": "A generic grouping for any identifiable entity",
       "notes": [
         "What kinds of things wouldn't be named? Observations that only have relations with types, not instances?"
@@ -555,62 +531,51 @@
       "slots": [
         "id",
         "name",
-        "description",
-        "type_value"
+        "description"
       ],
       "slot_usage": {},
       "class_uri": "http://schema.org/Thing",
       "@type": "ClassDefinition"
     },
     {
-      "name": "Observation",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/Observation",
+      "name": "Person",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/Person",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "slots": [
-        "raw_value"
+        "id",
+        "first_name",
+        "last_name"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/beril-model/beril-model/Observation",
-      "disjoint_with": [
-        "NamedThing"
-      ],
+      "class_uri": "https://w3id.org/turbomam/beril-model/Person",
       "@type": "ClassDefinition"
     },
     {
-      "name": "NonProcess",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/NonProcess",
-      "description": "A grouping for any named thing that is not a process",
-      "notes": [
-        "At the very least we want the ability to say that Processes can have either a MaterialEntity or a DataArtifact as its input and output. The LinkML AnyOf range construct needs maintenance"
+      "name": "PersonCollection",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/PersonCollection",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slots": [
+        "people"
       ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/turbomam/beril-model/PersonCollection",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "MaterialEntity",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/MaterialEntity",
+      "description": "something that is made of matter",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
         "description",
-        "type_value"
-      ],
-      "slot_usage": {},
-      "class_uri": "https://w3id.org/beril-model/beril-model/NonProcess",
-      "@type": "ClassDefinition"
-    },
-    {
-      "name": "MaterialEntity",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/MaterialEntity",
-      "description": "something that is made of matter",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "is_a": "NonProcess",
-      "slots": [
-        "id",
-        "name",
-        "description",
-        "type_value",
         "mass_g",
         "color"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/beril-model/beril-model/MaterialEntity",
+      "class_uri": "https://w3id.org/turbomam/beril-model/MaterialEntity",
       "disjoint_with": [
         "InformationArtifact",
         "Process",
@@ -620,54 +585,51 @@
     },
     {
       "name": "SoilSample",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/SoilSample",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/SoilSample",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "is_a": "MaterialEntity",
       "slots": [
         "id",
         "name",
         "description",
-        "type_value",
         "mass_g",
         "color"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/beril-model/beril-model/SoilSample",
+      "class_uri": "https://w3id.org/turbomam/beril-model/SoilSample",
       "@type": "ClassDefinition"
     },
     {
       "name": "DnaExtract",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/DnaExtract",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/DnaExtract",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "is_a": "MaterialEntity",
       "slots": [
         "id",
         "name",
         "description",
-        "type_value",
         "mass_g",
         "color"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/beril-model/beril-model/DnaExtract",
+      "class_uri": "https://w3id.org/turbomam/beril-model/DnaExtract",
       "@type": "ClassDefinition"
     },
     {
       "name": "InformationArtifact",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/InformationArtifact",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/InformationArtifact",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "is_a": "NonProcess",
+      "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
         "description",
-        "type_value",
         "size_in_bytes",
         "md5",
         "url"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/beril-model/beril-model/InformationArtifact",
+      "class_uri": "https://w3id.org/turbomam/beril-model/InformationArtifact",
       "disjoint_with": [
         "MaterialEntity",
         "Process",
@@ -677,7 +639,7 @@
     },
     {
       "name": "Process",
-      "definition_uri": "https://w3id.org/beril-model/beril-model/Process",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/Process",
       "description": "Something that unfolds over time",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "is_a": "NamedThing",
@@ -685,12 +647,11 @@
         "id",
         "name",
         "description",
-        "type_value",
         "inputs",
         "outputs"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/beril-model/beril-model/Process",
+      "class_uri": "https://w3id.org/turbomam/beril-model/Process",
       "disjoint_with": [
         "MaterialEntity",
         "InformationArtifact",
@@ -701,15 +662,15 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "beril_model.yaml",
-  "source_file_date": "2023-05-15T11:12:37",
-  "source_file_size": 4419,
-  "generation_date": "2023-05-15T11:12:49",
+  "source_file_date": "2023-05-15T18:35:45",
+  "source_file_size": 3819,
+  "generation_date": "2023-05-15T18:46:02",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/beril_model.context.jsonld",
     "https://w3id.org/linkml/types.context.jsonld",
     {
-      "@base": "https://w3id.org/beril-model/beril-model/"
+      "@base": "https://w3id.org/turbomam/beril-model/"
     }
   ]
 }
