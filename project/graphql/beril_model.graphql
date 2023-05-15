@@ -62,8 +62,8 @@ type Process
     name: String
     description: String
     typeValue: Uriorcurie!
-    inputs: [MaterialEntity]
-    outputs: [MaterialEntity]
+    inputs: [NonProcess]
+    outputs: [NonProcess]
   }
 
 type SoilSample

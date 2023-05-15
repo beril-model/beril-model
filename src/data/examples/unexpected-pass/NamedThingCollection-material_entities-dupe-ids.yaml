@@ -4,5 +4,7 @@
 material_entities:
   - id: "beril_model:1"
     name: sample 1
+    type_value: beril_model:MaterialEntity
   - id: "beril_model:1"
     name: sample 2
+    type_value: beril_model:MaterialEntity

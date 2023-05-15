@@ -60,8 +60,8 @@ message Process
   string name = 2
   string description = 3
   uriorcurie typeValue = 103
- repeated  materialEntity inputs = 0
- repeated  materialEntity outputs = 0
+ repeated  nonProcess inputs = 0
+ repeated  nonProcess outputs = 0
  }
 message SoilSample
  {

@@ -435,7 +435,7 @@
       "domain_of": [
         "Process"
       ],
-      "range": "MaterialEntity",
+      "range": "NonProcess",
       "@type": "SlotDefinition"
     },
     {
@@ -448,7 +448,7 @@
       "domain_of": [
         "Process"
       ],
-      "range": "MaterialEntity",
+      "range": "NonProcess",
       "@type": "SlotDefinition"
     },
     {
@@ -701,9 +701,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "beril_model.yaml",
-  "source_file_date": "2023-05-15T11:03:22",
-  "source_file_size": 4427,
-  "generation_date": "2023-05-15T11:04:09",
+  "source_file_date": "2023-05-15T11:12:37",
+  "source_file_size": 4419,
+  "generation_date": "2023-05-15T11:12:49",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/beril_model.context.jsonld",
