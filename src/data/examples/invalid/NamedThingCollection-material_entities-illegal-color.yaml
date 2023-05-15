@@ -2,4 +2,4 @@ material_entities:
   - id: "beril_model:2"
     name: sample 2
     color: transparent
-    type_value: "beril_model:MaterialEntity"
+#    type_value: "beril_model:MaterialEntity"

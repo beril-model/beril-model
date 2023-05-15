@@ -1,7 +1,7 @@
 processes:
   - id: "beril_model:proc1"
     name: changing sample color
-    type_value: "beril_model:Process"
+#    type_value: "beril_model:Process"
     inputs:
       - "beril_model:samp1"
     outputs:
@@ -11,9 +11,9 @@ material_entities:
     name: sample 1
     mass_g: 100
     color: RED
-    type_value: "beril_model:MaterialEntity"
+#    type_value: "beril_model:MaterialEntity"
   - id: "beril_model:samp2"
     name: sample 3
     mass_g: 100
     color: GREEN
-    type_value: "beril_model:MaterialEntity"
+#    type_value: "beril_model:MaterialEntity"

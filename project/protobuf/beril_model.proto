@@ -3,7 +3,6 @@ message DnaExtract
   uriorcurie id = 1
   string name = 2
   string description = 3
-  uriorcurie typeValue = 103
   float massG = 101
   colorEnum color = 102
  }
@@ -12,7 +11,6 @@ message InformationArtifact
   uriorcurie id = 1
   string name = 2
   string description = 3
-  uriorcurie typeValue = 103
   integer sizeInBytes = 0
   string md5 = 0
   uriorcurie url = 0
@@ -23,7 +21,6 @@ message MaterialEntity
   uriorcurie id = 1
   string name = 2
   string description = 3
-  uriorcurie typeValue = 103
   float massG = 101
   colorEnum color = 102
  }
@@ -33,7 +30,6 @@ message NamedThing
   uriorcurie id = 1
   string name = 2
   string description = 3
-  uriorcurie typeValue = 103
  }
 // A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided
 message NamedThingCollection
@@ -41,17 +37,15 @@ message NamedThingCollection
  repeated  materialEntity materialEntities = 0
  repeated  process processes = 0
  }
-// A grouping for any named thing that is not a process
-message NonProcess
+message Person
  {
   uriorcurie id = 1
-  string name = 2
-  string description = 3
-  uriorcurie typeValue = 103
+  string firstName = 0
+  string lastName = 0
  }
-message Observation
+message PersonCollection
  {
-  string rawValue = 0
+ repeated  person people = 0
  }
 // Something that unfolds over time
 message Process
@@ -59,16 +53,14 @@ message Process
   uriorcurie id = 1
   string name = 2
   string description = 3
-  uriorcurie typeValue = 103
- repeated  nonProcess inputs = 0
- repeated  nonProcess outputs = 0
+ repeated  namedThing inputs = 0
+ repeated  namedThing outputs = 0
  }
 message SoilSample
  {
   uriorcurie id = 1
   string name = 2
   string description = 3
-  uriorcurie typeValue = 103
   float massG = 101
   colorEnum color = 102
  }

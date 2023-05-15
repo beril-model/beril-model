@@ -1,8 +1,10 @@
 {
-   "beril_model": "https://w3id.org/beril-model/beril-model/",
+   "beril_model": "https://w3id.org/turbomam/beril-model/",
    "example": "https://example.org/",
    "linkml": "https://w3id.org/linkml/",
    "schema": "http://schema.org/",
+   "shex": "http://www.w3.org/ns/shex#",
+   "xsd": "http://www.w3.org/2001/XMLSchema#",
    "NamedThing": {
       "@id": "schema:Thing"
    }

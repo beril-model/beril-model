@@ -1,4 +1,4 @@
-BASE <https://w3id.org/beril-model/beril-model/>
+BASE <https://w3id.org/turbomam/beril-model/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
@@ -46,8 +46,8 @@ linkml:Nodeidentifier NONLITERAL
 }
 
 <InformationArtifact> CLOSED {
-    (  $<InformationArtifact_tes> (  &<NonProcess_tes> ;
-          rdf:type [ <NonProcess> ] ? ;
+    (  $<InformationArtifact_tes> (  &<NamedThing_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
           <size_in_bytes> @linkml:Integer ? ;
           <md5> @linkml:String ? ;
           <url> @linkml:Uriorcurie ?
@@ -58,8 +58,8 @@ linkml:Nodeidentifier NONLITERAL
 
 <MaterialEntity>  (
     CLOSED {
-       (  $<MaterialEntity_tes> (  &<NonProcess_tes> ;
-             rdf:type [ <NonProcess> ] ? ;
+       (  $<MaterialEntity_tes> (  &<NamedThing_tes> ;
+             rdf:type [ schema1:Thing ] ? ;
              <mass_g> @linkml:Float ? ;
              <color> @<ColorEnum> ?
           ) ;
@@ -71,12 +71,11 @@ linkml:Nodeidentifier NONLITERAL
 <NamedThing>  (
     CLOSED {
        (  $<NamedThing_tes> (  schema1:name @linkml:String ? ;
-             schema1:description @linkml:String ? ;
-             <type_value> @linkml:Uriorcurie
+             schema1:description @linkml:String ?
           ) ;
           rdf:type [ schema1:Thing ]
        )
-    } OR @<NonProcess> OR @<Process>
+    } OR @<InformationArtifact> OR @<MaterialEntity> OR @<Process>
 )
 
 <NamedThingCollection> CLOSED {
@@ -87,27 +86,25 @@ linkml:Nodeidentifier NONLITERAL
     )
 }
 
-<NonProcess>  (
-    CLOSED {
-       (  $<NonProcess_tes> (  &<NamedThing_tes> ;
-             rdf:type [ schema1:Thing ] ?
-          ) ;
-          rdf:type [ <NonProcess> ]
-       )
-    } OR @<InformationArtifact> OR @<MaterialEntity>
-)
+<Person> CLOSED {
+    (  $<Person_tes> (  <first_name> @linkml:String ? ;
+          <last_name> @linkml:String ?
+       ) ;
+       rdf:type [ <Person> ]
+    )
+}
 
-<Observation> CLOSED {
-    (  $<Observation_tes> <raw_value> @linkml:String ? ;
-       rdf:type [ <Observation> ] ?
+<PersonCollection> CLOSED {
+    (  $<PersonCollection_tes> <people> @<Person> * ;
+       rdf:type [ <PersonCollection> ] ?
     )
 }
 
 <Process> CLOSED {
     (  $<Process_tes> (  &<NamedThing_tes> ;
           rdf:type [ schema1:Thing ] ? ;
-          <inputs> @<NonProcess> * ;
-          <outputs> @<NonProcess> *
+          <inputs> @<NamedThing> * ;
+          <outputs> @<NamedThing> *
        ) ;
        rdf:type [ <Process> ]
     )

@@ -1,10 +1,8 @@
-@prefix beril_model: <https://w3id.org/beril-model/beril-model/> .
+@prefix beril_model: <https://w3id.org/turbomam/beril-model/> .
 @prefix schema1: <http://schema.org/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 beril_model:1 a beril_model:MaterialEntity ;
-    schema1:name "sample 1" ;
-    beril_model:type_value "beril_model:MaterialEntity"^^xsd:anyURI .
+    schema1:name "sample 1" .
 
 [] a beril_model:NamedThingCollection ;
     beril_model:material_entities beril_model:1 .

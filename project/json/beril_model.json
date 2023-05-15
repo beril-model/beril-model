@@ -10,7 +10,7 @@
   "prefixes": {
     "beril_model": {
       "prefix_prefix": "beril_model",
-      "prefix_reference": "https://w3id.org/beril-model/beril-model/"
+      "prefix_reference": "https://w3id.org/turbomam/beril-model/"
     },
     "linkml": {
       "prefix_prefix": "linkml",
@@ -229,6 +229,22 @@
     }
   },
   "slots": {
+    "first_name": {
+      "name": "first_name",
+      "from_schema": "https://w3id.org/beril-model/beril-model"
+    },
+    "last_name": {
+      "name": "last_name",
+      "from_schema": "https://w3id.org/beril-model/beril-model"
+    },
+    "people": {
+      "name": "people",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "multivalued": true,
+      "range": "Person",
+      "inlined": true,
+      "inlined_as_list": true
+    },
     "id": {
       "name": "id",
       "description": "A unique identifier for a thing",
@@ -257,37 +273,47 @@
       "slot_uri": "schema:description",
       "slot_group": "identifiers"
     },
-    "identifiers": {
-      "name": "identifiers",
+    "mass_g": {
+      "name": "mass_g",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 1,
-      "is_grouping_slot": true
+      "rank": 101,
+      "slot_group": "sample_attributes",
+      "range": "float"
     },
-    "sample_attributes": {
-      "name": "sample_attributes",
+    "color": {
+      "name": "color",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 2,
-      "is_grouping_slot": true
+      "rank": 102,
+      "slot_group": "sample_attributes",
+      "range": "ColorEnum"
     },
-    "semantics": {
-      "name": "semantics",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 3,
-      "is_grouping_slot": true
-    },
-    "raw_value": {
-      "name": "raw_value",
-      "description": "The raw value of an observation",
-      "notes": [
-        "could possibly be decomposed into a value and a unit"
-      ],
-      "from_schema": "https://w3id.org/beril-model/beril-model"
-    },
-    "observations": {
-      "name": "observations",
+    "inputs": {
+      "name": "inputs",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "multivalued": true,
-      "range": "Observation"
+      "range": "NamedThing"
+    },
+    "outputs": {
+      "name": "outputs",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "multivalued": true,
+      "range": "NamedThing"
+    },
+    "material_entities": {
+      "name": "material_entities",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "multivalued": true,
+      "range": "MaterialEntity",
+      "inlined": true,
+      "inlined_as_list": true
+    },
+    "processes": {
+      "name": "processes",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "multivalued": true,
+      "range": "Process",
+      "inlined": true,
+      "inlined_as_list": true
     },
     "size_in_bytes": {
       "name": "size_in_bytes",
@@ -306,57 +332,6 @@
       "description": "A URL for a file",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "range": "uriorcurie"
-    },
-    "inputs": {
-      "name": "inputs",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "multivalued": true,
-      "range": "NonProcess"
-    },
-    "outputs": {
-      "name": "outputs",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "multivalued": true,
-      "range": "NonProcess"
-    },
-    "material_entities": {
-      "name": "material_entities",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "multivalued": true,
-      "range": "MaterialEntity",
-      "inlined": true,
-      "inlined_as_list": true
-    },
-    "processes": {
-      "name": "processes",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "multivalued": true,
-      "range": "Process",
-      "inlined": true,
-      "inlined_as_list": true
-    },
-    "mass_g": {
-      "name": "mass_g",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 101,
-      "slot_group": "sample_attributes",
-      "range": "float"
-    },
-    "color": {
-      "name": "color",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 102,
-      "slot_group": "sample_attributes",
-      "range": "ColorEnum"
-    },
-    "type_value": {
-      "name": "type_value",
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "rank": 103,
-      "slot_group": "semantics",
-      "range": "uriorcurie",
-      "required": true,
-      "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$"
     }
   },
   "classes": {
@@ -408,8 +383,7 @@
       "slots": [
         "id",
         "name",
-        "description",
-        "type_value"
+        "description"
       ],
       "attributes": {
         "id": {
@@ -422,7 +396,8 @@
           "alias": "id",
           "owner": "NamedThing",
           "domain_of": [
-            "NamedThing"
+            "NamedThing",
+            "Person"
           ],
           "slot_group": "identifiers",
           "range": "uriorcurie",
@@ -456,58 +431,18 @@
           ],
           "slot_group": "identifiers",
           "range": "string"
-        },
-        "type_value": {
-          "name": "type_value",
-          "from_schema": "https://w3id.org/beril-model/beril-model",
-          "rank": 103,
-          "alias": "type_value",
-          "owner": "NamedThing",
-          "domain_of": [
-            "NamedThing"
-          ],
-          "slot_group": "semantics",
-          "range": "uriorcurie",
-          "required": true,
-          "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$"
         }
       },
       "class_uri": "schema:Thing"
     },
-    "Observation": {
-      "name": "Observation",
+    "Person": {
+      "name": "Person",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "slots": [
-        "raw_value"
+        "id",
+        "first_name",
+        "last_name"
       ],
-      "attributes": {
-        "raw_value": {
-          "name": "raw_value",
-          "description": "The raw value of an observation",
-          "notes": [
-            "could possibly be decomposed into a value and a unit"
-          ],
-          "from_schema": "https://w3id.org/beril-model/beril-model",
-          "alias": "raw_value",
-          "owner": "Observation",
-          "domain_of": [
-            "Observation"
-          ],
-          "range": "string"
-        }
-      },
-      "disjoint_with": [
-        "NamedThing"
-      ]
-    },
-    "NonProcess": {
-      "name": "NonProcess",
-      "description": "A grouping for any named thing that is not a process",
-      "notes": [
-        "At the very least we want the ability to say that Processes can have either a MaterialEntity or a DataArtifact as its input and output. The LinkML AnyOf range construct needs maintenance"
-      ],
-      "from_schema": "https://w3id.org/beril-model/beril-model",
-      "is_a": "NamedThing",
       "attributes": {
         "id": {
           "name": "id",
@@ -517,56 +452,57 @@
           "slot_uri": "schema:identifier",
           "identifier": true,
           "alias": "id",
-          "owner": "NonProcess",
+          "owner": "Person",
           "domain_of": [
-            "NamedThing"
+            "NamedThing",
+            "Person"
           ],
           "slot_group": "identifiers",
           "range": "uriorcurie",
           "required": true,
           "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+"
         },
-        "name": {
-          "name": "name",
-          "description": "A human-readable name for a thing",
+        "first_name": {
+          "name": "first_name",
           "from_schema": "https://w3id.org/beril-model/beril-model",
-          "rank": 2,
-          "slot_uri": "schema:name",
-          "alias": "name",
-          "owner": "NonProcess",
+          "alias": "first_name",
+          "owner": "Person",
           "domain_of": [
-            "NamedThing"
+            "Person"
           ],
-          "slot_group": "identifiers",
           "range": "string"
         },
-        "description": {
-          "name": "description",
-          "description": "A human-readable description for a thing",
+        "last_name": {
+          "name": "last_name",
           "from_schema": "https://w3id.org/beril-model/beril-model",
-          "rank": 3,
-          "slot_uri": "schema:description",
-          "alias": "description",
-          "owner": "NonProcess",
+          "alias": "last_name",
+          "owner": "Person",
           "domain_of": [
-            "NamedThing"
+            "Person"
           ],
-          "slot_group": "identifiers",
           "range": "string"
-        },
-        "type_value": {
-          "name": "type_value",
+        }
+      }
+    },
+    "PersonCollection": {
+      "name": "PersonCollection",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "slots": [
+        "people"
+      ],
+      "attributes": {
+        "people": {
+          "name": "people",
           "from_schema": "https://w3id.org/beril-model/beril-model",
-          "rank": 103,
-          "alias": "type_value",
-          "owner": "NonProcess",
+          "multivalued": true,
+          "alias": "people",
+          "owner": "PersonCollection",
           "domain_of": [
-            "NamedThing"
+            "PersonCollection"
           ],
-          "slot_group": "semantics",
-          "range": "uriorcurie",
-          "required": true,
-          "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$"
+          "range": "Person",
+          "inlined": true,
+          "inlined_as_list": true
         }
       }
     },
@@ -574,7 +510,7 @@
       "name": "MaterialEntity",
       "description": "something that is made of matter",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "is_a": "NonProcess",
+      "is_a": "NamedThing",
       "slots": [
         "mass_g",
         "color"
@@ -615,7 +551,7 @@
           "owner": "MaterialEntity",
           "domain_of": [
             "NamedThing",
-            "NonProcess"
+            "Person"
           ],
           "slot_group": "identifiers",
           "range": "uriorcurie",
@@ -631,8 +567,7 @@
           "alias": "name",
           "owner": "MaterialEntity",
           "domain_of": [
-            "NamedThing",
-            "NonProcess"
+            "NamedThing"
           ],
           "slot_group": "identifiers",
           "range": "string"
@@ -646,26 +581,10 @@
           "alias": "description",
           "owner": "MaterialEntity",
           "domain_of": [
-            "NamedThing",
-            "NonProcess"
+            "NamedThing"
           ],
           "slot_group": "identifiers",
           "range": "string"
-        },
-        "type_value": {
-          "name": "type_value",
-          "from_schema": "https://w3id.org/beril-model/beril-model",
-          "rank": 103,
-          "alias": "type_value",
-          "owner": "MaterialEntity",
-          "domain_of": [
-            "NamedThing",
-            "NonProcess"
-          ],
-          "slot_group": "semantics",
-          "range": "uriorcurie",
-          "required": true,
-          "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$"
         }
       },
       "disjoint_with": [
@@ -714,7 +633,7 @@
           "owner": "SoilSample",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
+            "Person",
             "MaterialEntity"
           ],
           "slot_group": "identifiers",
@@ -732,7 +651,6 @@
           "owner": "SoilSample",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
             "MaterialEntity"
           ],
           "slot_group": "identifiers",
@@ -748,27 +666,10 @@
           "owner": "SoilSample",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
             "MaterialEntity"
           ],
           "slot_group": "identifiers",
           "range": "string"
-        },
-        "type_value": {
-          "name": "type_value",
-          "from_schema": "https://w3id.org/beril-model/beril-model",
-          "rank": 103,
-          "alias": "type_value",
-          "owner": "SoilSample",
-          "domain_of": [
-            "NamedThing",
-            "NonProcess",
-            "MaterialEntity"
-          ],
-          "slot_group": "semantics",
-          "range": "uriorcurie",
-          "required": true,
-          "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$"
         }
       }
     },
@@ -814,7 +715,7 @@
           "owner": "DnaExtract",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
+            "Person",
             "MaterialEntity",
             "SoilSample"
           ],
@@ -833,7 +734,6 @@
           "owner": "DnaExtract",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
             "MaterialEntity",
             "SoilSample"
           ],
@@ -850,36 +750,18 @@
           "owner": "DnaExtract",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
             "MaterialEntity",
             "SoilSample"
           ],
           "slot_group": "identifiers",
           "range": "string"
-        },
-        "type_value": {
-          "name": "type_value",
-          "from_schema": "https://w3id.org/beril-model/beril-model",
-          "rank": 103,
-          "alias": "type_value",
-          "owner": "DnaExtract",
-          "domain_of": [
-            "NamedThing",
-            "NonProcess",
-            "MaterialEntity",
-            "SoilSample"
-          ],
-          "slot_group": "semantics",
-          "range": "uriorcurie",
-          "required": true,
-          "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$"
         }
       }
     },
     "InformationArtifact": {
       "name": "InformationArtifact",
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "is_a": "NonProcess",
+      "is_a": "NamedThing",
       "slots": [
         "size_in_bytes",
         "md5",
@@ -930,7 +812,7 @@
           "owner": "InformationArtifact",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
+            "Person",
             "MaterialEntity",
             "SoilSample",
             "DnaExtract"
@@ -950,7 +832,6 @@
           "owner": "InformationArtifact",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
             "MaterialEntity",
             "SoilSample",
             "DnaExtract"
@@ -968,31 +849,12 @@
           "owner": "InformationArtifact",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
             "MaterialEntity",
             "SoilSample",
             "DnaExtract"
           ],
           "slot_group": "identifiers",
           "range": "string"
-        },
-        "type_value": {
-          "name": "type_value",
-          "from_schema": "https://w3id.org/beril-model/beril-model",
-          "rank": 103,
-          "alias": "type_value",
-          "owner": "InformationArtifact",
-          "domain_of": [
-            "NamedThing",
-            "NonProcess",
-            "MaterialEntity",
-            "SoilSample",
-            "DnaExtract"
-          ],
-          "slot_group": "semantics",
-          "range": "uriorcurie",
-          "required": true,
-          "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$"
         }
       },
       "disjoint_with": [
@@ -1020,7 +882,7 @@
           "domain_of": [
             "Process"
           ],
-          "range": "NonProcess"
+          "range": "NamedThing"
         },
         "outputs": {
           "name": "outputs",
@@ -1031,7 +893,7 @@
           "domain_of": [
             "Process"
           ],
-          "range": "NonProcess"
+          "range": "NamedThing"
         },
         "id": {
           "name": "id",
@@ -1044,7 +906,7 @@
           "owner": "Process",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
+            "Person",
             "MaterialEntity",
             "SoilSample",
             "DnaExtract",
@@ -1065,7 +927,6 @@
           "owner": "Process",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
             "MaterialEntity",
             "SoilSample",
             "DnaExtract",
@@ -1084,7 +945,6 @@
           "owner": "Process",
           "domain_of": [
             "NamedThing",
-            "NonProcess",
             "MaterialEntity",
             "SoilSample",
             "DnaExtract",
@@ -1092,25 +952,6 @@
           ],
           "slot_group": "identifiers",
           "range": "string"
-        },
-        "type_value": {
-          "name": "type_value",
-          "from_schema": "https://w3id.org/beril-model/beril-model",
-          "rank": 103,
-          "alias": "type_value",
-          "owner": "Process",
-          "domain_of": [
-            "NamedThing",
-            "NonProcess",
-            "MaterialEntity",
-            "SoilSample",
-            "DnaExtract",
-            "InformationArtifact"
-          ],
-          "slot_group": "semantics",
-          "range": "uriorcurie",
-          "required": true,
-          "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$"
         }
       },
       "disjoint_with": [

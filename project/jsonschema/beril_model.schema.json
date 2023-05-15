@@ -32,15 +32,10 @@
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
-                },
-                "type_value": {
-                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
-                    "type": "string"
                 }
             },
             "required": [
-                "id",
-                "type_value"
+                "id"
             ],
             "title": "DnaExtract",
             "type": "object"
@@ -70,18 +65,13 @@
                     "description": "The size of a file in bytes",
                     "type": "integer"
                 },
-                "type_value": {
-                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
-                    "type": "string"
-                },
                 "url": {
                     "description": "A URL for a file",
                     "type": "string"
                 }
             },
             "required": [
-                "id",
-                "type_value"
+                "id"
             ],
             "title": "InformationArtifact",
             "type": "object"
@@ -108,15 +98,10 @@
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
-                },
-                "type_value": {
-                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
-                    "type": "string"
                 }
             },
             "required": [
-                "id",
-                "type_value"
+                "id"
             ],
             "title": "MaterialEntity",
             "type": "object"
@@ -137,15 +122,10 @@
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
-                },
-                "type_value": {
-                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
-                    "type": "string"
                 }
             },
             "required": [
-                "id",
-                "type_value"
+                "id"
             ],
             "title": "NamedThing",
             "type": "object"
@@ -170,12 +150,11 @@
             "title": "NamedThingCollection",
             "type": "object"
         },
-        "NonProcess": {
+        "Person": {
             "additionalProperties": false,
-            "description": "A grouping for any named thing that is not a process",
+            "description": "",
             "properties": {
-                "description": {
-                    "description": "A human-readable description for a thing",
+                "first_name": {
                     "type": "string"
                 },
                 "id": {
@@ -183,32 +162,28 @@
                     "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
                     "type": "string"
                 },
-                "name": {
-                    "description": "A human-readable name for a thing",
-                    "type": "string"
-                },
-                "type_value": {
-                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
+                "last_name": {
                     "type": "string"
                 }
             },
             "required": [
-                "id",
-                "type_value"
+                "id"
             ],
-            "title": "NonProcess",
+            "title": "Person",
             "type": "object"
         },
-        "Observation": {
+        "PersonCollection": {
             "additionalProperties": false,
             "description": "",
             "properties": {
-                "raw_value": {
-                    "description": "The raw value of an observation",
-                    "type": "string"
+                "people": {
+                    "items": {
+                        "$ref": "#/$defs/Person"
+                    },
+                    "type": "array"
                 }
             },
-            "title": "Observation",
+            "title": "PersonCollection",
             "type": "object"
         },
         "Process": {
@@ -239,15 +214,10 @@
                         "type": "string"
                     },
                     "type": "array"
-                },
-                "type_value": {
-                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
-                    "type": "string"
                 }
             },
             "required": [
-                "id",
-                "type_value"
+                "id"
             ],
             "title": "Process",
             "type": "object"
@@ -274,15 +244,10 @@
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
-                },
-                "type_value": {
-                    "pattern": "^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$",
-                    "type": "string"
                 }
             },
             "required": [
-                "id",
-                "type_value"
+                "id"
             ],
             "title": "SoilSample",
             "type": "object"

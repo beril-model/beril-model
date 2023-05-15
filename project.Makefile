@@ -70,19 +70,6 @@ project/json/beril_model.json: src/beril_model/schema/beril_model.yaml
 		--materialize-attributes \
 		--materialize-patterns $< > $@
 
-#examples/output/NamedThingCollection-processes-with-io.db: src/beril_model/schema/beril_model.yaml \
-#src/data/examples/valid/NamedThingCollection-processes-with-io.yaml
-#	# 		--module src/beril_model/datamodel/beril_model.py \
-#	# --schema src/beril_model/schema/beril_model.yaml
-#	# AttributeError: 'MaterialEntityId' object has no attribute '_sa_instance_state'
-#	$(RUN) linkml-sqldb dump \
-#		--db $@ \
-#		--target-class NamedThingCollection \
-#		--index-slot material_entities \
-#		--no-validate \
-#		--force \
-#		--module src/beril_model/datamodel/beril_model.py src/data/examples/valid/NamedThingCollection-processes-with-io.yaml
-
 examples/output/NamedThingCollection-processes.tsv: src/beril_model/schema/beril_model.yaml \
 src/data/examples/valid/NamedThingCollection-processes-with-io.yaml
 	$(RUN) linkml-convert \
@@ -103,3 +90,20 @@ target/usage_template.tsv: src/beril_model/schema/beril_model.yaml
 	$(RUN) generate_and_populate_template \
 		 --destination-template $@ \
 		 --source-schema-path $<
+
+#examples/output/PersonCollection-minimal-plus.db: src/linkml_sqldb_testing/schema/linkml_sqldb_testing.yaml \
+#src/data/examples/valid/PersonCollection-minimal-plus.yaml
+#	mkdir -p $(dir $@)
+#	$(RUN) linkml-sqldb dump \
+#		--db $@ \
+#		--target-class PersonCollection \
+#		--schema $^
+#	sqlite3 $@ 'select * from Person'
+
+
+examples/output/NamedThingCollection-material_entities-multiple-materials.db:
+	mkdir -p $(dir $@)
+	$(RUN) linkml-sqldb dump \
+		--db $@ \
+		--schema src/beril_model/schema/beril_model.yaml src/data/examples/valid/NamedThingCollection-material_entities-multiple-materials.yaml
+	sqlite3 $@ 'select * from MaterialEntity'

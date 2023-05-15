@@ -2,7 +2,6 @@
   "material_entities": [
     {
       "id": "beril_model:1",
-      "type_value": "beril_model:MaterialEntity",
       "name": "sample 1"
     }
   ],
