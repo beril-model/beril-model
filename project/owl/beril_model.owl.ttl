@@ -35,12 +35,12 @@ beril_model:InformationArtifact a owl:Class,
             owl:onProperty beril_model:url ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty beril_model:md5 ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Integer ;
             owl:onProperty beril_model:size_in_bytes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty beril_model:md5 ],
         beril_model:NonProcess ;
     linkml:attributes "{}" ;
     linkml:is_a "NonProcess" .
@@ -90,11 +90,11 @@ beril_model:NamedThingCollection a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "NamedThingCollection" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom beril_model:Process ;
-            owl:onProperty beril_model:processes ],
-        [ a owl:Restriction ;
             owl:allValuesFrom beril_model:MaterialEntity ;
-            owl:onProperty beril_model:material_entities ] ;
+            owl:onProperty beril_model:material_entities ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom beril_model:Process ;
+            owl:onProperty beril_model:processes ] ;
     skos:definition "A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided" ;
     linkml:attributes "{}" .
 
@@ -106,7 +106,7 @@ beril_model:color a owl:ObjectProperty,
 beril_model:inputs a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "inputs" ;
-    rdfs:range beril_model:MaterialEntity .
+    rdfs:range beril_model:NonProcess .
 
 beril_model:mass_g a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -127,7 +127,7 @@ beril_model:md5 a owl:ObjectProperty,
 beril_model:outputs a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "outputs" ;
-    rdfs:range beril_model:MaterialEntity .
+    rdfs:range beril_model:NonProcess .
 
 beril_model:processes a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -190,14 +190,6 @@ schema1:name a owl:ObjectProperty,
         beril_model:ColorEnum ;
     rdfs:label "RED" .
 
-beril_model:NonProcess a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "NonProcess" ;
-    rdfs:subClassOf beril_model:NamedThing ;
-    skos:definition "A grouping for any named thing that is not a process" ;
-    linkml:attributes "{}" ;
-    linkml:is_a "NamedThing" .
-
 beril_model:Observation a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Observation" ;
@@ -211,11 +203,11 @@ beril_model:Process a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Process" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom beril_model:MaterialEntity ;
-            owl:onProperty beril_model:outputs ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom beril_model:MaterialEntity ;
+            owl:allValuesFrom beril_model:NonProcess ;
             owl:onProperty beril_model:inputs ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom beril_model:NonProcess ;
+            owl:onProperty beril_model:outputs ],
         beril_model:NamedThing ;
     skos:definition "Something that unfolds over time" ;
     linkml:attributes "{}" ;
@@ -229,28 +221,20 @@ beril_model:NamedThing a owl:Class,
             owl:onClass linkml:String ;
             owl:onProperty schema1:name ],
         [ a owl:Restriction ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty beril_model:type_value ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
             owl:onProperty schema1:description ],
         [ a owl:Restriction ;
             owl:onClass linkml:Uriorcurie ;
             owl:onProperty schema1:identifier ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty beril_model:type_value ;
             owl:qualifiedCardinality 1 ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing ;
     linkml:attributes "{}" .
-
-beril_model:ColorEnum a owl:Class,
-        linkml:EnumDefinition ;
-    rdfs:label "ColorEnum" ;
-    owl:unionOf ( <https://w3id.org/beril-model/beril-model/ColorEnum#RED> <https://w3id.org/beril-model/beril-model/ColorEnum#GREEN> <https://w3id.org/beril-model/beril-model/ColorEnum#BLUE> ) ;
-    linkml:permissible_values <https://w3id.org/beril-model/beril-model/ColorEnum#BLUE>,
-        <https://w3id.org/beril-model/beril-model/ColorEnum#GREEN>,
-        <https://w3id.org/beril-model/beril-model/ColorEnum#RED> .
 
 beril_model:MaterialEntity a owl:Class,
         linkml:ClassDefinition ;
@@ -267,6 +251,22 @@ beril_model:MaterialEntity a owl:Class,
     skos:definition "something that is made of matter" ;
     linkml:attributes "{}" ;
     linkml:is_a "NonProcess" .
+
+beril_model:ColorEnum a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "ColorEnum" ;
+    owl:unionOf ( <https://w3id.org/beril-model/beril-model/ColorEnum#RED> <https://w3id.org/beril-model/beril-model/ColorEnum#GREEN> <https://w3id.org/beril-model/beril-model/ColorEnum#BLUE> ) ;
+    linkml:permissible_values <https://w3id.org/beril-model/beril-model/ColorEnum#BLUE>,
+        <https://w3id.org/beril-model/beril-model/ColorEnum#GREEN>,
+        <https://w3id.org/beril-model/beril-model/ColorEnum#RED> .
+
+beril_model:NonProcess a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "NonProcess" ;
+    rdfs:subClassOf beril_model:NamedThing ;
+    skos:definition "A grouping for any named thing that is not a process" ;
+    linkml:attributes "{}" ;
+    linkml:is_a "NamedThing" .
 
 linkml:ClassDefinition a owl:Class ;
     rdfs:label "class_definition" ;

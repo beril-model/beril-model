@@ -152,10 +152,10 @@ slots:
     description: >-
       A URL for a file
   inputs:
-    range: MaterialEntity
+    range: NonProcess
     multivalued: true
   outputs:
-    range: MaterialEntity
+    range: NonProcess
     multivalued: true
 
   material_entities:
