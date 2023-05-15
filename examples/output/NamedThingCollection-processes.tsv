@@ -1,2 +1,0 @@
-id	type_value	name	inputs	outputs
-beril_model:proc1	beril_model:Process	changing sample color	[beril_model:samp1]	[beril_model:samp2]

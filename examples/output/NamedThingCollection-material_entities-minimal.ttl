@@ -2,7 +2,8 @@
 @prefix schema1: <http://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-beril_model:1 schema1:name "sample 1" ;
+beril_model:1 a beril_model:MaterialEntity ;
+    schema1:name "sample 1" ;
     beril_model:type_value "beril_model:MaterialEntity"^^xsd:anyURI .
 
 [] a beril_model:NamedThingCollection ;

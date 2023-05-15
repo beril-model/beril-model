@@ -1,5 +1,5 @@
 # Auto generated from beril_model.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-05-15T10:34:05
+# Generation date: 2023-05-15T11:04:18
 # Schema: beril-model
 #
 # id: https://w3id.org/beril-model/beril-model
