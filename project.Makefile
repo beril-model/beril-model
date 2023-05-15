@@ -102,3 +102,14 @@ src/data/examples/valid/NamedThingCollection-processes-with-io.yaml
 		--output $@ \
 		--index-slot material_entities \
 		--schema $^
+
+target/usage_template.tsv: src/beril_model/schema/beril_model.yaml
+	mkdir -p $(@D)
+	$(RUN) generate_and_populate_template \
+		 --base-class slot_definition \
+		 --columns-to-insert slot \
+		 --columns-to-insert class \
+		 --destination-template $@ \
+		 --meta-model-excel-file target/meta.xlsx \
+		 --meta-path https://raw.githubusercontent.com/linkml/linkml-model/main/linkml_model/model/schema/meta.yaml \
+		 --source-schema-path $<

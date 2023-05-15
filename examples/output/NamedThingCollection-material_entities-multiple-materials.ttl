@@ -2,22 +2,26 @@
 @prefix schema1: <http://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-beril_model:1 schema1:name "sample 1" ;
+beril_model:1 a beril_model:MaterialEntity ;
+    schema1:name "sample 1" ;
     beril_model:color "RED" ;
     beril_model:mass_g "100.0"^^xsd:float ;
     beril_model:type_value "beril_model:MaterialEntity"^^xsd:anyURI .
 
-beril_model:2 schema1:name "sample 2" ;
+beril_model:2 a beril_model:MaterialEntity ;
+    schema1:name "sample 2" ;
     beril_model:color "RED" ;
     beril_model:mass_g "100.0"^^xsd:float ;
     beril_model:type_value "beril_model:MaterialEntity"^^xsd:anyURI .
 
-beril_model:3 schema1:name "sample 3" ;
+beril_model:3 a beril_model:MaterialEntity ;
+    schema1:name "sample 3" ;
     beril_model:color "GREEN" ;
     beril_model:mass_g "100.0"^^xsd:float ;
     beril_model:type_value "beril_model:MaterialEntity"^^xsd:anyURI .
 
-beril_model:4 schema1:name "sample 4" ;
+beril_model:4 a beril_model:MaterialEntity ;
+    schema1:name "sample 4" ;
     beril_model:color "GREEN" ;
     beril_model:mass_g "100.0"^^xsd:float ;
     beril_model:type_value "beril_model:MaterialEntity"^^xsd:anyURI .

@@ -353,7 +353,6 @@
       "name": "type_value",
       "from_schema": "https://w3id.org/beril-model/beril-model",
       "rank": 103,
-      "designates_type": true,
       "slot_group": "semantics",
       "range": "uriorcurie",
       "required": true,
@@ -462,7 +461,6 @@
           "name": "type_value",
           "from_schema": "https://w3id.org/beril-model/beril-model",
           "rank": 103,
-          "designates_type": true,
           "alias": "type_value",
           "owner": "NamedThing",
           "domain_of": [
@@ -560,7 +558,6 @@
           "name": "type_value",
           "from_schema": "https://w3id.org/beril-model/beril-model",
           "rank": 103,
-          "designates_type": true,
           "alias": "type_value",
           "owner": "NonProcess",
           "domain_of": [
@@ -659,7 +656,6 @@
           "name": "type_value",
           "from_schema": "https://w3id.org/beril-model/beril-model",
           "rank": 103,
-          "designates_type": true,
           "alias": "type_value",
           "owner": "MaterialEntity",
           "domain_of": [
@@ -762,7 +758,6 @@
           "name": "type_value",
           "from_schema": "https://w3id.org/beril-model/beril-model",
           "rank": 103,
-          "designates_type": true,
           "alias": "type_value",
           "owner": "SoilSample",
           "domain_of": [
@@ -866,7 +861,6 @@
           "name": "type_value",
           "from_schema": "https://w3id.org/beril-model/beril-model",
           "rank": 103,
-          "designates_type": true,
           "alias": "type_value",
           "owner": "DnaExtract",
           "domain_of": [
@@ -986,7 +980,6 @@
           "name": "type_value",
           "from_schema": "https://w3id.org/beril-model/beril-model",
           "rank": 103,
-          "designates_type": true,
           "alias": "type_value",
           "owner": "InformationArtifact",
           "domain_of": [
@@ -1104,7 +1097,6 @@
           "name": "type_value",
           "from_schema": "https://w3id.org/beril-model/beril-model",
           "rank": 103,
-          "designates_type": true,
           "alias": "type_value",
           "owner": "Process",
           "domain_of": [

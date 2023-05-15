@@ -10,6 +10,7 @@ include = ["README.md", "src/beril_model/schema", "project"]
 [tool.poetry.dependencies]
 python = "^3.9"
 linkml-runtime = "^1.1.24"
+gen-pop-linkml2sheets = "^0.1.8"
 
 [tool.poetry-dynamic-versioning]
 enable = true
