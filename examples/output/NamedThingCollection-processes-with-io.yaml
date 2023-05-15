@@ -1,0 +1,19 @@
+material_entities:
+- id: beril_model:samp1
+  type_value: beril_model:MaterialEntity
+  name: sample 1
+  mass_g: 100.0
+  color: RED
+- id: beril_model:samp2
+  type_value: beril_model:MaterialEntity
+  name: sample 3
+  mass_g: 100.0
+  color: GREEN
+processes:
+- id: beril_model:proc1
+  type_value: beril_model:Process
+  name: changing sample color
+  inputs:
+  - beril_model:samp1
+  outputs:
+  - beril_model:samp2

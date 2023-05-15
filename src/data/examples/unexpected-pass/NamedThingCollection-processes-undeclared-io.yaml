@@ -1,0 +1,10 @@
+# LinkML should support checking referential integrity:
+# what are these inputs and output mentioned in this process?
+processes:
+  - id: "beril_model:proc1"
+    name: sample 1
+    type_value: "beril_model:Process"
+    inputs:
+      - "beril_model:samp1"
+    outputs:
+      - "beril_model:samp2"

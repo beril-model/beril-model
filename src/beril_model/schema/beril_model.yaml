@@ -11,9 +11,7 @@ see_also:
 prefixes:
   beril_model: https://w3id.org/beril-model/beril-model/
   linkml: https://w3id.org/linkml/
-  biolink: https://w3id.org/biolink/
   schema: http://schema.org/
-  PATO: http://purl.obolibrary.org/obo/PATO_
   example: https://example.org/
 default_prefix: beril_model
 default_range: string
@@ -23,6 +21,15 @@ imports:
 
 classes:
 
+  NamedThingCollection:
+    tree_root: true
+    #    abstract: true
+    description: >-
+      A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided
+    slots:
+      - material_entities
+      - processes
+
   NamedThing:
     description: >-
       A generic grouping for any identifiable entity
@@ -30,6 +37,7 @@ classes:
       - id
       - name
       - description
+      - type_value
     class_uri: schema:Thing
     notes:
       - "What kinds of things wouldn't be named? Observations that only have relations with types, not instances?"
@@ -57,7 +65,15 @@ classes:
       - Observation
     is_a: NonProcess
     slots:
-      - observations
+      #      - observations
+      - mass_g
+      - color
+
+  SoilSample:
+    is_a: MaterialEntity
+
+  DnaExtract:
+    is_a: MaterialEntity
 
   InformationArtifact:
     disjoint_with:
@@ -82,31 +98,6 @@ classes:
       - inputs
       - outputs
 
-
-  Person:
-    is_a: NamedThing
-    description: >-
-      Represents a Person
-    slots:
-      - primary_email
-      - birth_date # DataHarmonizer is saving date-ranged data as datetimes
-      - age_in_years
-      - vital_status
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
-
-  PersonCollection:
-    tree_root: true
-    description: >-
-      A holder for Person objects
-    attributes:
-      entries:
-        range: Person
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
 slots:
   id:
     description: A unique identifier for a thing
@@ -115,25 +106,29 @@ slots:
     range: uriorcurie
     required: true
     slot_uri: schema:identifier
+    rank: 1
+    slot_group: identifiers
   name:
     slot_uri: schema:name
     description: A human-readable name for a thing
+    rank: 2
+    slot_group: identifiers
   description:
     slot_uri: schema:description
     description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
+    slot_group: identifiers
+    rank: 3
+
+  identifiers:
+    is_grouping_slot: true
+    rank: 1
+  sample_attributes:
+    is_grouping_slot: true
+    rank: 2
+  semantics:
+    is_grouping_slot: true
+    rank: 3
+
   raw_value:
     description: The raw value of an observation
     notes:
@@ -163,21 +158,51 @@ slots:
     range: MaterialEntity
     multivalued: true
 
+  material_entities:
+    range: MaterialEntity
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  processes:
+    range: Process
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+
+  mass_g:
+    range: float
+    rank: 101
+    slot_group: sample_attributes
+
+  color:
+    range: ColorEnum
+    rank: 102
+    slot_group: sample_attributes
+
+  type_value:
+    designates_type: true
+    range: uriorcurie
+    pattern: ^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$
+    required: true
+    rank: 103
+    slot_group: semantics
+    # how to constrain this to classes in the schema?
+    # enum range
+    # uri or cure range
+    # pattern
+
+
+
 enums:
-  PersonStatus:
-    notes:
-      - redundant text properties are currently required for building a DataHarmonizer menu
+  ColorEnum:
     permissible_values:
-      ALIVE:
-        text: ALIVE
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        text: DEAD
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        text: UNKNOWN
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
+      RED:
+        description: >-
+          red
+      GREEN:
+        description: >-
+          gree
+      BLUE:
+        description: >-
+          blue

@@ -1,0 +1,5 @@
+material_entities:
+  - id: "beril_model:2"
+    name: sample 2
+    mass_g: heavy
+    type_value: "beril_model:MaterialEntity"

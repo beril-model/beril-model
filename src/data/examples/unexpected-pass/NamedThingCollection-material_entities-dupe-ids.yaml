@@ -1,0 +1,8 @@
+# jsonschmea doesn't understand that id values can't be repeated in a collection
+# plain linkml-validate does
+# linkml-run-examples from the main branch doesn't, but that functionality is soon to be merged in
+material_entities:
+  - id: "beril_model:1"
+    name: sample 1
+  - id: "beril_model:1"
+    name: sample 2

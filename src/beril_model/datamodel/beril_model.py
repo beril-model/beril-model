@@ -1,5 +1,5 @@
 # Auto generated from beril_model.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-05-05T21:39:24
+# Generation date: 2023-05-15T10:34:05
 # Schema: beril-model
 #
 # id: https://w3id.org/beril-model/beril-model
@@ -21,8 +21,8 @@ from linkml_runtime.utils.formatutils import camelcase, underscore, sfx
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml_runtime.utils.curienamespace import CurieNamespace
-from linkml_runtime.linkml_model.types import Date, Integer, String, Uriorcurie
-from linkml_runtime.utils.metamodelcore import URIorCURIE, XSDDate
+from linkml_runtime.linkml_model.types import Float, Integer, String, Uriorcurie
+from linkml_runtime.utils.metamodelcore import URIorCURIE
 
 metamodel_version = "1.7.0"
 version = None
@@ -31,9 +31,7 @@ version = None
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
-PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
 BERIL_MODEL = CurieNamespace('beril_model', 'https://w3id.org/beril-model/beril-model/')
-BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/')
 EXAMPLE = CurieNamespace('example', 'https://example.org/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
@@ -55,6 +53,14 @@ class MaterialEntityId(NonProcessId):
     pass
 
 
+class SoilSampleId(MaterialEntityId):
+    pass
+
+
+class DnaExtractId(MaterialEntityId):
+    pass
+
+
 class InformationArtifactId(NonProcessId):
     pass
 
@@ -63,8 +69,27 @@ class ProcessId(NamedThingId):
     pass
 
 
-class PersonId(NamedThingId):
-    pass
+@dataclass
+class NamedThingCollection(YAMLRoot):
+    """
+    A multi-valued, inlined-as-list grouping of instances from any class, provided a suitable linking slot is provided
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.NamedThingCollection
+    class_class_curie: ClassVar[str] = "beril_model:NamedThingCollection"
+    class_name: ClassVar[str] = "NamedThingCollection"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.NamedThingCollection
+
+    material_entities: Optional[Union[Dict[Union[str, MaterialEntityId], Union[dict, "MaterialEntity"]], List[Union[dict, "MaterialEntity"]]]] = empty_dict()
+    processes: Optional[Union[Dict[Union[str, ProcessId], Union[dict, "Process"]], List[Union[dict, "Process"]]]] = empty_dict()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        self._normalize_inlined_as_list(slot_name="material_entities", slot_type=MaterialEntity, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="processes", slot_type=Process, key_name="id", keyed=True)
+
+        super().__post_init__(**kwargs)
 
 
 @dataclass
@@ -80,6 +105,7 @@ class NamedThing(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = BERIL_MODEL.NamedThing
 
     id: Union[str, NamedThingId] = None
+    type_value: Union[str, URIorCURIE] = None
     name: Optional[str] = None
     description: Optional[str] = None
 
@@ -88,6 +114,11 @@ class NamedThing(YAMLRoot):
             self.MissingRequiredField("id")
         if not isinstance(self.id, NamedThingId):
             self.id = NamedThingId(self.id)
+
+        if self._is_empty(self.type_value):
+            self.MissingRequiredField("type_value")
+        if not isinstance(self.type_value, URIorCURIE):
+            self.type_value = URIorCURIE(self.type_value)
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
@@ -129,6 +160,7 @@ class NonProcess(NamedThing):
     class_model_uri: ClassVar[URIRef] = BERIL_MODEL.NonProcess
 
     id: Union[str, NonProcessId] = None
+    type_value: Union[str, URIorCURIE] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -152,7 +184,9 @@ class MaterialEntity(NonProcess):
     class_model_uri: ClassVar[URIRef] = BERIL_MODEL.MaterialEntity
 
     id: Union[str, MaterialEntityId] = None
-    observations: Optional[Union[Union[dict, Observation], List[Union[dict, Observation]]]] = empty_list()
+    type_value: Union[str, URIorCURIE] = None
+    mass_g: Optional[float] = None
+    color: Optional[Union[str, "ColorEnum"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -160,9 +194,53 @@ class MaterialEntity(NonProcess):
         if not isinstance(self.id, MaterialEntityId):
             self.id = MaterialEntityId(self.id)
 
-        if not isinstance(self.observations, list):
-            self.observations = [self.observations] if self.observations is not None else []
-        self.observations = [v if isinstance(v, Observation) else Observation(**as_dict(v)) for v in self.observations]
+        if self.mass_g is not None and not isinstance(self.mass_g, float):
+            self.mass_g = float(self.mass_g)
+
+        if self.color is not None and not isinstance(self.color, ColorEnum):
+            self.color = ColorEnum(self.color)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class SoilSample(MaterialEntity):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.SoilSample
+    class_class_curie: ClassVar[str] = "beril_model:SoilSample"
+    class_name: ClassVar[str] = "SoilSample"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.SoilSample
+
+    id: Union[str, SoilSampleId] = None
+    type_value: Union[str, URIorCURIE] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, SoilSampleId):
+            self.id = SoilSampleId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class DnaExtract(MaterialEntity):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.DnaExtract
+    class_class_curie: ClassVar[str] = "beril_model:DnaExtract"
+    class_name: ClassVar[str] = "DnaExtract"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.DnaExtract
+
+    id: Union[str, DnaExtractId] = None
+    type_value: Union[str, URIorCURIE] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, DnaExtractId):
+            self.id = DnaExtractId(self.id)
 
         super().__post_init__(**kwargs)
 
@@ -177,6 +255,7 @@ class InformationArtifact(NonProcess):
     class_model_uri: ClassVar[URIRef] = BERIL_MODEL.InformationArtifact
 
     id: Union[str, InformationArtifactId] = None
+    type_value: Union[str, URIorCURIE] = None
     size_in_bytes: Optional[int] = None
     md5: Optional[str] = None
     url: Optional[Union[str, URIorCURIE]] = None
@@ -212,6 +291,7 @@ class Process(NamedThing):
     class_model_uri: ClassVar[URIRef] = BERIL_MODEL.Process
 
     id: Union[str, ProcessId] = None
+    type_value: Union[str, URIorCURIE] = None
     inputs: Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]] = empty_list()
     outputs: Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]] = empty_list()
 
@@ -232,82 +312,21 @@ class Process(NamedThing):
         super().__post_init__(**kwargs)
 
 
-@dataclass
-class Person(NamedThing):
-    """
-    Represents a Person
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.Person
-    class_class_curie: ClassVar[str] = "beril_model:Person"
-    class_name: ClassVar[str] = "Person"
-    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.Person
-
-    id: Union[str, PersonId] = None
-    primary_email: Optional[str] = None
-    birth_date: Optional[Union[str, XSDDate]] = None
-    age_in_years: Optional[int] = None
-    vital_status: Optional[Union[str, "PersonStatus"]] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, PersonId):
-            self.id = PersonId(self.id)
-
-        if self.primary_email is not None and not isinstance(self.primary_email, str):
-            self.primary_email = str(self.primary_email)
-
-        if self.birth_date is not None and not isinstance(self.birth_date, XSDDate):
-            self.birth_date = XSDDate(self.birth_date)
-
-        if self.age_in_years is not None and not isinstance(self.age_in_years, int):
-            self.age_in_years = int(self.age_in_years)
-
-        if self.vital_status is not None and not isinstance(self.vital_status, PersonStatus):
-            self.vital_status = PersonStatus(self.vital_status)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class PersonCollection(YAMLRoot):
-    """
-    A holder for Person objects
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.PersonCollection
-    class_class_curie: ClassVar[str] = "beril_model:PersonCollection"
-    class_name: ClassVar[str] = "PersonCollection"
-    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.PersonCollection
-
-    entries: Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]] = empty_dict()
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        self._normalize_inlined_as_list(slot_name="entries", slot_type=Person, key_name="id", keyed=True)
-
-        super().__post_init__(**kwargs)
-
-
 # Enumerations
-class PersonStatus(EnumDefinitionImpl):
+class ColorEnum(EnumDefinitionImpl):
 
-    ALIVE = PermissibleValue(
-        text="ALIVE",
-        description="the person is living",
-        meaning=PATO["0001421"])
-    DEAD = PermissibleValue(
-        text="DEAD",
-        description="the person is deceased",
-        meaning=PATO["0001422"])
-    UNKNOWN = PermissibleValue(
-        text="UNKNOWN",
-        description="the vital status is not known")
+    RED = PermissibleValue(
+        text="RED",
+        description="red")
+    GREEN = PermissibleValue(
+        text="GREEN",
+        description="gree")
+    BLUE = PermissibleValue(
+        text="BLUE",
+        description="blue")
 
     _defn = EnumDefinition(
-        name="PersonStatus",
+        name="ColorEnum",
     )
 
 # Slots
@@ -324,17 +343,14 @@ slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
 slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
                    model_uri=BERIL_MODEL.description, domain=None, range=Optional[str])
 
-slots.primary_email = Slot(uri=SCHEMA.email, name="primary_email", curie=SCHEMA.curie('email'),
-                   model_uri=BERIL_MODEL.primary_email, domain=None, range=Optional[str])
+slots.identifiers = Slot(uri=BERIL_MODEL.identifiers, name="identifiers", curie=BERIL_MODEL.curie('identifiers'),
+                   model_uri=BERIL_MODEL.identifiers, domain=None, range=Optional[str])
 
-slots.birth_date = Slot(uri=SCHEMA.birthDate, name="birth_date", curie=SCHEMA.curie('birthDate'),
-                   model_uri=BERIL_MODEL.birth_date, domain=None, range=Optional[Union[str, XSDDate]])
+slots.sample_attributes = Slot(uri=BERIL_MODEL.sample_attributes, name="sample_attributes", curie=BERIL_MODEL.curie('sample_attributes'),
+                   model_uri=BERIL_MODEL.sample_attributes, domain=None, range=Optional[str])
 
-slots.age_in_years = Slot(uri=BERIL_MODEL.age_in_years, name="age_in_years", curie=BERIL_MODEL.curie('age_in_years'),
-                   model_uri=BERIL_MODEL.age_in_years, domain=None, range=Optional[int])
-
-slots.vital_status = Slot(uri=BERIL_MODEL.vital_status, name="vital_status", curie=BERIL_MODEL.curie('vital_status'),
-                   model_uri=BERIL_MODEL.vital_status, domain=None, range=Optional[Union[str, "PersonStatus"]])
+slots.semantics = Slot(uri=BERIL_MODEL.semantics, name="semantics", curie=BERIL_MODEL.curie('semantics'),
+                   model_uri=BERIL_MODEL.semantics, domain=None, range=Optional[str])
 
 slots.raw_value = Slot(uri=BERIL_MODEL.raw_value, name="raw_value", curie=BERIL_MODEL.curie('raw_value'),
                    model_uri=BERIL_MODEL.raw_value, domain=None, range=Optional[str])
@@ -357,9 +373,18 @@ slots.inputs = Slot(uri=BERIL_MODEL.inputs, name="inputs", curie=BERIL_MODEL.cur
 slots.outputs = Slot(uri=BERIL_MODEL.outputs, name="outputs", curie=BERIL_MODEL.curie('outputs'),
                    model_uri=BERIL_MODEL.outputs, domain=None, range=Optional[Union[Union[str, MaterialEntityId], List[Union[str, MaterialEntityId]]]])
 
-slots.personCollection__entries = Slot(uri=BERIL_MODEL.entries, name="personCollection__entries", curie=BERIL_MODEL.curie('entries'),
-                   model_uri=BERIL_MODEL.personCollection__entries, domain=None, range=Optional[Union[Dict[Union[str, PersonId], Union[dict, Person]], List[Union[dict, Person]]]])
+slots.material_entities = Slot(uri=BERIL_MODEL.material_entities, name="material_entities", curie=BERIL_MODEL.curie('material_entities'),
+                   model_uri=BERIL_MODEL.material_entities, domain=None, range=Optional[Union[Dict[Union[str, MaterialEntityId], Union[dict, MaterialEntity]], List[Union[dict, MaterialEntity]]]])
 
-slots.Person_primary_email = Slot(uri=SCHEMA.email, name="Person_primary_email", curie=SCHEMA.curie('email'),
-                   model_uri=BERIL_MODEL.Person_primary_email, domain=Person, range=Optional[str],
-                   pattern=re.compile(r'^\S+@[\S+\.]+\S+'))
+slots.processes = Slot(uri=BERIL_MODEL.processes, name="processes", curie=BERIL_MODEL.curie('processes'),
+                   model_uri=BERIL_MODEL.processes, domain=None, range=Optional[Union[Dict[Union[str, ProcessId], Union[dict, Process]], List[Union[dict, Process]]]])
+
+slots.mass_g = Slot(uri=BERIL_MODEL.mass_g, name="mass_g", curie=BERIL_MODEL.curie('mass_g'),
+                   model_uri=BERIL_MODEL.mass_g, domain=None, range=Optional[float])
+
+slots.color = Slot(uri=BERIL_MODEL.color, name="color", curie=BERIL_MODEL.curie('color'),
+                   model_uri=BERIL_MODEL.color, domain=None, range=Optional[Union[str, "ColorEnum"]])
+
+slots.type_value = Slot(uri=BERIL_MODEL.type_value, name="type_value", curie=BERIL_MODEL.curie('type_value'),
+                   model_uri=BERIL_MODEL.type_value, domain=None, range=Union[str, URIorCURIE],
+                   pattern=re.compile(r'^([a-zA-Z_][a-zA-Z0-9_-]*):([a-zA-Z_][a-zA-Z0-9_-]*)$'))

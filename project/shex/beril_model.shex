@@ -37,6 +37,14 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
+<DnaExtract> CLOSED {
+    (  $<DnaExtract_tes> (  &<MaterialEntity_tes> ;
+          rdf:type [ <MaterialEntity> ] ?
+       ) ;
+       rdf:type [ <DnaExtract> ]
+    )
+}
+
 <InformationArtifact> CLOSED {
     (  $<InformationArtifact_tes> (  &<NonProcess_tes> ;
           rdf:type [ <NonProcess> ] ? ;
@@ -48,24 +56,36 @@ linkml:Nodeidentifier NONLITERAL
     )
 }
 
-<MaterialEntity> CLOSED {
-    (  $<MaterialEntity_tes> (  &<NonProcess_tes> ;
-          rdf:type [ <NonProcess> ] ? ;
-          <observations> @<Observation> *
-       ) ;
-       rdf:type [ <MaterialEntity> ]
-    )
-}
+<MaterialEntity>  (
+    CLOSED {
+       (  $<MaterialEntity_tes> (  &<NonProcess_tes> ;
+             rdf:type [ <NonProcess> ] ? ;
+             <mass_g> @linkml:Float ? ;
+             <color> @<ColorEnum> ?
+          ) ;
+          rdf:type [ <MaterialEntity> ]
+       )
+    } OR @<DnaExtract> OR @<SoilSample>
+)
 
 <NamedThing>  (
     CLOSED {
        (  $<NamedThing_tes> (  schema1:name @linkml:String ? ;
-             schema1:description @linkml:String ?
+             schema1:description @linkml:String ? ;
+             <type_value> @linkml:Uriorcurie
           ) ;
           rdf:type [ schema1:Thing ]
        )
-    } OR @<NonProcess> OR @<Person> OR @<Process>
+    } OR @<NonProcess> OR @<Process>
 )
+
+<NamedThingCollection> CLOSED {
+    (  $<NamedThingCollection_tes> (  <material_entities> @<MaterialEntity> * ;
+          <processes> @<Process> *
+       ) ;
+       rdf:type [ <NamedThingCollection> ] ?
+    )
+}
 
 <NonProcess>  (
     CLOSED {
@@ -83,24 +103,6 @@ linkml:Nodeidentifier NONLITERAL
     )
 }
 
-<Person> CLOSED {
-    (  $<Person_tes> (  &<NamedThing_tes> ;
-          rdf:type [ schema1:Thing ] ? ;
-          schema1:email @linkml:String ? ;
-          schema1:birthDate @linkml:Date ? ;
-          <age_in_years> @linkml:Integer ? ;
-          <vital_status> @<PersonStatus> ?
-       ) ;
-       rdf:type [ <Person> ]
-    )
-}
-
-<PersonCollection> CLOSED {
-    (  $<PersonCollection_tes> <entries> @<Person> * ;
-       rdf:type [ <PersonCollection> ] ?
-    )
-}
-
 <Process> CLOSED {
     (  $<Process_tes> (  &<NamedThing_tes> ;
           rdf:type [ schema1:Thing ] ? ;
@@ -108,6 +110,14 @@ linkml:Nodeidentifier NONLITERAL
           <outputs> @<MaterialEntity> *
        ) ;
        rdf:type [ <Process> ]
+    )
+}
+
+<SoilSample> CLOSED {
+    (  $<SoilSample_tes> (  &<MaterialEntity_tes> ;
+          rdf:type [ <MaterialEntity> ] ?
+       ) ;
+       rdf:type [ <SoilSample> ]
     )
 }
 

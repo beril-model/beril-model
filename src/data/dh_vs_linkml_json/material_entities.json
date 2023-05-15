@@ -1,0 +1,1 @@
+[{"id": "beril_model:samp1", "name": "sample 1", "mass_g": 100, "color": "RED", "type_value": "beril_model:MaterialEntity"}, {"id": "beril_model:samp2", "name": "sample 3", "mass_g": 100, "color": "GREEN", "type_value": "beril_model:MaterialEntity"}]

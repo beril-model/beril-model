@@ -1,0 +1,33 @@
+{
+  "material_entities": [
+    {
+      "id": "beril_model:1",
+      "type_value": "beril_model:MaterialEntity",
+      "name": "sample 1",
+      "mass_g": 100.0,
+      "color": "RED"
+    },
+    {
+      "id": "beril_model:2",
+      "type_value": "beril_model:MaterialEntity",
+      "name": "sample 2",
+      "mass_g": 100.0,
+      "color": "RED"
+    },
+    {
+      "id": "beril_model:3",
+      "type_value": "beril_model:MaterialEntity",
+      "name": "sample 3",
+      "mass_g": 100.0,
+      "color": "GREEN"
+    },
+    {
+      "id": "beril_model:4",
+      "type_value": "beril_model:MaterialEntity",
+      "name": "sample 4",
+      "mass_g": 100.0,
+      "color": "GREEN"
+    }
+  ],
+  "@type": "NamedThingCollection"
+}

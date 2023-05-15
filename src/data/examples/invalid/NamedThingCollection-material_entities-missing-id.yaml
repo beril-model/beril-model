@@ -1,0 +1,4 @@
+material_entities:
+  - name: sample 1
+    color: RED
+    type_value: "beril_model:MaterialEntity"

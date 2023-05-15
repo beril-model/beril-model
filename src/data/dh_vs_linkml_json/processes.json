@@ -1,0 +1,1 @@
+[{"id": "beril_model:proc1", "name": "changing sample color", "type_value": "beril_model:Process", "inputs": ["beril_model:samp1"], "outputs": ["beril_model:samp2"]}]
