@@ -37,6 +37,12 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
+linkml:Jsonpointer xsd:string
+
+linkml:Jsonpath xsd:string
+
+linkml:Sparqlpath xsd:string
+
 <DnaExtract> CLOSED {
     (  $<DnaExtract_tes> (  &<MaterialEntity_tes> ;
           rdf:type [ <MaterialEntity> ] ?
@@ -65,7 +71,7 @@ linkml:Nodeidentifier NONLITERAL
           ) ;
           rdf:type [ <MaterialEntity> ]
        )
-    } OR @<DnaExtract> OR @<SoilSample>
+    } OR @<DnaExtract> OR @<Specimen>
 )
 
 <NamedThing>  (
@@ -117,22 +123,54 @@ linkml:Nodeidentifier NONLITERAL
           ) ;
           rdf:type [ <Process> ]
        )
-    } OR @<Pooling> OR @<Splitting>
+    } OR @<Pooling> OR @<Splitting> OR @<WholeMetagenomeSequencingAssay>
 )
 
-<SoilSample> CLOSED {
-    (  $<SoilSample_tes> (  &<MaterialEntity_tes> ;
-          rdf:type [ <MaterialEntity> ] ?
+<SoilSample> {
+    (  $<SoilSample_tes> (  &<Specimen_tes> ;
+          rdf:type [ <http://purl.obolibrary.org/obo/OBI_0100051> ] ?
        ) ;
        rdf:type [ <SoilSample> ]
     )
 }
+
+<Specimen>  (
+    CLOSED {
+       (  $<Specimen_tes> (  &<MaterialEntity_tes> ;
+             rdf:type [ <MaterialEntity> ] ?
+          ) ;
+          rdf:type [ <http://purl.obolibrary.org/obo/OBI_0100051> ]
+       )
+    } OR @<SoilSample>
+)
 
 <Splitting> CLOSED {
     (  $<Splitting_tes> (  &<Process_tes> ;
           rdf:type [ <Process> ] ?
        ) ;
        rdf:type [ <Splitting> ]
+    )
+}
+
+<WholeMetagenomeSequencingAssay>  (
+    CLOSED {
+       (  $<WholeMetagenomeSequencingAssay_tes> (  &<Process_tes> ;
+             rdf:type [ <Process> ] ?
+          ) ;
+          rdf:type [ <http://purl.obolibrary.org/obo/OBI_0002623> ]
+       )
+    } OR @<WholeMetagenomeSequencingOfSoilSample>
+)
+
+<WholeMetagenomeSequencingOfSoilSample> CLOSED {
+    (  $<WholeMetagenomeSequencingOfSoilSample_tes> (  &<WholeMetagenomeSequencingAssay_tes> ;
+          rdf:type [ <http://purl.obolibrary.org/obo/OBI_0002623> ] ? ;
+          &<SoilSample_tes> ;
+          rdf:type [ <SoilSample> ] ? ;
+          <mass_g> @linkml:Float ? ;
+          <color> @<ColorEnum> ?
+       ) ;
+       rdf:type [ <WholeMetagenomeSequencingOfSoilSample> ]
     )
 }
 

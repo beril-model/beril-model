@@ -258,7 +258,7 @@
             "title": "Process",
             "type": "object"
         },
-        "SoilSample": {
+        "Specimen": {
             "additionalProperties": false,
             "description": "",
             "properties": {
@@ -285,7 +285,7 @@
             "required": [
                 "id"
             ],
-            "title": "SoilSample",
+            "title": "Specimen",
             "type": "object"
         },
         "Splitting": {
@@ -322,6 +322,84 @@
                 "id"
             ],
             "title": "Splitting",
+            "type": "object"
+        },
+        "WholeMetagenomeSequencingAssay": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
+                    "type": "string"
+                },
+                "inputs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "outputs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "WholeMetagenomeSequencingAssay",
+            "type": "object"
+        },
+        "WholeMetagenomeSequencingOfSoilSample": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "color": {
+                    "$ref": "#/$defs/ColorEnum"
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "pattern": "[a-zA-Z0-9_]+:[a-zA-Z0-9_]+",
+                    "type": "string"
+                },
+                "inputs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "mass_g": {
+                    "type": "number"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": "string"
+                },
+                "outputs": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "WholeMetagenomeSequencingOfSoilSample",
             "type": "object"
         }
     },

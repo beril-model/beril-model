@@ -1,6 +1,7 @@
 {
    "BFO": "http://purl.obolibrary.org/obo/BFO_",
    "IAO": "http://purl.obolibrary.org/obo/IAO_",
+   "OBI": "http://purl.obolibrary.org/obo/OBI_",
    "beril_model": "https://w3id.org/turbomam/beril-model/",
    "example": "https://example.org/",
    "linkml": "https://w3id.org/linkml/",
@@ -9,5 +10,11 @@
    "xsd": "http://www.w3.org/2001/XMLSchema#",
    "NamedThing": {
       "@id": "schema:Thing"
+   },
+   "Specimen": {
+      "@id": "OBI:0100051"
+   },
+   "WholeMetagenomeSequencingAssay": {
+      "@id": "OBI:0002623"
    }
 }

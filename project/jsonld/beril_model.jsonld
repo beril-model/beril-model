@@ -42,6 +42,10 @@
     {
       "prefix_prefix": "IAO",
       "prefix_reference": "http://purl.obolibrary.org/obo/IAO_"
+    },
+    {
+      "prefix_prefix": "OBI",
+      "prefix_reference": "http://purl.obolibrary.org/obo/OBI_"
     }
   ],
   "default_prefix": "beril_model",
@@ -246,7 +250,7 @@
       "definition_uri": "https://w3id.org/linkml/Objectidentifier",
       "description": "A URI or CURIE that represents an object in the model.",
       "comments": [
-        "Used for inheritence and type checking"
+        "Used for inheritance and type checking"
       ],
       "from_schema": "https://w3id.org/linkml/types",
       "imported_from": "linkml:types",
@@ -263,6 +267,42 @@
       "imported_from": "linkml:types",
       "base": "NodeIdentifier",
       "uri": "http://www.w3.org/ns/shex#nonLiteral",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpointer",
+      "definition_uri": "https://w3id.org/linkml/Jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpath",
+      "definition_uri": "https://w3id.org/linkml/Jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "sparqlpath",
+      "definition_uri": "https://w3id.org/linkml/Sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
       "repr": "str",
       "@type": "TypeDefinition"
     }
@@ -602,10 +642,33 @@
       "@type": "ClassDefinition"
     },
     {
+      "name": "Specimen",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/Specimen",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "mappings": [
+        "OBI:0100051"
+      ],
+      "is_a": "MaterialEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "mass_g",
+        "color"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://purl.obolibrary.org/obo/OBI_0100051",
+      "@type": "ClassDefinition"
+    },
+    {
       "name": "SoilSample",
       "definition_uri": "https://w3id.org/turbomam/beril-model/SoilSample",
+      "todos": [
+        "Won't we want to instantiate SoilSample samples? And WholeMetagenomeSequencingAssays? Maybe combine assays and samples in an open-ended way? Can any of this really be a mixin?"
+      ],
       "from_schema": "https://w3id.org/beril-model/beril-model",
-      "is_a": "MaterialEntity",
+      "is_a": "Specimen",
+      "abstract": true,
       "slots": [
         "id",
         "name",
@@ -718,13 +781,53 @@
       "slot_usage": {},
       "class_uri": "https://w3id.org/turbomam/beril-model/Pooling",
       "@type": "ClassDefinition"
+    },
+    {
+      "name": "WholeMetagenomeSequencingAssay",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/WholeMetagenomeSequencingAssay",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "mappings": [
+        "OBI:0002623"
+      ],
+      "is_a": "Process",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "inputs",
+        "outputs"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://purl.obolibrary.org/obo/OBI_0002623",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "WholeMetagenomeSequencingOfSoilSample",
+      "definition_uri": "https://w3id.org/turbomam/beril-model/WholeMetagenomeSequencingOfSoilSample",
+      "from_schema": "https://w3id.org/beril-model/beril-model",
+      "is_a": "WholeMetagenomeSequencingAssay",
+      "mixins": [
+        "SoilSample"
+      ],
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "inputs",
+        "outputs",
+        "mass_g",
+        "color"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/turbomam/beril-model/WholeMetagenomeSequencingOfSoilSample",
+      "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.7.0",
   "source_file": "beril_model.yaml",
-  "source_file_date": "2023-05-15T19:29:56",
-  "source_file_size": 4648,
-  "generation_date": "2023-05-15T19:32:26",
+  "source_file_date": "2023-08-14T12:41:17",
+  "source_file_size": 5161,
+  "generation_date": "2023-08-14T13:14:30",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/beril_model.context.jsonld",

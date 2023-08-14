@@ -1,5 +1,5 @@
 # Auto generated from beril_model.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-05-15T19:32:38
+# Generation date: 2023-08-14T13:14:41
 # Schema: beril-model
 #
 # id: https://w3id.org/beril-model/beril-model
@@ -33,6 +33,7 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 # Namespaces
 BFO = CurieNamespace('BFO', 'http://purl.obolibrary.org/obo/BFO_')
 IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
+OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
 BERIL_MODEL = CurieNamespace('beril_model', 'https://w3id.org/turbomam/beril-model/')
 EXAMPLE = CurieNamespace('example', 'https://example.org/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
@@ -57,7 +58,11 @@ class MaterialEntityId(NamedThingId):
     pass
 
 
-class SoilSampleId(MaterialEntityId):
+class SpecimenId(MaterialEntityId):
+    pass
+
+
+class SoilSampleId(SpecimenId):
     pass
 
 
@@ -78,6 +83,14 @@ class SplittingId(ProcessId):
 
 
 class PoolingId(ProcessId):
+    pass
+
+
+class WholeMetagenomeSequencingAssayId(ProcessId):
+    pass
+
+
+class WholeMetagenomeSequencingOfSoilSampleId(WholeMetagenomeSequencingAssayId):
     pass
 
 
@@ -212,7 +225,27 @@ class MaterialEntity(NamedThing):
 
 
 @dataclass
-class SoilSample(MaterialEntity):
+class Specimen(MaterialEntity):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OBI["0100051"]
+    class_class_curie: ClassVar[str] = "OBI:0100051"
+    class_name: ClassVar[str] = "Specimen"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.Specimen
+
+    id: Union[str, SpecimenId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, SpecimenId):
+            self.id = SpecimenId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class SoilSample(Specimen):
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = BERIL_MODEL.SoilSample
@@ -221,15 +254,6 @@ class SoilSample(MaterialEntity):
     class_model_uri: ClassVar[URIRef] = BERIL_MODEL.SoilSample
 
     id: Union[str, SoilSampleId] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.id):
-            self.MissingRequiredField("id")
-        if not isinstance(self.id, SoilSampleId):
-            self.id = SoilSampleId(self.id)
-
-        super().__post_init__(**kwargs)
-
 
 @dataclass
 class DnaExtract(MaterialEntity):
@@ -355,6 +379,46 @@ class Pooling(Process):
             self.MissingRequiredField("id")
         if not isinstance(self.id, PoolingId):
             self.id = PoolingId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class WholeMetagenomeSequencingAssay(Process):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OBI["0002623"]
+    class_class_curie: ClassVar[str] = "OBI:0002623"
+    class_name: ClassVar[str] = "WholeMetagenomeSequencingAssay"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.WholeMetagenomeSequencingAssay
+
+    id: Union[str, WholeMetagenomeSequencingAssayId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, WholeMetagenomeSequencingAssayId):
+            self.id = WholeMetagenomeSequencingAssayId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class WholeMetagenomeSequencingOfSoilSample(WholeMetagenomeSequencingAssay):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = BERIL_MODEL.WholeMetagenomeSequencingOfSoilSample
+    class_class_curie: ClassVar[str] = "beril_model:WholeMetagenomeSequencingOfSoilSample"
+    class_name: ClassVar[str] = "WholeMetagenomeSequencingOfSoilSample"
+    class_model_uri: ClassVar[URIRef] = BERIL_MODEL.WholeMetagenomeSequencingOfSoilSample
+
+    id: Union[str, WholeMetagenomeSequencingOfSoilSampleId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, WholeMetagenomeSequencingOfSoilSampleId):
+            self.id = WholeMetagenomeSequencingOfSoilSampleId(self.id)
 
         super().__post_init__(**kwargs)
 
