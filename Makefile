@@ -104,14 +104,26 @@ gen-examples:
 
 # generates all project files
 
+#		--exclude owl \
+#		--exclude shacl \
+#		--exclude shex
+
 gen-project: $(PYMODEL)
-	$(RUN) gen-project ${GEN_PARGS} -d $(DEST) $(SOURCE_SCHEMA_PATH) && mv $(DEST)/*.py $(PYMODEL)
+	$(RUN) gen-project ${GEN_PARGS} \
+		-d $(DEST) \
+		$(SOURCE_SCHEMA_PATH) && mv $(DEST)/*.py $(PYMODEL)
 
 
 test: test-schema test-python test-examples
 
+#		--exclude owl \
+#		--exclude shacl \
+#		--exclude shex
+
 test-schema:
-	$(RUN) gen-project ${GEN_PARGS} -d tmp $(SOURCE_SCHEMA_PATH)
+	$(RUN) gen-project ${GEN_PARGS} \
+		-d tmp \
+		$(SOURCE_SCHEMA_PATH)
 
 test-python:
 	$(RUN) python -m unittest discover

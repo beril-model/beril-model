@@ -65,7 +65,7 @@ message Process
  repeated  materialEntity inputs = 0
  repeated  materialEntity outputs = 0
  }
-message SoilSample
+message Specimen
  {
   uriorcurie id = 1
   string name = 2
@@ -80,4 +80,22 @@ message Splitting
   string description = 3
  repeated  materialEntity inputs = 0
  repeated  materialEntity outputs = 0
+ }
+message WholeMetagenomeSequencingAssay
+ {
+  uriorcurie id = 1
+  string name = 2
+  string description = 3
+ repeated  materialEntity inputs = 0
+ repeated  materialEntity outputs = 0
+ }
+message WholeMetagenomeSequencingOfSoilSample
+ {
+  uriorcurie id = 1
+  string name = 2
+  string description = 3
+ repeated  materialEntity inputs = 0
+ repeated  materialEntity outputs = 0
+  float massG = 101
+  colorEnum color = 102
  }

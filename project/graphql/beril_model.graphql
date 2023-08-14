@@ -69,7 +69,16 @@ type Process
     outputs: [MaterialEntity]
   }
 
-type SoilSample
+interface SoilSample
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    massG: Float
+    color: ColorEnum
+  }
+
+type Specimen
   {
     id: Uriorcurie!
     name: String
@@ -85,5 +94,25 @@ type Splitting
     description: String
     inputs: [MaterialEntity]
     outputs: [MaterialEntity]
+  }
+
+type WholeMetagenomeSequencingAssay
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    inputs: [MaterialEntity]
+    outputs: [MaterialEntity]
+  }
+
+type WholeMetagenomeSequencingOfSoilSample implements SoilSample
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    inputs: [MaterialEntity]
+    outputs: [MaterialEntity]
+    massG: Float
+    color: ColorEnum
   }
 

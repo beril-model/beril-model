@@ -15,6 +15,7 @@ prefixes:
   shex: http://www.w3.org/ns/shex#
   BFO: http://purl.obolibrary.org/obo/BFO_
   IAO: http://purl.obolibrary.org/obo/IAO_
+  OBI: http://purl.obolibrary.org/obo/OBI_
 default_prefix: beril_model
 default_range: string
 
@@ -146,8 +147,14 @@ classes:
       - InformationArtifact
       - Process
       - Observation
-  SoilSample:
+  Specimen:
     is_a: MaterialEntity
+    class_uri: "OBI:0100051"
+  SoilSample:
+    abstract: true
+    todos:
+      - "Won't we want to instantiate SoilSample samples? And WholeMetagenomeSequencingAssays? Maybe combine assays and samples in an open-ended way? Can any of this really be a mixin?"
+    is_a: Specimen
   DnaExtract:
     is_a: MaterialEntity
   InformationArtifact:
@@ -182,3 +189,10 @@ classes:
     is_a: Process
   Pooling:
     is_a: Process
+  WholeMetagenomeSequencingAssay:
+    is_a: Process
+    class_uri: "OBI:0002623"
+  WholeMetagenomeSequencingOfSoilSample:
+    is_a: WholeMetagenomeSequencingAssay
+    mixins:
+      - SoilSample

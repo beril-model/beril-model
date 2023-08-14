@@ -71,7 +71,7 @@ CREATE TABLE "Process" (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE "SoilSample" (
+CREATE TABLE "Specimen" (
 	id TEXT NOT NULL, 
 	name TEXT, 
 	description TEXT, 
@@ -86,5 +86,25 @@ CREATE TABLE "Splitting" (
 	description TEXT, 
 	inputs TEXT, 
 	outputs TEXT, 
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE "WholeMetagenomeSequencingAssay" (
+	id TEXT NOT NULL, 
+	name TEXT, 
+	description TEXT, 
+	inputs TEXT, 
+	outputs TEXT, 
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE "WholeMetagenomeSequencingOfSoilSample" (
+	id TEXT NOT NULL, 
+	name TEXT, 
+	description TEXT, 
+	inputs TEXT, 
+	outputs TEXT, 
+	mass_g FLOAT, 
+	color VARCHAR(5), 
 	PRIMARY KEY (id)
 );
